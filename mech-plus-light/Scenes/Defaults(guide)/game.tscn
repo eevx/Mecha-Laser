@@ -1,0 +1,184 @@
+[gd_scene load_steps=15 format=3 uid="uid://bns75b0lbdoec"]
+
+[ext_resource type="PackedScene" uid="uid://dbevb0q0lphhb" path="res://Scenes/Defaults(guide)/player.tscn" id="1_yeekr"]
+[ext_resource type="PackedScene" uid="uid://yvjog6yvl118" path="res://Scenes/Defaults(guide)/tile_map.tscn" id="3_wevjm"]
+[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/platform.tscn" id="4_wevjm"]
+[ext_resource type="PackedScene" uid="uid://fcxdyeg2ae1d" path="res://Scenes/Defaults(guide)/coin.tscn" id="5_i3me4"]
+[ext_resource type="PackedScene" uid="uid://b2ubuy15chijt" path="res://Scenes/Defaults(guide)/kill_area.tscn" id="6_3xtp6"]
+[ext_resource type="PackedScene" uid="uid://buu1mi6xignd0" path="res://Scenes/Defaults(guide)/slime.tscn" id="7_0r6oe"]
+[ext_resource type="AudioStream" uid="uid://dn5hq73c68d16" path="res://Assets/Defaults(guide)/music/time_for_adventure.mp3" id="9_ghdsy"]
+[ext_resource type="PackedScene" uid="uid://nhpief4c5ddi" path="res://Scenes/Defaults(guide)/pause.tscn" id="9_yl0jo"]
+
+[sub_resource type="GDScript" id="GDScript_4l648"]
+
+[sub_resource type="Animation" id="Animation_4l648"]
+resource_name = "Platform 4 move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-497, -200), Vector2(-591, -200)]
+}
+
+[sub_resource type="Animation" id="Animation_wevjm"]
+resource_name = "Platform2 move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-351, -201), Vector2(-439, -201)]
+}
+
+[sub_resource type="Animation" id="Animation_i3me4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-351, -201)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3me4"]
+_data = {
+&"Platform 4 move": SubResource("Animation_4l648"),
+&"Platform2 move": SubResource("Animation_wevjm"),
+&"RESET": SubResource("Animation_i3me4")
+}
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3xtp6"]
+
+[node name="Game" type="Node2D"]
+script = SubResource("GDScript_4l648")
+
+[node name="Player2" parent="." instance=ExtResource("1_yeekr")]
+directionalSnap = true
+dashMagnitude = 500.0
+
+[node name="Camera2D" type="Camera2D" parent="Player2"]
+position = Vector2(0, -8)
+zoom = Vector2(4, 4)
+limit_bottom = 80
+limit_smoothed = true
+position_smoothing_speed = 100.0
+
+[node name="Pause" parent="Player2/Camera2D" instance=ExtResource("9_yl0jo")]
+process_priority = 100
+offset_left = -228.0
+offset_top = -127.0
+offset_right = -228.0
+offset_bottom = -127.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TileMap" parent="." instance=ExtResource("3_wevjm")]
+layer_0/name = "Back"
+layer_0/tile_data = PackedInt32Array(65534, 131073, 2, 65535, 131073, 2, 0, 131073, 2, 1, 131073, 2, 131070, 131073, 1, 196606, 131073, 1, 262142, 131073, 1, 327678, 131073, 1, 131071, 131073, 1, 196607, 131073, 1, 262143, 131073, 1, 327679, 131073, 1, 65536, 131073, 1, 131072, 131073, 1, 196608, 131073, 1, 262144, 131073, 1, 65537, 131073, 1, 131073, 131073, 1, 196609, 131073, 1, 262145, 131073, 1, 2, 131073, 2, 3, 131073, 2, 4, 131073, 2, 5, 131073, 1, 6, 131073, 1, 7, 131073, 1, 8, 131073, 1, 9, 262145, 14, 65544, 131073, 1, 131080, 131073, 1, 131081, 262145, 14, 65545, 262145, 14, 196617, 262145, 14, 196616, 131073, 1, 262152, 131073, 1, 262153, 65537, 15, -917520, 458753, 1, -851984, 393217, 2, -786448, 393217, 2, -720912, 393217, 2, -655376, 393217, 2, -589840, 393217, 2, -524304, 393217, 2, -458768, 393217, 2, -393232, 393217, 2, -327696, 393217, 2, -262160, 393217, 2, -196624, 393217, 2, -131088, 393217, 2, -65552, 393217, 2, -16, 393217, 2, 65520, 393217, 2, 131056, 393217, 2, 196592, 393217, 2, 262128, 393217, 2, 327664, 393217, 2, -917519, 458753, 1, -851983, 393217, 2, -786447, 393217, 2, -720911, 393217, 2, -655375, 393217, 2, -589839, 393217, 2, -524303, 393217, 2, -458767, 393217, 2, -393231, 393217, 2, -327695, 393217, 2, -262159, 393217, 2, -196623, 393217, 2, -131087, 393217, 2, -65551, 393217, 2, -15, 393217, 2, 65521, 393217, 2, 131057, 393217, 2, 196593, 393217, 2, 262129, 393217, 2, 327665, 393217, 2, -917518, 458753, 1, -851982, 393217, 2, -786446, 393217, 2, -720910, 393217, 2, -655374, 393217, 2, -589838, 393217, 2, -524302, 393217, 2, -458766, 393217, 2, -393230, 393217, 2, -327694, 393217, 2, -262158, 393217, 2, -196622, 393217, 2, -131086, 393217, 2, -65550, 393217, 2, -14, 393217, 2, 65522, 393217, 2, 131058, 393217, 2, 196594, 393217, 2, 262130, 393217, 2, 327666, 393217, 2, -917517, 458753, 1, -851981, 393217, 2, -786445, 393217, 2, -720909, 393217, 2, -655373, 393217, 2, -589837, 393217, 2, -524301, 393217, 2, -458765, 393217, 2, -393229, 393217, 2, -327693, 393217, 2, -262157, 393217, 2, -196621, 393217, 2, -131085, 393217, 2, -65549, 393217, 2, -13, 393217, 2, 65523, 393217, 2, 131059, 393217, 2, 196595, 393217, 2, 262131, 393217, 2, 327667, 393217, 2, -917516, 458753, 1, -851980, 393217, 2, -786444, 393217, 2, -720908, 393217, 2, -655372, 393217, 2, -589836, 393217, 2, -524300, 393217, 2, -458764, 393217, 2, -393228, 393217, 2, -327692, 393217, 2, -262156, 393217, 2, -196620, 393217, 2, -131084, 393217, 2, -65548, 393217, 2, -12, 393217, 2, 65524, 393217, 2, 131060, 393217, 2, 196596, 393217, 2, 262132, 393217, 2, 327668, 393217, 2, -786443, 393217, 0, -720907, 393217, 0, -655371, 393217, 1, -589835, 393217, 1, -524299, 393217, 1, -458763, 393217, 1, -393227, 393217, 1, -327691, 393217, 1, -262155, 393217, 1, -196619, 393217, 1, -131083, 393217, 1, -65547, 393217, 1, -11, 131073, 1, 65525, 131073, 1, 131061, 131073, 1, 196597, 131073, 1, 262133, 131073, 1, 327669, 131073, 1, -655370, 393217, 0, -589834, 393217, 1, -524298, 393217, 1, -458762, 393217, 1, -393226, 393217, 1, -327690, 393217, 1, -262154, 393217, 1, -196618, 393217, 1, -131082, 393217, 1, -65546, 393217, 1, -10, 393217, 1, 65526, 131073, 1, 131062, 393217, 1, 196598, 131073, 1, 262134, 131073, 1, 327670, 131073, 1, -524297, 393217, 0, -458761, 393217, 1, -393225, 393217, 1, -327689, 393217, 1, -262153, 393217, 1, -196617, 393217, 1, -131081, 393217, 1, -65545, 393217, 1, -9, 393217, 1, 65527, 393217, 1, 131063, 131073, 1, 196599, 131073, 1, 262135, 131073, 1, 327671, 131073, 1, -393224, 131073, 2, -327688, 131073, 1, -262152, 131073, 1, -196616, 393217, 1, -131080, 393217, 1, -65544, 131073, 1, -8, 131073, 1, 65528, 131073, 1, 131064, 131073, 1, 196600, 131073, 1, 262136, 131073, 1, 327672, 131073, 1, -327687, 131073, 2, -262151, 131073, 1, -196615, 131073, 1, -131079, 131073, 1, -65543, 131073, 1, -7, 131073, 1, 65529, 131073, 1, 131065, 131073, 1, 196601, 131073, 1, 262137, 131073, 1, 327673, 131073, 1, -196614, 131073, 2, -131078, 131073, 1, -65542, 131073, 1, -6, 131073, 1, 65530, 131073, 1, 131066, 131073, 1, 196602, 131073, 1, 262138, 131073, 1, 327674, 131073, 1, -5, 131073, 2, 65531, 131073, 1, 131067, 131073, 1, 196603, 131073, 1, 262139, 131073, 1, 327675, 131073, 1, 65532, 131073, 2, 131068, 131073, 1, 196604, 131073, 1, 262140, 131073, 1, 327676, 131073, 1, 65533, 131073, 2, 131069, 131073, 1, 196605, 131073, 1, 262141, 131073, 1, 327677, 131073, 1, 65538, 131073, 1, 131074, 131073, 1, 196610, 131073, 1, 262146, 131073, 1, 65539, 131073, 1, 131075, 131073, 1, 196611, 131073, 1, 262147, 131073, 1, 65540, 131073, 1, 131076, 131073, 1, 196612, 131073, 1, 262148, 131073, 1, -65531, 131073, 2, 65541, 131073, 1, 131077, 131073, 1, 196613, 131073, 1, 262149, 131073, 1, -131066, 131073, 2, -65530, 131073, 1, 65542, 131073, 1, 131078, 131073, 1, 196614, 131073, 1, 262150, 131073, 1, -196601, 131073, 2, -131065, 131073, 1, -65529, 131073, 1, 65543, 131073, 1, 131079, 131073, 1, 196615, 131073, 1, 262151, 131073, 1, -196600, 131073, 2, -131064, 131073, 1, -65528, 131073, 1, -196599, 327681, 13, -131063, 262145, 14, -65527, 262145, 14, -196598, 327681, 13, -131062, 262145, 14, -65526, 262145, 14, 10, 262145, 14, 65546, 262145, 14, 131082, 262145, 14, 196618, 262145, 14, 262154, 65537, 15, -196597, 327681, 13, -131061, 262145, 14, -65525, 262145, 14, 11, 262145, 14, 65547, 262145, 14, 131083, 262145, 14, 196619, 262145, 14, 262155, 65537, 15, -196596, 131073, 0, -131060, 131073, 1, -65524, 131073, 1, 12, 131073, 1, 65548, 131073, 1, 131084, 131073, 1, 196620, 131073, 1, 262156, 131073, 1, -196595, 131073, 0, -131059, 131073, 1, -65523, 131073, 1, 13, 131073, 1, 65549, 131073, 1, 131085, 131073, 1, 196621, 131073, 1, 262157, 131073, 1, -196594, 131073, 0, -131058, 131073, 1, -65522, 131073, 1, 14, 131073, 1, 65550, 131073, 1, 131086, 131073, 1, 196622, 131073, 1, 262158, 131073, 1, -196593, 131073, 0, -131057, 131073, 1, -65521, 131073, 1, 15, 131073, 1, 65551, 131073, 1, 131087, 131073, 1, 196623, 131073, 1, 262159, 131073, 1, -131056, 131073, 0, -65520, 131073, 1, 16, 131073, 1, 65552, 131073, 1, 131088, 131073, 1, 196624, 131073, 1, 262160, 131073, 1, -131055, 131073, 0, -65519, 131073, 1, 17, 131073, 1, 65553, 131073, 1, 131089, 131073, 1, 196625, 131073, 1, 262161, 131073, 1, -131054, 131073, 0, -65518, 131073, 1, 18, 131073, 1, 65554, 131073, 1, 131090, 131073, 1, 196626, 131073, 1, 262162, 131073, 1, -131053, 131073, 0, -65517, 131073, 1, 19, 131073, 1, 65555, 131073, 1, 131091, 131073, 1, 196627, 131073, 1, 262163, 131073, 1, -131052, 131073, 0, -65516, 131073, 1, 20, 131073, 1, 65556, 131073, 1, 131092, 131073, 1, 196628, 131073, 1, 262164, 131073, 1, -131051, 131073, 0, -65515, 131073, 1, 21, 131073, 1, 65557, 131073, 1, 131093, 131073, 1, 196629, 131073, 1, 262165, 131073, 1, -131050, 131073, 0, -65514, 131073, 1, 22, 131073, 1, 65558, 131073, 1, 131094, 131073, 1, 196630, 131073, 1, 262166, 131073, 1, -131049, 131073, 0, -65513, 131073, 1, 23, 131073, 1, 65559, 131073, 1, 131095, 131073, 1, 196631, 131073, 1, 262167, 131073, 1, -196584, 131073, 0, -131048, 131073, 1, -65512, 131073, 1, 24, 131073, 1, 65560, 131073, 1, 131096, 131073, 1, 196632, 131073, 1, 262168, 131073, 1)
+layer_1/name = "Mid"
+
+[node name="Platform3" parent="." instance=ExtResource("4_wevjm")]
+position = Vector2(-656, -210)
+
+[node name="Platform" parent="." instance=ExtResource("4_wevjm")]
+position = Vector2(-304, -224)
+
+[node name="Platform2" parent="." instance=ExtResource("4_wevjm")]
+position = Vector2(-351, -201)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform2"]
+libraries = {
+&"": SubResource("AnimationLibrary_i3me4")
+}
+autoplay = "Platform2 move"
+
+[node name="Platform4" parent="." instance=ExtResource("4_wevjm")]
+position = Vector2(-351, -201)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform4"]
+libraries = {
+&"": SubResource("AnimationLibrary_i3me4")
+}
+autoplay = "Platform 4 move"
+
+[node name="Coin" parent="." instance=ExtResource("5_i3me4")]
+position = Vector2(-654, -228)
+
+[node name="KillArea" parent="." instance=ExtResource("6_3xtp6")]
+position = Vector2(-1.05273, 80.5713)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
+position = Vector2(2.05273, 2.4287)
+shape = SubResource("WorldBoundaryShape2D_3xtp6")
+
+[node name="SlimeMoving" parent="." instance=ExtResource("7_0r6oe")]
+position = Vector2(302, -44)
+
+[node name="Labels" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="Labels"]
+offset_left = -171.0
+offset_top = -227.0
+offset_right = -53.0
+offset_bottom = -204.0
+scale = Vector2(0.7, 0.7)
+text = "Nothing to see "
+
+[node name="Label2" type="Label" parent="Labels"]
+modulate = Color(1, 1, 1, 0.388235)
+offset_left = -283.0
+offset_top = -250.0
+offset_right = 33.0
+offset_bottom = -175.0
+scale = Vector2(0.3, 0.3)
+text = "A coin for the next platforming part.
+"
+
+[node name="Label3" type="Label" parent="Labels"]
+offset_left = -726.0
+offset_top = -234.0
+offset_right = -547.0
+offset_bottom = -211.0
+scale = Vector2(0.3, 0.3)
+text = "It does not do anything"
+
+[node name="Label4" type="Label" parent="Labels"]
+offset_left = -58.0
+offset_top = -62.0
+offset_right = 205.0
+offset_bottom = 13.0
+scale = Vector2(0.5, 0.5)
+text = "controls : left -> A or left arrowkey
+	right -> D or right arrowkey
+space to jump 
+esc to pause and quit"
+
+[node name="Label" type="Label" parent="Labels/Label4"]
+layout_mode = 0
+offset_left = 612.458
+offset_top = -54.496
+offset_right = 652.458
+offset_bottom = -31.496
+text = "The only enemy in the game, slime
+also there is no game finish condition, so just use escape and quit that way."
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(25.6666, -129.151)
+stream = ExtResource("9_ghdsy")

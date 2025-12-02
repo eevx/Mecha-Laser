@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://domcqsid7d4rc"]
+
+[ext_resource type="Script" uid="uid://p6ai2qh4k2x2" path="res://Scripts/Default(Guide)/main_menu.gd" id="1_gtk5y"]
+[ext_resource type="Texture2D" uid="uid://b3vn4gen66nqe" path="res://Assets/Screenshot 2024-09-25 180225.png" id="1_kw0fr"]
+[ext_resource type="PackedScene" uid="uid://budtptkugr00q" path="res://Scenes/Defaults(guide)/seperator.tscn" id="2_8oadm"]
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gtk5y")
+
+[node name="Background{insert img}" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kw0fr")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "No title, sorry"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 76
+
+[node name="Seperator" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_8oadm")]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Levels{there were supposed to be more than one}"
+
+[node name="Button2" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
