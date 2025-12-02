@@ -38,7 +38,7 @@ A complex interactive lever with three distinct states (Left, Center, Right) con
 4.  **Run:** Press `F5` to play the main scene.
 
 ## 📂 Project Structure
-
+```
 SG
 ├── Assets/
 │   ├── Sprites/       # Pixel art for Button, Lever, and Knight
