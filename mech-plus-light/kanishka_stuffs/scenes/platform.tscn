@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ejcgdvsyoqjg"]
 
-[ext_resource type="Script" uid="uid://nswbvrqt3wh2" path="res://script/movingplatform.gd" id="1_s8bxr"]
-[ext_resource type="Texture2D" uid="uid://dp86qftd5ir4f" path="res://assets/platforms.png" id="2_c1gtx"]
+[ext_resource type="Script" uid="uid://nswbvrqt3wh2" path="res://kanishka_stuffs/script/movingplatform.gd" id="1_s8bxr"]
+[ext_resource type="Texture2D" uid="uid://dp86qftd5ir4f" path="res://kanishka_stuffs/assets/platforms.png" id="2_c1gtx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ry5bi"]
 size = Vector2(31, 7)
@@ -19,5 +19,3 @@ region_rect = Rect2(16.365402, 0, 32.653076, 10.85978)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, -4.5)
 shape = SubResource("RectangleShape2D_ry5bi")
-
-[node name="Area2D" type="Area2D" parent="."]

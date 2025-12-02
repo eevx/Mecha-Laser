@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhrg4c7mjfapq"
-path="res://.godot/imported/CGB02-green_M_btn.png-344e7e5052ba59cab36bd6d31803666a.ctex"
+path="res://.godot/imported/CGB02-green_M_btn.png-3d3f10f59786185f3d5ce5a237615a7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/CGB02-green_M_btn.png"
-dest_files=["res://.godot/imported/CGB02-green_M_btn.png-344e7e5052ba59cab36bd6d31803666a.ctex"]
+source_file="res://kanishka_stuffs/assets/CGB02-green_M_btn.png"
+dest_files=["res://.godot/imported/CGB02-green_M_btn.png-3d3f10f59786185f3d5ce5a237615a7c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtmaikji2v81o"
-path="res://.godot/imported/spikes.png-8623a6308d30caf0ad1d5cef975bbe78.ctex"
+uid="uid://dp86qftd5ir4f"
+path="res://.godot/imported/platforms.png-2a8372fa55437a2ab148a67f29b7b55b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spikes.png"
-dest_files=["res://.godot/imported/spikes.png-8623a6308d30caf0ad1d5cef975bbe78.ctex"]
+source_file="res://kanishka_stuffs/assets/platforms.png"
+dest_files=["res://.godot/imported/platforms.png-2a8372fa55437a2ab148a67f29b7b55b.ctex"]
 
 [params]
 

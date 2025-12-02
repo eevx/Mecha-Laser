@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4cb3q26edues"
-path="res://.godot/imported/CGB02-red_M_btn.png-328e7a623089bff89dbfd65914627f21.ctex"
+path="res://.godot/imported/CGB02-red_M_btn.png-1f4d0e15d06448eeb20e335d60d1f45f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/CGB02-red_M_btn.png"
-dest_files=["res://.godot/imported/CGB02-red_M_btn.png-328e7a623089bff89dbfd65914627f21.ctex"]
+source_file="res://kanishka_stuffs/assets/CGB02-red_M_btn.png"
+dest_files=["res://.godot/imported/CGB02-red_M_btn.png-1f4d0e15d06448eeb20e335d60d1f45f.ctex"]
 
 [params]
 
