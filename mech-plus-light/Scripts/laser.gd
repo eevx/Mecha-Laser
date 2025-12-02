@@ -41,6 +41,112 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		set_physics_process(false)
 
+# Create a secondary Line2D beam that is independent of the main beam.
+# It will cast from the given world start and direction using your same casting logic,
+# but draws into a new Line2D child named "SecondaryBeam".
+func spawn_secondary_beam(world_start: Vector2, dir_world: Vector2, remaining_length: float, beam_color: Color, recursion_depth: int = 0) -> void:
+	# safety: avoid runaway recursion
+	if recursion_depth > 6:
+		return
+
+	# create a Line2D for visualizing this secondary beam
+	var sec_node := Node2D.new()
+	add_child(sec_node)
+	sec_node.owner = owner  # if you want it saved in scenes (optional)
+
+	var sec_line := Line2D.new()
+	sec_line.width = line_2d.width
+	sec_line.default_color = beam_color
+	sec_line.z_index = line_2d.z_index
+	sec_node.add_child(sec_line)
+
+	# cast one beam segment using same logic as main, but independent:
+	var seg_points: Array = []
+	seg_points.append(to_local(world_start))  # local to laser node, but store local for Line2D that is child of laser
+	var world_from := world_start
+	var dir := dir_world.normalized()
+	var rem_len := remaining_length
+	var local_origin : Vector2 = seg_points[0]  # starting local point
+
+	var iter := 0
+	var max_iter := 12
+	var _hit_any := false
+	while rem_len > 0.0 and iter < max_iter:
+		iter += 1
+		var end_world := world_from + dir * rem_len
+
+		var params := PhysicsRayQueryParameters2D.new()
+		params.from = world_from
+		params.to = end_world
+		params.exclude = [self]
+		var res := get_world_2d().direct_space_state.intersect_ray(params)
+		if res:
+			var hit_world : Vector2 = res.position
+			var hit_local := to_local(hit_world)
+			seg_points.append(hit_local)
+			_hit_any = true
+
+			# If hit a master portal, let it spawn outputs recursively
+			var collider_node: Node = res.collider
+			# climb to parent to find master portal if needed
+			var maybe_portal := collider_node
+			while maybe_portal != null:
+				if maybe_portal.has_method("get_matching_outputs") and maybe_portal.has_method("is_master_portal"):
+					# spawn outputs from master
+					var outputs : Array = maybe_portal.get_matching_outputs(hit_world)
+					for info in outputs:
+						# call spawn_secondary_beam for each output (perpendicular exit)
+						var exit_pos = info["exit_position"] as Vector2
+						var exit_normal = (info["exit_normal"] as Vector2).normalized()
+						# compute new remaining length measured as before
+						var traveled_local_len := (hit_local - local_origin).length()
+						var new_rem : Variant = max(0.0, remaining_length - traveled_local_len)
+						spawn_secondary_beam(exit_pos + exit_normal * 2.0, exit_normal, new_rem, beam_color, recursion_depth + 1)
+					break
+				if maybe_portal.get_parent() and maybe_portal.get_parent() is Node:
+					maybe_portal = maybe_portal.get_parent() as Node
+				else:
+					maybe_portal = null
+
+			# reflect on normal for non-portal colliders
+			var normal_world : Vector2 = res.normal
+			dir = dir.bounce(normal_world).normalized()
+			world_from = hit_world
+			rem_len = remaining_length - (hit_local - local_origin).length()
+		else:
+			seg_points.append(to_local(end_world))
+			break
+
+	# set points on sec_line (Line2D expects points in LOCAL space of the node it's attached to)
+	sec_line.points = seg_points
+
+	# optional: queue_free after a short time (so secondary beams don't persist forever)
+	sec_node.call_deferred("set_physics_process", false)
+	sec_node.call_deferred("queue_free", 0.2)  # adjust lifetime as needed
+
+func handle_master_hit(collision_point_world: Vector2, collision_point_local: Vector2, remaining_length: float, beam_color: Color) -> void:
+	# climb from collider to find the master portal instance; our caller provides the collider in a variable `collider_node`
+	var collider_node: Node = null
+	# find the last `res` in your loop and store res.collider as collider_node before calling this
+	if collider_node == null:
+		return
+
+	var maybe_master := collider_node
+	while maybe_master != null:
+		if maybe_master.has_method("get_matching_outputs") and maybe_master.has_method("is_master_portal"):
+			var outputs : Array = maybe_master.get_matching_outputs(collision_point_world)
+			for info in outputs:
+				var exit_pos = info["exit_position"] as Vector2
+				var exit_normal = (info["exit_normal"] as Vector2).normalized()
+				# spawn secondary beam from each matching output; offset a bit
+				spawn_secondary_beam(exit_pos + exit_normal * 2.0, exit_normal, remaining_length, beam_color)
+			return
+		if maybe_master.get_parent() and maybe_master.get_parent() is Node:
+			maybe_master = maybe_master.get_parent() as Node
+		else:
+			maybe_master = null
+
+
 
 func _physics_process(delta: float) -> void:
 	# Grow laser until full length
@@ -81,17 +187,27 @@ func _physics_process(delta: float) -> void:
 			if collider:
 				# If the collider is a shape child (CollisionShape2D) or some child,
 				# the portal script may be on an ancestor. Walk up until root or found.
-				var maybe_portal: Node = collider
-				while maybe_portal != null:
-					if maybe_portal.has_method("get_other_face") and maybe_portal.has_method("is_portal"):
-						# found the portal node
-						portal_data = maybe_portal.get_other_face(collision_point_world)
-						break
-					# climb to parent (stop if parent is not Node)
-					if maybe_portal.get_parent() and maybe_portal.get_parent() is Node:
-						maybe_portal = maybe_portal.get_parent() as Node
-					else:
-						maybe_portal = null
+				var res := get_world_2d().direct_space_state.intersect_ray(params)
+				if res:
+					var collider_node: Node = res.collider
+					# climb to parent to find master portal
+					var maybe_master := collider_node
+					while maybe_master != null:
+						if maybe_master.has_method("get_matching_outputs") and maybe_master.has_method("is_master_portal"):
+							# compute remaining_length (as you already do)
+							var traveled_local_len: float = (collision_point_local - points[0]).length()
+							var new_rem : Variant = max(0.0, max_length - traveled_local_len)
+							# use line color (your laser color) to match outputs
+							handle_master_hit(res.position, collision_point_local, new_rem, color)
+							# append the entry collision point to main beam and stop (or continue per design)
+							points.append(collision_point_local)
+							# break or continue depending on whether master blocks main beam; here we stop the main beam
+							break
+						# climb parent
+						if maybe_master.get_parent() and maybe_master.get_parent() is Node:
+							maybe_master = maybe_master.get_parent() as Node
+						else:
+							maybe_master = null
 			
 			if portal_data != null:
 				# portal_data is a Dictionary (but typed Variant here)
@@ -113,7 +229,7 @@ func _physics_process(delta: float) -> void:
 			points.append(collision_point_local)
 			# prepare for the next reflection (all in world space)
 			world_start = collision_point_world
-			dir_world = dir_world.bounce(normal_world).normalized()
+			dir_world = dir_world.bounce(normal_world.normalized()).normalized()
 			# remaining length measured from the original local start point
 			remaining_length = max_length - (collision_point_local - points[0]).length()
 			hit_final = true
