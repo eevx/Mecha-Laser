@@ -1,0 +1,37 @@
+extends Area2D
+class_name Hurtbox
+
+#Uncomment names to use it
+
+#I used classes here to signify objecs such as pickups, Hazards,Light etc that may interact with body
+
+#var _player : Player
+
+#func _ready():
+	#if not get_parent() is Player:
+		#queue_free()
+		#return
+	#else: _player = get_parent()
+
+#func _on_body_entered(body: Node2D) -> void:
+	#var direction = (body.global_position - player.global_position).normalized()
+	#if body is Keys:
+		#_player.get_key()
+	#if body is Pickup:
+		#_player.handle_pickup(body.get_name()) #assuming getname is a function of the Pickups class
+	#if body is DangerousLight:
+		#_player.hit_by_light(direction)
+	#if body is Hazards:
+		#_player.hit_by_hazard(direction)
+
+
+#func _on_area_entered(area: Area2D) -> void:
+	#var direction = (area.global_position - player.global_position).normalized()
+	#if area is Keys:
+		#_player.get_key()
+	#if area is Pickup:
+		#_player.handle_pickup(area.get_name()) #assuming getname is a function of the Pickups class
+	#if area is DangerousLight:
+		#_player.hit_by_light(direction)
+	#if area is Hazards:
+		#_player.hit_by_hazard(direction)
