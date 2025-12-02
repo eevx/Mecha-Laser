@@ -1,13 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dj8scj85tj2j2"]
+[gd_scene load_steps=12 format=3 uid="uid://dj8scj85tj2j2"]
 
 [ext_resource type="PackedScene" uid="uid://br248huea2eo2" path="res://Scenes/laser.tscn" id="1_8ffim"]
+[ext_resource type="Texture2D" uid="uid://r8ik0l6yh254" path="res://assets/laser_2d/topdown-player.svg" id="1_vk57k"]
 [ext_resource type="Script" uid="uid://cxm8wul6p3d40" path="res://Scripts/source.gd" id="1_xfk5q"]
-[ext_resource type="Texture2D" uid="uid://cx5nvddaah2" path="res://Placeholder Assets/topdown-player.svg" id="2_evi0p"]
-[ext_resource type="Environment" uid="uid://c8ol6uwdees61" path="res://Placeholder Assets/2d_environment.tres" id="4_7p6j4"]
-[ext_resource type="Texture2D" uid="uid://cnecqu5m5recn" path="res://Placeholder Assets/asteroid.svg" id="5_lsmp6"]
+[ext_resource type="Environment" uid="uid://c8ol6uwdees61" path="res://assets/laser_2d/2d_environment.tres" id="4_7p6j4"]
+[ext_resource type="Texture2D" uid="uid://dbch3ucxyq15y" path="res://assets/laser_2d/asteroids/asteroid.svg" id="5_6444e"]
 [ext_resource type="Script" uid="uid://dlv1wdproxbla" path="res://Scripts/portal.gd" id="6_evi0p"]
-[ext_resource type="Script" uid="uid://cme38r8hglvro" path="res://Scripts/output_red.gd" id="7_lsmp6"]
-[ext_resource type="Script" uid="uid://neny5ehc7ojl" path="res://Scripts/output_green.gd" id="8_xrdnt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6444e"]
 radius = 46.21
@@ -22,10 +20,7 @@ radius = 105.0
 radius = 14.0
 height = 156.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrdnt"]
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lsmp6"]
-material = SubResource("StandardMaterial3D_xrdnt")
 radius = 10.0
 height = 30.0
 
@@ -39,7 +34,7 @@ script = ExtResource("1_xfk5q")
 
 [node name="Sprite2D" type="Sprite2D" parent="Source"]
 z_index = 1
-texture = ExtResource("2_evi0p")
+texture = ExtResource("1_vk57k")
 
 [node name="Laser" parent="Source" instance=ExtResource("1_8ffim")]
 target_position = Vector2(2000, 0)
@@ -64,47 +59,33 @@ collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_6444e")
 
 [node name="Sprite2D" type="Sprite2D" parent="Asteroid"]
-texture = ExtResource("5_lsmp6")
+texture = ExtResource("5_6444e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid"]
 shape = SubResource("CircleShape2D_evi0p")
 
-[node name="MasterPortal" type="Node2D" parent="."]
+[node name="Portal" type="Node2D" parent="."]
 position = Vector2(485, -89)
 script = ExtResource("6_evi0p")
 
-[node name="Face" type="StaticBody2D" parent="MasterPortal"]
+[node name="FaceA" type="StaticBody2D" parent="Portal"]
 position = Vector2(119, 796)
 rotation = 3.8397243
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MasterPortal/Face"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal/FaceA"]
 shape = SubResource("CapsuleShape2D_evi0p")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="MasterPortal/Face/CollisionShape2D"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Portal/FaceA/CollisionShape2D"]
 position = Vector2(0, 2.2015596e-05)
 scale = Vector2(1.4548461, 7.0850263)
 mesh = SubResource("CapsuleMesh_lsmp6")
 
-[node name="OutputParent" type="Node2D" parent="MasterPortal"]
+[node name="FaceB" type="Marker2D" parent="Portal"]
 position = Vector2(-484, 87)
 
-[node name="Output_Red" type="Node2D" parent="MasterPortal/OutputParent"]
-position = Vector2(322, 1)
-script = ExtResource("7_lsmp6")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="MasterPortal/OutputParent/Output_Red"]
-position = Vector2(-1, 6.794926e-06)
-rotation = 1.5707964
-scale = Vector2(1.4548461, 7.0850263)
-mesh = SubResource("CapsuleMesh_lsmp6")
-
-[node name="Output_Green" type="Node2D" parent="MasterPortal/OutputParent"]
-position = Vector2(-4, 4)
-script = ExtResource("8_xrdnt")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="MasterPortal/OutputParent/Output_Green"]
-position = Vector2(0, -6.000001)
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Portal/FaceB"]
+position = Vector2(0, 2.2015596e-05)
 rotation = 1.5707964
 scale = Vector2(1.4548461, 7.0850263)
 mesh = SubResource("CapsuleMesh_lsmp6")
