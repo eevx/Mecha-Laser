@@ -90,7 +90,7 @@ func _process(_delta):
 			anim.scale.x = animScaleLock.x * -1
 
 #anims
-	# NOTE: You will need to define 'idle', 'run', 'jump', and 'falling' animations 
+	# NOTE: You will need to define 'idle', 'run', 'jump' and 'dash' animations 
 	
 	if dashing:
 		anim.play("dash")

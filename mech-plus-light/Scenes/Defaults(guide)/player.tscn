@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://dbevb0q0lphhb"]
 
-[ext_resource type="Script" uid="uid://cgxh1q2ibgg2d" path="res://Scenes/Defaults(guide)/Player_Controller.gd" id="1_0x7bm"]
+[ext_resource type="Script" uid="uid://cgxh1q2ibgg2d" path="res://Scripts/Default(Guide)/Player_Controller.gd" id="1_0x7bm"]
 [ext_resource type="Texture2D" uid="uid://clhtvqcyr0pgi" path="res://Assets/Defaults(guide)/sprites/knight.png" id="1_051qb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dl3nf"]
@@ -215,7 +215,6 @@ collision_layer = 2
 script = ExtResource("1_0x7bm")
 PlayerSprite = NodePath("Playerspr")
 PlayerCollider = NodePath("Playercol")
-dashType = 1
 
 [node name="Playerspr" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
