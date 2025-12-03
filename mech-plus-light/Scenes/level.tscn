@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cu3gjcitry6rv"]
+
+[ext_resource type="Environment" uid="uid://c8ol6uwdees61" path="res://Placeholder Assets/2d_environment.tres" id="1_k5f4k"]
+[ext_resource type="Texture2D" uid="uid://cx5nvddaah2" path="res://Placeholder Assets/topdown-player.svg" id="2_6phgx"]
+[ext_resource type="Script" uid="uid://dvch5ucs8tqdn" path="res://Scripts/character_body_2d.gd" id="3_6phgx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_81xng"]
+radius = 20.0
+height = 80.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wqkje"]
+radius = 20.0
+height = 80.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6phgx"]
+size = Vector2(500, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_81xng"]
+size = Vector3(500, 20, 1)
+
+[node name="Level" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_k5f4k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Source" type="Node2D" parent="." groups=["Source"]]
+position = Vector2(-491, 60)
+
+[node name="Sprite2D" type="Sprite2D" parent="Source"]
+scale = Vector2(0.825, 0.7249999)
+texture = ExtResource("2_6phgx")
+
+[node name="RayCast2D" type="RayCast2D" parent="Source"]
+target_position = Vector2(2000, 0)
+
+[node name="Line2D" type="Line2D" parent="Source/RayCast2D"]
+points = PackedVector2Array(2000, 0, 50, 0)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 257
+collision_mask = 257
+script = ExtResource("3_6phgx")
+jump_force = -600.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_81xng")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CharacterBody2D"]
+modulate = Color(6.497651e-07, 0.53523564, 0.21866104, 1)
+mesh = SubResource("CapsuleMesh_wqkje")
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(1, 156)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platform"]
+mesh = SubResource("BoxMesh_81xng")
