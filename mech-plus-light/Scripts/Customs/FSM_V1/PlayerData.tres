@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3 uid="uid://btu3hcr6v8xfy"]
+
+[ext_resource type="Script" uid="uid://cryqh4h1d0dgr" path="res://Scripts/Customs/FSM_V1/PlayerRes.gd" id="1_cbohy"]
+
+[resource]
+script = ExtResource("1_cbohy")
+timeToReachZeroSpeed = 0.02
+jumpHeight = 20.0
+dashTime = 0.2
+dashMagnitude = 400.0
+metadata/_custom_type_script = "uid://cryqh4h1d0dgr"

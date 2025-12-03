@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bns75b0lbdoec"]
 
-[ext_resource type="PackedScene" uid="uid://dbevb0q0lphhb" path="res://Scenes/Defaults(guide)/player.tscn" id="1_yeekr"]
+[ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="1_3xtp6"]
 [ext_resource type="PackedScene" uid="uid://yvjog6yvl118" path="res://Scenes/Defaults(guide)/tile_map.tscn" id="3_wevjm"]
 [ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/platform.tscn" id="4_wevjm"]
 [ext_resource type="PackedScene" uid="uid://fcxdyeg2ae1d" path="res://Scenes/Defaults(guide)/coin.tscn" id="5_i3me4"]
@@ -68,12 +68,9 @@ _data = {
 [node name="Game" type="Node2D"]
 script = SubResource("GDScript_4l648")
 
-[node name="Player2" parent="." instance=ExtResource("1_yeekr")]
-directionalSnap = true
-dashTime = 0.5
-dashMagnitude = 500.0
+[node name="The_Better_Player" parent="." instance=ExtResource("1_3xtp6")]
 
-[node name="Camera2D" type="Camera2D" parent="Player2"]
+[node name="Camera2D" type="Camera2D" parent="The_Better_Player"]
 position = Vector2(0, -8)
 zoom = Vector2(4, 4)
 limit_bottom = 80
