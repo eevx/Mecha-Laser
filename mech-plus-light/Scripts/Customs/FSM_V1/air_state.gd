@@ -13,7 +13,7 @@ func Physics_Update(delta):
 	
 	if dir != 0:
 		if abs(player.velocity.x) < player.data.maxSpeed:
-			player.velocity.x += player.acceleration * dir * delta
+			player.velocity.x += player.air_acceleration * dir * delta
 		else:
 			player.velocity.x = player.data.maxSpeed * dir
 	else:
@@ -29,6 +29,14 @@ func Physics_Update(delta):
 		Transition("DashState")
 	player.move_and_slide()
 
-func _air_decel(_delta):
-	if abs(player.velocity.x) > 0:
-		player.velocity.x = lerp(player.velocity.x, 0.0, 0.1)
+func _air_decel(delta):
+	#if abs(player.velocity.x) > 0:
+		#player.velocity.x = lerp(player.velocity.x, 0.0, 50. * delta)
+	var v = player.velocity.x
+
+	if abs(v) <= abs(player.air_deceleration * delta):
+		player.velocity.x = 0
+	elif v > 0:
+		player.velocity.x -= player.air_deceleration * delta
+	elif v < 0:
+		player.velocity.x += player.air_deceleration * delta

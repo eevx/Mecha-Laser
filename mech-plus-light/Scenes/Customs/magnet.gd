@@ -8,68 +8,75 @@ extends Node2D
 ##Strength with which the magnetic field  pulls up
 @export var MStrength : float
 ##Width of the magnetic field
-@export var MWidth : float
-##Height of the magnetic field
-@export var MHeight : float
-
+#@export var MWidth : float
+###Height of the magnetic field
+#@export var MHeight : float
+@export var Mradius := 70.
 
 #working variables
 var player_in := false
 var player : CharacterBody2D
 var dist_vect : Vector2
-var spritedim : Vector2
-var magnet_tip : Vector2
+#var spritedim : Vector2
+#var magnet_tip : Vector2
 
 func _ready() -> void:
 	_make_magnet()
 
 func _process(delta: float) -> void:
+	if not player:
+		return
 	_vect_calc()
 	#print(dist_vect)
 	#insert a condition here for turning the magnet on and off if you want, or make me
-	_attract(dist_vect)
-
+	_attract(dist_vect, delta)
 
 func _vect_calc():
-	magnet_tip.y = (spritedim.y/2) 
+	#magnet_tip.y = (spritedim.y/2) 
 	if player:
-		dist_vect = (player.global_position  - magnet_tip).normalized()
+		dist_vect = (player.global_position  - global_position).normalized()
 	else:
 		dist_vect = Vector2.ZERO
-func _attract(dist:Vector2):
+
+func _attract(dist:Vector2, delta: float):
 	if player:
-		player.velocity.y += dist.y * MStrength
-		player.velocity.x += -dist.x * MStrength
+		player.velocity -= dist * MStrength * delta
 
 func _make_magnet():
-	var field := Area2D.new()
-	var sprite := Sprite2D.new()
 	var field_shape := CollisionShape2D.new()
-	var field_dimensions := RectangleShape2D.new()
-	field_dimensions.size.x = MWidth
-	field_dimensions.size.y = MHeight
-	
-	sprite.texture = MSprite
-	spritedim = sprite.texture.get_size()
-
-	
-	self.add_child(sprite)
-	self.add_child(field)
-	field.add_child(field_shape)
-	field_shape.shape = field_dimensions
-	
-	field.position.y = (spritedim.y/2) + (field_dimensions.size.y/2)
-	field.monitoring = true
-	field.collision_layer = 1
-	field.collision_mask = 2
-	field.body_entered.connect(_fent)
-	field.body_exited.connect(_fext)
+	var new_shape = CircleShape2D.new()
+	new_shape.radius = Mradius
+	field_shape.shape = new_shape
+	add_child(field_shape)
+	#var field := Area2D.new()
+	#var sprite := Sprite2D.new()
+	#var field_shape := CollisionShape2D.new()
+	#var field_dimensions := RectangleShape2D.new()
+	#field_dimensions.size.x = MWidth
+	#field_dimensions.size.y = MHeight
+	#
+	#sprite.texture = MSprite
+	#spritedim = sprite.texture.get_size()
+#
+	#
+	#self.add_child(sprite)
+	#self.add_child(field)
+	#field.add_child(field_shape)
+	#field_shape.shape = field_dimensions
+	#
+	#field.position.y = (spritedim.y/2) + (field_dimensions.size.y/2)
+	#field.monitoring = true
+	#field.collision_layer = 1
+	#field.collision_mask = 2
+	#field.body_entered.connect(_fent)
+	#field.body_exited.connect(_fext)
 
 func _fext(body):
 	if body.is_in_group("object"):
 		print("player out")
 		player_in = false
 		player = null
+
 func _fent(body):
 	if body.is_in_group("object"):
 		print("player in")

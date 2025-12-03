@@ -3,9 +3,14 @@
 [ext_resource type="Script" uid="uid://dxfobv8db2bsj" path="res://Scenes/Customs/magnet.gd" id="1_5wquy"]
 [ext_resource type="Texture2D" uid="uid://g308ihvgskvc" path="res://icon.svg" id="2_5wquy"]
 
-[node name="Magnet" type="Node2D"]
+[node name="Magnet" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_5wquy")
 MSprite = ExtResource("2_5wquy")
-MStrength = 5.0
-MWidth = 100.0
-MHeight = 100.0
+MStrength = 500.0
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_5wquy")
+
+[connection signal="body_entered" from="." to="." method="_fent"]
+[connection signal="body_exited" from="." to="." method="_fext"]

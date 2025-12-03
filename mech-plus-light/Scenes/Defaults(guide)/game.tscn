@@ -121,4 +121,4 @@ shape = SubResource("WorldBoundaryShape2D_3xtp6")
 position = Vector2(302, -44)
 
 [node name="Magnet" parent="." instance=ExtResource("7_4l648")]
-position = Vector2(-24, -190)
+position = Vector2(0, -182)
