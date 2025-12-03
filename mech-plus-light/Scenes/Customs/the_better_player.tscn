@@ -213,7 +213,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="The_Better_Player" type="CharacterBody2D" node_paths=PackedStringArray("initial_state", "PlayerSprite", "PlayerCol")]
+[node name="The_Better_Player" type="CharacterBody2D" node_paths=PackedStringArray("initial_state", "PlayerSprite", "PlayerCol") groups=["object"]]
 collision_layer = 2
 script = ExtResource("1_w1cpu")
 initial_state = NodePath("IdleState")

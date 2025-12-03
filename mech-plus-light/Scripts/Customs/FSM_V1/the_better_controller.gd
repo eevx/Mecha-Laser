@@ -80,6 +80,7 @@ func _apply_gravity():
 
 func _pause_gravity(t):
 	gravityActive = false
+	
 	await get_tree().create_timer(t).timeout
 	gravityActive  = true
 

@@ -6,13 +6,11 @@ func Enter():
 	player.dashCount = 1
 
 func Physics_Update(_delta:float):
+	var dir := Input.get_axis("left","right")
 	if not player.is_on_floor():
 		print("why")
 		Transition("AirState")
 		return
-	
-	var dir := Input.get_axis("left", "right")
-	
 	if dir != 0:
 		Transition("RunState")
 		print("State to run ")
