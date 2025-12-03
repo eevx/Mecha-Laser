@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bns75b0lbdoec"]
+[gd_scene load_steps=14 format=3 uid="uid://bns75b0lbdoec"]
 
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="1_3xtp6"]
+[ext_resource type="Script" uid="uid://ltki43gaaxi" path="res://Scenes/Defaults(guide)/camera_2d.gd" id="2_0r6oe"]
 [ext_resource type="PackedScene" uid="uid://yvjog6yvl118" path="res://Scenes/Defaults(guide)/tile_map.tscn" id="3_wevjm"]
 [ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/platform.tscn" id="4_wevjm"]
 [ext_resource type="PackedScene" uid="uid://fcxdyeg2ae1d" path="res://Scenes/Defaults(guide)/coin.tscn" id="5_i3me4"]
@@ -76,6 +77,7 @@ zoom = Vector2(4, 4)
 limit_bottom = 80
 limit_smoothed = true
 position_smoothing_speed = 100.0
+script = ExtResource("2_0r6oe")
 
 [node name="TileMap" parent="." instance=ExtResource("3_wevjm")]
 layer_0/name = "Back"

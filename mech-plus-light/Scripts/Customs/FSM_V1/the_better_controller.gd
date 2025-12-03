@@ -40,6 +40,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	current_state.Update(delta)
 	_handle_facing()
+	
+	if Input.is_action_just_pressed("toggle_view"):
+		toggle_view()
 
 func _physics_process(delta: float) -> void:
 	current_state.Physics_Update(delta)
@@ -94,3 +97,17 @@ func on_child_transition(state, new_state_name):
 		return
 	current_state = new_state
 	new_state.Enter()
+	
+
+#view toggling
+
+@onready var cam := $Camera2D
+
+var zoom_normal := Vector2(4, 4)
+var zoom_out := Vector2(1, 1)
+var zoom_toggled := false
+
+func toggle_view():
+	zoom_toggled = !zoom_toggled
+	cam.zoom = zoom_out if zoom_toggled else zoom_normal
+	
