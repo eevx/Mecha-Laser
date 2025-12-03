@@ -5,10 +5,11 @@ extends RigidBody2D
 
 var current_velocity := Vector2.ZERO
 
-@onready var laser := $Laser
+@onready var laser := Light.new(Color.PINK)
 
 func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
+	#laser.is_casting = Input.is_action_pressed("fire_weapon")
 	laser.is_casting = Input.is_action_pressed("fire_weapon")
 	
 	var input_velocity := Input.get_vector("move_left", "move_right", "move_up", "move_down")
