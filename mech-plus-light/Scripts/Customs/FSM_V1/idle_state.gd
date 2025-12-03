@@ -11,7 +11,9 @@ func Physics_Update(_delta:float):
 		Transition("AirState")
 		return
 	
-	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+	var dir := Input.get_axis("left", "right")
+	
+	if dir != 0:
 		Transition("RunState")
 		print("State to run ")
 		return
