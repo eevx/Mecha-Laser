@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://br248huea2eo2" path="res://Scenes/laser.tscn" id="1_8ffim"]
 [ext_resource type="Script" uid="uid://cxm8wul6p3d40" path="res://Scripts/source.gd" id="1_xfk5q"]
-[ext_resource type="Texture2D" uid="uid://cx5nvddaah2" path="res://Placeholder Assets/topdown-player.svg" id="2_evi0p"]
+[ext_resource type="Texture2D" uid="uid://bwyimiilb11g4" path="res://Placeholder Assets/topdown-player.svg" id="2_evi0p"]
 [ext_resource type="Environment" uid="uid://c8ol6uwdees61" path="res://Placeholder Assets/2d_environment.tres" id="4_7p6j4"]
-[ext_resource type="Texture2D" uid="uid://cnecqu5m5recn" path="res://Placeholder Assets/asteroid.svg" id="5_lsmp6"]
-[ext_resource type="Script" uid="uid://dlv1wdproxbla" path="res://Scripts/portal.gd" id="6_evi0p"]
+[ext_resource type="Texture2D" uid="uid://c3wvqm5a4npxv" path="res://Placeholder Assets/asteroid.svg" id="5_lsmp6"]
+[ext_resource type="Script" uid="uid://u2nlkf4liq70" path="res://Scripts/portal.gd" id="6_evi0p"]
 [ext_resource type="Script" uid="uid://cme38r8hglvro" path="res://Scripts/output_red.gd" id="7_lsmp6"]
-[ext_resource type="Script" uid="uid://neny5ehc7ojl" path="res://Scripts/output_green.gd" id="8_xrdnt"]
+[ext_resource type="Script" uid="uid://dw42xamw41kqg" path="res://Scripts/output_green.gd" id="8_xrdnt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6444e"]
 radius = 46.21
