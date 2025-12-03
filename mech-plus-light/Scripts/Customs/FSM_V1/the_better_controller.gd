@@ -101,7 +101,6 @@ func on_child_transition(state, new_state_name):
 	
 
 #view toggling
-
 @onready var cam := $Camera2D
 
 var zoom_normal := Vector2(4, 4)
@@ -110,5 +109,7 @@ var zoom_toggled := false
 
 func toggle_view():
 	zoom_toggled = !zoom_toggled
-	cam.zoom = zoom_out if zoom_toggled else zoom_normal
+	var target_zoom = zoom_out if zoom_toggled else zoom_normal
 	
+	var tween := create_tween()
+	tween.tween_property(cam, "zoom", target_zoom, 0.3)
