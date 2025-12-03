@@ -43,8 +43,7 @@ texture = ExtResource("2_evi0p")
 
 [node name="Laser" parent="Source" instance=ExtResource("1_8ffim")]
 target_position = Vector2(2000, 0)
-max_length = 2000.0
-color = Color(1, 0.33333334, 1, 1)
+script = null
 
 [node name="Camera2D" type="Camera2D" parent="Source"]
 zoom = Vector2(0.6, 0.6)

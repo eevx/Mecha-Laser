@@ -1,4 +1,4 @@
-@tool extends RayCast2D
+extends RayCast2D
 ## Speed at which the laser extends when first fired, in pixels per seconds.
 @export var cast_speed := 7000.0
 ## Maximum length of the laser in pixels.
@@ -12,7 +12,7 @@
 ## If `true`, the laser is firing.
 ## It plays appearing and disappearing animations when it's not animating.
 ## See `appear()` and `disappear()` for more information.
-@export var is_casting := false: set = set_is_casting
+@export var is_casting : bool = false: set = set_is_casting
 
 @export var max_reflections := 3
 
@@ -44,7 +44,7 @@ func spawn_new_beam(slave_node: Node) -> void:
 	
 	var laser_line := Line2D.new()
 	laser_line.width = line_2d.width
-	laser_line.default_color = Color.RED
+	laser_line.default_color = color
 	laser_line.z_index = line_2d.z_index
 	slave_node.add_child(laser_line)
 	
