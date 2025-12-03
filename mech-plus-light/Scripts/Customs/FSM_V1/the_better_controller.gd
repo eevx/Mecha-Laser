@@ -12,6 +12,8 @@ var jumpCount : int
 var dashCount : int
 var acceleration : float
 var deceleration : float
+var air_acceleration : float
+var air_deceleration : float
 var jumpMagnitude : float
 var gravityActive := true
 var dashing := false
@@ -51,6 +53,9 @@ func _physics_process(delta: float) -> void:
 func _calc_cached_val():
 	acceleration = data.maxSpeed / data.timeToReachMaxSpeed
 	deceleration = data.maxSpeed / data.timeToReachZeroSpeed
+	
+	air_acceleration = 1. * data.maxSpeed / data.timeToReachMaxSpeed
+	air_deceleration = 0.05 * data.maxSpeed / data.timeToReachZeroSpeed
 	
 	jumpMagnitude = data.jumpHeight * data.gravityScale
 	jumpCount = data.jumps
