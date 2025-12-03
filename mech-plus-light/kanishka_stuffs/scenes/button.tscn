@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://7hq1ioohc2gc"]
+
+[ext_resource type="Script" uid="uid://be4mmgtwekhx2" path="res://kanishka_stuffs/script/button.gd" id="1_rhj8v"]
+[ext_resource type="Texture2D" uid="uid://4cb3q26edues" path="res://kanishka_stuffs/assets/CGB02-red_M_btn.png" id="2_3q610"]
+[ext_resource type="Texture2D" uid="uid://bhrg4c7mjfapq" path="res://kanishka_stuffs/assets/CGB02-green_M_btn.png" id="2_i7y4x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7y4x"]
+radius = 12.000514
+height = 49.006233
+
+[node name="button" type="Area2D" node_paths=PackedStringArray("sprite_2d")]
+script = ExtResource("1_rhj8v")
+button_tex_1 = ExtResource("2_i7y4x")
+button_tex_2 = ExtResource("2_3q610")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, -2)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_3q610")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -2)
+rotation = 1.5718392
+shape = SubResource("CapsuleShape2D_i7y4x")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

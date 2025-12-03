@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3wofjirnbav1"]
+
+[ext_resource type="Script" uid="uid://c546xootd55ap" path="res://SG/Scripts/timed_button.gd" id="1_hsybk"]
+[ext_resource type="Texture2D" uid="uid://dc2anlbl48pos" path="res://SG/Assets/Sprites/Button.png" id="1_ibhhl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsybk"]
+atlas = ExtResource("1_ibhhl")
+region = Rect2(182, 0, 380, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6113s"]
+atlas = ExtResource("1_ibhhl")
+region = Rect2(562, 0, 380, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11537"]
+atlas = ExtResource("1_ibhhl")
+region = Rect2(942, 0, 380, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b7omo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsybk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6113s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11537")
+}],
+"loop": false,
+"name": &"Press Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11537")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6113s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsybk")
+}],
+"loop": false,
+"name": &"Press Up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_325b4"]
+size = Vector2(288, 238)
+
+[node name="Timed_Button" type="Area2D"]
+script = ExtResource("1_hsybk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b7omo")
+animation = &"Press Up"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, -93)
+shape = SubResource("RectangleShape2D_325b4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
