@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b87a0ivutsk03"]
+
+[ext_resource type="Script" uid="uid://dxfobv8db2bsj" path="res://Scenes/Customs/magnet.gd" id="1_5wquy"]
+[ext_resource type="Texture2D" uid="uid://g308ihvgskvc" path="res://icon.svg" id="2_5wquy"]
+
+[node name="Magnet" type="Node2D"]
+script = ExtResource("1_5wquy")
+MSprite = ExtResource("2_5wquy")
+MStrength = 5.0
+MWidth = 100.0
+MHeight = 100.0
