@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://oawfkajtt0ob"]
+
+[ext_resource type="PackedScene" uid="uid://ill4vprfxkej" path="res://Scenes/player.tscn" id="1_7f6mx"]
+[ext_resource type="PackedScene" uid="uid://c3wofjirnbav1" path="res://SG/Scenes/timed_button.tscn" id="1_o73di"]
+[ext_resource type="PackedScene" uid="uid://cm4a1ilc5hk1h" path="res://SG/Scenes/3_way_lever.tscn" id="2_7f6mx"]
+[ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/platform.tscn" id="2_o73di"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o73di"]
+size = Vector2(588, 9)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ulhtt"]
+radius = 3.0
+height = 25.852
+
+[node name="DemoLevel" type="Node2D"]
+
+[node name="Timed_Button" parent="." instance=ExtResource("1_o73di")]
+position = Vector2(-124.99999, 29.999998)
+scale = Vector2(0.06, 0.06)
+moving_platform = ExtResource("2_o73di")
+
+[node name="player" parent="." instance=ExtResource("1_7f6mx")]
+position = Vector2(-27.999998, 22.999998)
+scale = Vector2(0.106, 0.106)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(2.260274, 41.726463)
+scale = Vector2(2.260274, 2.2047167)
+zoom = Vector2(2.2, 2.2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 30.925999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_o73di")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(129, 15.925999)
+mesh = SubResource("CapsuleMesh_ulhtt")
+
+[node name="3_way_lever" parent="." instance=ExtResource("2_7f6mx")]
+position = Vector2(-236.99998, 9)
+scale = Vector2(0.054999996, 0.054999996)

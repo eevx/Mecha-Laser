@@ -84,6 +84,7 @@ scale_curve = SubResource("CurveTexture_cnw57")
 color_ramp = SubResource("GradientTexture1D_c6hsp")
 
 [node name="Laser" type="RayCast2D"]
+enabled = false
 target_position = Vector2(1400, 0)
 script = ExtResource("1_mou6w")
 

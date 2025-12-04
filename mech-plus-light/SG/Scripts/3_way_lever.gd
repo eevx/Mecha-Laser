@@ -1,6 +1,9 @@
 extends Area2D
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var mesh_instance_2d: MeshInstance2D = $"../MeshInstance2D"
+
+
 
 # possible states for the lever
 enum Position { LEFT, CENTER, RIGHT }
@@ -51,12 +54,15 @@ func update_visuals() -> void:
 	match current_position:
 		Position.LEFT:
 			animated_sprite.play("Left")
+			mesh_instance_2d.modulate = Color.RED
 			print("Lever is LEFT")
 			
 		Position.CENTER:
 			animated_sprite.play("Center")
+			mesh_instance_2d.modulate = Color.WHITE
 			print("Lever is CENTER")
 			
 		Position.RIGHT:
 			animated_sprite.play("Right")
+			mesh_instance_2d.modulate = Color.GREEN
 			print("Lever is RIGHT")
