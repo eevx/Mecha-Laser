@@ -23,4 +23,6 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_light_entered(_portal_color, _portal_type):
 	if _portal_type == portal_type.ENTER:
 		pass
+	if _portal_type == portal_type.EXIT:
+		pass
 		
