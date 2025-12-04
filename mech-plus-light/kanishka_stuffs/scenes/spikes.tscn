@@ -15,10 +15,15 @@ position = Vector2(0, -8)
 texture = ExtResource("1_xbcdo")
 
 [node name="killzone" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_kd5gq")
-disabled = true
+
+[node name="Timer" type="Timer" parent="killzone"]
 
 [connection signal="area_entered" from="killzone" to="." method="_on_killzone_area_entered"]
+[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]
+[connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
+[connection signal="timeout" from="killzone/Timer" to="killzone" method="_on_timer_timeout"]
