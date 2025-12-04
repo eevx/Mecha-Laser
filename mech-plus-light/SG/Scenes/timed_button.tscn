@@ -50,6 +50,7 @@ animations = [{
 size = Vector2(288, 238)
 
 [node name="Timed_Button" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_hsybk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -57,11 +58,12 @@ sprite_frames = SubResource("SpriteFrames_b7omo")
 animation = &"Press Up"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(5, -93)
 shape = SubResource("RectangleShape2D_325b4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -4,30 +4,67 @@
 [ext_resource type="PackedScene" uid="uid://7hq1ioohc2gc" path="res://kanishka_stuffs/scenes/button.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="3_efdkv"]
 [ext_resource type="PackedScene" uid="uid://cqqm8fqs2beml" path="res://kanishka_stuffs/scenes/spikes.tscn" id="4_2rjfm"]
-[ext_resource type="Script" uid="uid://15gssq6xxldv" path="res://kanishka_stuffs/scenes/spikes.gd" id="5_2rjfm"]
+[ext_resource type="PackedScene" uid="uid://c3wofjirnbav1" path="res://SG/Scenes/timed_button.tscn" id="5_2rjfm"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="AnimatableBody2D" parent="." instance=ExtResource("1_yqjtg")]
 
 [node name="button" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(80, -67)
+position = Vector2(1, 138)
+scale = Vector2(0.465, 0.465)
 
 [node name="AnimatableBody2D2" parent="." instance=ExtResource("1_yqjtg")]
 position = Vector2(110, 152)
+script = null
+
+[node name="AnimatableBody2D4" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(79, 152)
+script = null
+
+[node name="AnimatableBody2D5" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(-14, 152)
+script = null
+
+[node name="AnimatableBody2D6" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(17, 152)
+script = null
+
+[node name="AnimatableBody2D7" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(48, 152)
 script = null
 
 [node name="AnimatableBody2D3" parent="." instance=ExtResource("1_yqjtg")]
 position = Vector2(141, 152)
 script = null
 
+[node name="AnimatableBody2D8" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(-45, 152)
+script = null
+
+[node name="AnimatableBody2D9" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(-76, 152)
+script = null
+
+[node name="AnimatableBody2D10" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(-107, 152)
+script = null
+
+[node name="AnimatableBody2D11" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(-138, 152)
+script = null
+
 [node name="The_Better_Player" parent="." instance=ExtResource("3_efdkv")]
 position = Vector2(110, 139)
+collision_mask = 3
 
 [node name="Spikes" parent="." instance=ExtResource("4_2rjfm")]
 position = Vector2(149, 136)
-script = ExtResource("5_2rjfm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(77, 121)
 zoom = Vector2(2, 2)
+
+[node name="Timed_Button" parent="." instance=ExtResource("5_2rjfm")]
+position = Vector2(-104, 142)
+scale = Vector2(0.055, 0.055)
