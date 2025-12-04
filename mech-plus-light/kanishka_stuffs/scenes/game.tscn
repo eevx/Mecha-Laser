@@ -4,30 +4,50 @@
 [ext_resource type="PackedScene" uid="uid://7hq1ioohc2gc" path="res://kanishka_stuffs/scenes/button.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="3_efdkv"]
 [ext_resource type="PackedScene" uid="uid://cqqm8fqs2beml" path="res://kanishka_stuffs/scenes/spikes.tscn" id="4_2rjfm"]
-[ext_resource type="Script" uid="uid://15gssq6xxldv" path="res://kanishka_stuffs/scenes/spikes.gd" id="5_2rjfm"]
+[ext_resource type="PackedScene" uid="uid://c6tubfjrjphec" path="res://kanishka_stuffs/scenes/collectable.tscn" id="5_2rjfm"]
 
-[node name="Node2D" type="Node2D"]
+[node name="game" type="Node2D"]
 
 [node name="AnimatableBody2D" parent="." instance=ExtResource("1_yqjtg")]
 
 [node name="button" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(80, -67)
 
-[node name="AnimatableBody2D2" parent="." instance=ExtResource("1_yqjtg")]
-position = Vector2(110, 152)
-script = null
-
-[node name="AnimatableBody2D3" parent="." instance=ExtResource("1_yqjtg")]
-position = Vector2(141, 152)
-script = null
-
 [node name="The_Better_Player" parent="." instance=ExtResource("3_efdkv")]
 position = Vector2(110, 139)
 
 [node name="Spikes" parent="." instance=ExtResource("4_2rjfm")]
 position = Vector2(149, 136)
-script = ExtResource("5_2rjfm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(77, 121)
 zoom = Vector2(2, 2)
+
+[node name="collectable" parent="." instance=ExtResource("5_2rjfm")]
+position = Vector2(189, 121)
+
+[node name="platform" type="Node2D" parent="."]
+
+[node name="AnimatableBody2D2" parent="platform" instance=ExtResource("1_yqjtg")]
+position = Vector2(110, 152)
+script = null
+
+[node name="AnimatableBody2D5" parent="platform" instance=ExtResource("1_yqjtg")]
+position = Vector2(206, 151)
+script = null
+
+[node name="AnimatableBody2D6" parent="platform" instance=ExtResource("1_yqjtg")]
+position = Vector2(237, 150)
+script = null
+
+[node name="AnimatableBody2D7" parent="platform" instance=ExtResource("1_yqjtg")]
+position = Vector2(78, 152)
+script = null
+
+[node name="AnimatableBody2D3" parent="platform" instance=ExtResource("1_yqjtg")]
+position = Vector2(141, 152)
+script = null
+
+[node name="AnimatableBody2D4" parent="platform" instance=ExtResource("1_yqjtg")]
+position = Vector2(174, 151)
+script = null

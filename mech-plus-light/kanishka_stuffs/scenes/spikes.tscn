@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqqm8fqs2beml"]
 
-[ext_resource type="Script" uid="uid://15gssq6xxldv" path="res://kanishka_stuffs/scenes/spikes.gd" id="1_bflj7"]
+[ext_resource type="Script" uid="uid://15gssq6xxldv" path="res://kanishka_stuffs/script/spikes.gd" id="1_bflj7"]
 [ext_resource type="Texture2D" uid="uid://dtmaikji2v81o" path="res://kanishka_stuffs/assets/spikes.png" id="1_xbcdo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kd5gq"]
