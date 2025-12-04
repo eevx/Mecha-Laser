@@ -54,5 +54,3 @@ Once the script is attached, the following variables will appear in the Inspecto
 
 ## Example Usage
 * **Drawbridges:** Rotate a bridge from 0° (flat) to -90° (upright).
-* **Cannons:** Aim a cannon barrel before firing.
-* **Cranes:** Move a hanging platform to a specific spot.
