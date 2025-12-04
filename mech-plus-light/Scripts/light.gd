@@ -2,35 +2,33 @@ class_name Light
 extends RayCast2D
 
 @export var cast_speed := 7000.0
-## Maximum length of the laser in pixels.
+# Maximum length of the laser in pixels.
 @export var max_length := 1400.0
-## Distance in pixels from the origin to start drawing and firing the laser.
+# Distance in pixels from the origin to start drawing and firing the laser.
 @export var start_distance := 40.0
-## Base duration of the tween animation in seconds.
+# Base duration of the tween animation in seconds.
 @export var growth_time := 0.1
 @export var color := Color.RED
-@export var new_color := color
 
-## If `true`, the laser is firing.
-## It plays appearing and disappearing animations when it's not animating.
-## See `appear()` and `disappear()` for more information.
+# If `true`, the laser is firing.
+# It plays appearing and disappearing animations when it's not animating.
+# See `appear()` and `disappear()` for more information.
 @export var is_casting : bool = false: set = set_is_casting
 
 @export var max_reflections := 3
 
 var tween: Tween = null
-@onready var line_2d: Line2D = $Line2D
-@onready var slaves : Array = []
-@onready var line_width := line_2d.width
-
-func _init(base_color : Color) -> void:
-	new_color = base_color
-	
+var line_2d : Line2D
+var line_width : float
+var angle_of_incidence : float
 
 func _ready() -> void:
-	# safe to access onready nodes now
-	set_color() 
-	set_is_casting(is_casting) 
+	line_2d = Line2D.new()
+	add_child(line_2d)
+	line_width = line_2d.width
+	set_color(color) 
+	set_is_casting(is_casting)
+	line_2d.points = [Vector2.ZERO, Vector2.ZERO]
 	line_2d.points[0] = Vector2.RIGHT * start_distance 
 	line_2d.points[1] = Vector2.ZERO 
 	line_2d.visible = false
@@ -103,7 +101,7 @@ func _physics_process(delta: float) -> void:
 	line_2d.points = points
 
 	
-func set_color() -> void:
+func set_color(new_color : Color) -> void:
 	color = new_color
 	if line_2d == null:
 		return

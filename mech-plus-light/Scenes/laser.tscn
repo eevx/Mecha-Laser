@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://br248huea2eo2"]
 
-[ext_resource type="Script" uid="uid://b2itur86wp2a0" path="res://Scripts/laser.gd" id="1_mou6w"]
+[ext_resource type="Script" uid="uid://dn8yiimgnu2v1" path="res://Scripts/light.gd" id="1_mou6w"]
 [ext_resource type="Texture2D" uid="uid://b3c7crawnb23u" path="res://Placeholder Assets/glowing_circle.png" id="2_jsuue"]
 
 [sub_resource type="Gradient" id="Gradient_3pc01"]

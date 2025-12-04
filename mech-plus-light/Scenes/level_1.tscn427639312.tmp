@@ -30,12 +30,13 @@ height = 30.0
 
 [node name="Level" type="Node2D"]
 
-[node name="Source" type="RigidBody2D" parent="." node_paths=PackedStringArray("lasers")]
+[node name="Source" type="RigidBody2D" parent="."]
 position = Vector2(109, 321)
 collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_xfk5q")
-lasers = [NodePath("Laser"), NodePath("Laser")]
+move_speed = null
+drag_factor = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Source"]
 z_index = 1
