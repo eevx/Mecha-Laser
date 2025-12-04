@@ -16,6 +16,7 @@ extends RayCast2D
 @export var is_casting : bool = false: set = set_is_casting
 
 @export var max_reflections := 3
+@onready var slaves : Array = []
 
 var tween: Tween = null
 var line_2d : Line2D
@@ -71,17 +72,17 @@ func _physics_process(delta: float) -> void:
 				maybe_master = collider_node
 				if maybe_master != null:
 					if maybe_master.has_method("get_matching_outputs") and maybe_master.has_method("is_master_portal"):
-						#slaves = handle_master_hit(collider_node)
+						slaves = handle_master_hit(collider_node)
 							# append the entry collision point to main beam and stop (or continue per design)
 						points.append(collision_point_local)
 							# break or continue depending on whether master blocks main beam; here we stop the main beam
 						break
 					else: 
 						#despawn
-						#despawn_new_beam(slaves)
+						despawn_new_beam()
 						maybe_master = null
 			#despawn
-			#despawn_new_beam(slaves)
+			despawn_new_beam()
 			points.append(collision_point_local)
 			# prepare for the next reflection (all in world space)
 			world_start = collision_point_world
@@ -94,7 +95,7 @@ func _physics_process(delta: float) -> void:
 			# no hit: append local-space equivalent of end_world and break
 			points.append(to_local(end_world))
 			#despawn
-			#despawn_new_beam(slaves)
+			despawn_new_beam()
 			break
 
 	# Update Line2D (local-space points)
@@ -113,8 +114,8 @@ func set_is_casting(new_value: bool) -> void:
 	is_casting = new_value
 	set_physics_process(is_casting)
 	
-	#if new_value == false :
-		#despawn_new_beam(slaves)
+	if new_value == false :
+		despawn_new_beam()
 
 	if is_casting:
 		var laser_start := Vector2.RIGHT * start_distance
@@ -138,3 +139,31 @@ func disappear() -> void:
 	tween = create_tween()
 	tween.tween_property(line_2d, "width", 0.0, growth_time).from_current()
 	tween.tween_callback(line_2d.hide)
+	
+func spawn_new_beam(slave_node: Node) -> void:
+	var laser := RayCast2D.new()
+	slave_node.add_child(laser)
+	laser.global_transform = slave_node.global_transform
+	laser.enabled = true
+	laser.target_position = Vector2(0, 2000)
+	
+	var laser_line := Line2D.new()
+	laser_line.width = line_2d.width
+	laser_line.default_color = color
+	laser_line.z_index = line_2d.z_index
+	slave_node.add_child(laser_line)
+	
+	laser_line.points = [ Vector2.ZERO, Vector2(0,2000) ]
+
+func despawn_new_beam() -> void: 
+	for slave in slaves : 
+		for child in slave["node"].get_children() :
+			if child is RayCast2D or child is Line2D :
+				child.queue_free() 
+	slaves.clear()
+
+func handle_master_hit(sure_master: Node) -> Array:
+	var outputs : Array = sure_master.get_matching_outputs()
+	for info in outputs:
+		spawn_new_beam(info["node"])
+	return outputs
