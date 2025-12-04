@@ -32,8 +32,8 @@ func _ready() -> void:
 			states[child.name] = child
 			child.player = self
 			child.State_Transition.connect(on_child_transition)
-			for key in states.keys():
-				print(key, "->", states[key])
+			#for key in states.keys():
+				#print(key, "->", states[key])
 	if initial_state:
 		print("state set")
 		current_state = initial_state
@@ -42,13 +42,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	current_state.Update(delta)
 	_handle_facing()
-	
+	#print(self.velocity.x)
 	if Input.is_action_just_pressed("toggle_view"):
 		toggle_view()
 
 func _physics_process(delta: float) -> void:
-	current_state.Physics_Update(delta)
 	move_and_slide()
+	current_state.Physics_Update(delta)
+
 
 func _calc_cached_val():
 	acceleration = data.maxSpeed / data.timeToReachMaxSpeed

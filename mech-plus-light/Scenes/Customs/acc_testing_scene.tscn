@@ -37,9 +37,9 @@ limit_smoothed = true
 position_smoothing_speed = 100.0
 
 [node name="Magnet" parent="." instance=ExtResource("3_n8num")]
-position = Vector2(-2, -95)
+position = Vector2(274, -431)
 Mradius = 90.0
 
 [node name="Magnet2" parent="." instance=ExtResource("4_5cynb")]
-position = Vector2(170, -88)
+position = Vector2(445, -423)
 rotation = -1.564674

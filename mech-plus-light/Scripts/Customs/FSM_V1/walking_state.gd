@@ -24,7 +24,7 @@ func Physics_Update(delta):
 		return
 	
 	if Input.is_action_just_pressed("jump"):
-		print("To Air from run")
+		#print("To Air from run")
 		Transition("AirState")
 	
 	if Input.is_action_just_pressed("dash") and player.dashCount > 0:
@@ -32,7 +32,6 @@ func Physics_Update(delta):
 
 func _decelerate(_delta:float):
 	var v = player.velocity.x
-
 	if abs(v) <= abs(player.deceleration * _delta):
 		player.velocity.x = 0
 	elif v > 0:

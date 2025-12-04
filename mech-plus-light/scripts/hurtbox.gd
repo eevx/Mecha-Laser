@@ -5,14 +5,18 @@ class_name Hurtbox
 
 #I used classes here to signify objecs such as pickups, Hazards,Light etc that may interact with body
 
-#var _player : Player
+# if the above explaination is not sufficient, 
+#each of the objects that are referenced in the functions are the objects that you are presumably working with.
+#Replace their names here with the appropriate conditionals for your object.
 
+#var _player : Player
+#
 #func _ready():
 	#if not get_parent() is Player:
 		#queue_free()
 		#return
 	#else: _player = get_parent()
-
+#
 #func _on_body_entered(body: Node2D) -> void:
 	#var direction = (body.global_position - player.global_position).normalized()
 	#if body is Keys:
@@ -23,8 +27,8 @@ class_name Hurtbox
 		#_player.hit_by_light(direction)
 	#if body is Hazards:
 		#_player.hit_by_hazard(direction)
-
-
+#
+#
 #func _on_area_entered(area: Area2D) -> void:
 	#var direction = (area.global_position - player.global_position).normalized()
 	#if area is Keys:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://db3e3pwvlnxjy"]
+[gd_scene load_steps=36 format=3 uid="uid://db3e3pwvlnxjy"]
 
 [ext_resource type="Script" uid="uid://j208mdnvgcx3" path="res://Scripts/Customs/FSM_V1/the_better_controller.gd" id="1_w1cpu"]
 [ext_resource type="Texture2D" uid="uid://clhtvqcyr0pgi" path="res://Assets/Defaults(guide)/sprites/knight.png" id="2_r8dks"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ckw1ib8jx5fus" path="res://Scripts/Customs/FSM_V1/walking_state.gd" id="5_jypxk"]
 [ext_resource type="Script" uid="uid://cwloh3yqextjl" path="res://Scripts/air_state.gd" id="6_eyjv2"]
 [ext_resource type="Script" uid="uid://dfydav5uqymtb" path="res://Scripts/Customs/FSM_V1/dash_state.gd" id="7_eyjv2"]
+[ext_resource type="PackedScene" uid="uid://bmqv8xurfm6bo" path="res://components/hurtbox.tscn" id="8_rsjdp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dl3nf"]
 atlas = ExtResource("2_r8dks")
@@ -245,3 +246,5 @@ metadata/_custom_type_script = "uid://cbvva7m2akmwd"
 [node name="DashState" type="Node" parent="."]
 script = ExtResource("7_eyjv2")
 metadata/_custom_type_script = "uid://cbvva7m2akmwd"
+
+[node name="hurtbox" parent="." instance=ExtResource("8_rsjdp")]
