@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dj8scj85tj2j2"]
+[gd_scene load_steps=17 format=3 uid="uid://dj8scj85tj2j2"]
 
 [ext_resource type="PackedScene" uid="uid://br248huea2eo2" path="res://Scenes/laser.tscn" id="1_8ffim"]
 [ext_resource type="Script" uid="uid://cxm8wul6p3d40" path="res://Scripts/source.gd" id="1_xfk5q"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c3wvqm5a4npxv" path="res://Placeholder Assets/asteroid.svg" id="5_lsmp6"]
 [ext_resource type="Script" uid="uid://u2nlkf4liq70" path="res://Scripts/portal.gd" id="6_evi0p"]
 [ext_resource type="Script" uid="uid://cme38r8hglvro" path="res://Scripts/output_red.gd" id="7_lsmp6"]
+[ext_resource type="Script" uid="uid://ci6e85m7c387f" path="res://Scenes/portal(new).gd" id="8_xrdnt"]
+[ext_resource type="Texture2D" uid="uid://g308ihvgskvc" path="res://icon.svg" id="9_wrinw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6444e"]
 radius = 46.21
@@ -28,10 +30,13 @@ material = SubResource("StandardMaterial3D_xrdnt")
 radius = 10.0
 height = 30.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsmp6"]
+size = Vector2(215, 31)
+
 [node name="Level" type="Node2D"]
 
 [node name="Source" type="RigidBody2D" parent="." node_paths=PackedStringArray("lasers")]
-position = Vector2(109, 321)
+position = Vector2(-286, 300)
 collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_xfk5q")
@@ -108,3 +113,20 @@ mesh = SubResource("CapsuleMesh_lsmp6")
 
 [node name="ExitFace" type="Marker2D" parent="Portals/Slave_Red2"]
 rotation = 1.5707964
+
+[node name="Portal(new)" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
+position = Vector2(-177, 646)
+script = ExtResource("8_xrdnt")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Portal(new)"]
+position = Vector2(-1, -0.9999943)
+scale = Vector2(1.671875, 0.24999991)
+texture = ExtResource("9_wrinw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal(new)"]
+position = Vector2(-1.5, -0.5)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_lsmp6")
+
+[connection signal="area_entered" from="Portal(new)" to="Portal(new)" method="_on_area_entered"]
