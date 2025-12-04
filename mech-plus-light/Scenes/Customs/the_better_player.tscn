@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://db3e3pwvlnxjy"]
+[gd_scene load_steps=36 format=3 uid="uid://db3e3pwvlnxjy"]
 
 [ext_resource type="Script" uid="uid://j208mdnvgcx3" path="res://Scripts/Customs/FSM_V1/the_better_controller.gd" id="1_w1cpu"]
 [ext_resource type="Texture2D" uid="uid://clhtvqcyr0pgi" path="res://Assets/Defaults(guide)/sprites/knight.png" id="2_r8dks"]
@@ -213,12 +213,16 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="The_Better_Player" type="CharacterBody2D" node_paths=PackedStringArray("initial_state", "PlayerSprite", "PlayerCol") groups=["object"]]
-collision_layer = 2
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyjv2"]
+radius = 5.0
+height = 18.0
+
+[node name="The_Better_Player" type="CharacterBody2D" node_paths=PackedStringArray("initial_state", "PlayerSprite") groups=["object"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_w1cpu")
 initial_state = NodePath("IdleState")
 PlayerSprite = NodePath("Playerspr")
-PlayerCol = NodePath("Playercol")
 data = ExtResource("2_xl5gx")
 
 [node name="Playerspr" type="AnimatedSprite2D" parent="."]
@@ -227,8 +231,9 @@ sprite_frames = SubResource("SpriteFrames_q1qaa")
 animation = &"run"
 autoplay = "idle"
 
-[node name="Playercol" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-4, -14, -4, -7, -5, -1, 4, -1, 4, -7, 4, -13)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_eyjv2")
 
 [node name="IdleState" type="Node" parent="."]
 script = ExtResource("3_hp6qx")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dj8scj85tj2j2"]
+[gd_scene load_steps=19 format=3 uid="uid://dj8scj85tj2j2"]
 
 [ext_resource type="PackedScene" uid="uid://br248huea2eo2" path="res://Scenes/laser.tscn" id="1_8ffim"]
 [ext_resource type="Script" uid="uid://cxm8wul6p3d40" path="res://Scripts/source.gd" id="1_xfk5q"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://cme38r8hglvro" path="res://Scripts/output_red.gd" id="7_lsmp6"]
 [ext_resource type="Script" uid="uid://ci6e85m7c387f" path="res://Scenes/portal(new).gd" id="8_xrdnt"]
 [ext_resource type="Texture2D" uid="uid://g308ihvgskvc" path="res://icon.svg" id="9_wrinw"]
+[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/platform.tscn" id="10_af3po"]
+[ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="11_uy8f0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6444e"]
 radius = 46.21
@@ -37,6 +39,7 @@ size = Vector2(215, 31)
 
 [node name="Source" type="RigidBody2D" parent="." node_paths=PackedStringArray("lasers")]
 position = Vector2(-286, 300)
+rotation = 0.53596437
 collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_xfk5q")
@@ -48,9 +51,6 @@ texture = ExtResource("2_evi0p")
 
 [node name="Laser" parent="Source" instance=ExtResource("1_8ffim")]
 target_position = Vector2(2000, 0)
-
-[node name="Camera2D" type="Camera2D" parent="Source"]
-zoom = Vector2(0.6, 0.6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Source"]
 position = Vector2(-6, -1)
@@ -128,5 +128,21 @@ texture = ExtResource("9_wrinw")
 position = Vector2(-1.5, -0.5)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_lsmp6")
+
+[node name="Platform" parent="." instance=ExtResource("10_af3po")]
+position = Vector2(-302, 748)
+scale = Vector2(57.73, 1)
+collision_layer = 1
+collision_mask = 1
+
+[node name="The_Better_Player" parent="." instance=ExtResource("11_uy8f0")]
+position = Vector2(61, 297)
+collision_layer = 1
+collision_mask = 1
+safe_margin = 0.1
+
+[node name="Camera2D" type="Camera2D" parent="The_Better_Player"]
+scale = Vector2(0.99999994, 0.99999994)
+zoom = Vector2(0.6, 0.6)
 
 [connection signal="area_entered" from="Portal(new)" to="Portal(new)" method="_on_area_entered"]

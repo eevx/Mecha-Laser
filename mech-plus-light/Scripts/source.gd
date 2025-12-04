@@ -6,15 +6,14 @@ extends RigidBody2D
 @export var lasers : Array[Light]
 var current_velocity := Vector2.ZERO
 
-func _process(delta: float) -> void:
-	look_at(get_global_mouse_position())
+func _process(_delta: float) -> void:
 	#laser.is_casting = Input.is_action_pressed("fire_weapon")
 	for laser in lasers:
-		laser.is_casting = Input.is_action_pressed("fire_weapon")
-	
-	var input_velocity := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var desired_velocity := input_velocity * move_speed
-	var distance := current_velocity.distance_to(desired_velocity)
-
-	current_velocity = current_velocity.move_toward(desired_velocity, distance * drag_factor * delta)
-	position += current_velocity * delta
+		laser.is_casting = true #Input.is_action_pressed("fire_weapon")
+	#
+	#var input_velocity := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	#var desired_velocity := input_velocity * move_speed
+	#var distance := current_velocity.distance_to(desired_velocity)
+#
+	#current_velocity = current_velocity.move_toward(desired_velocity, distance * drag_factor * delta)
+	#position += current_velocity * delta

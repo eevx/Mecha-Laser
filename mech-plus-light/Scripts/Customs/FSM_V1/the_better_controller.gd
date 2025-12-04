@@ -22,6 +22,7 @@ var current_state : Player_State
 var states : Dictionary = {}
 var animScaleLock : Vector2
 
+
 func _ready() -> void:
 	animScaleLock = abs(PlayerSprite.scale)
 	

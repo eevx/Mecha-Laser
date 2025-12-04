@@ -12,6 +12,8 @@ extends RayCast2D
 var walkable_collider: CollisionShape2D
 @onready var static_body_2d: StaticBody2D = $StaticBody2D
 
+var can_walk_on_light := false
+
 # If `true`, the laser is firing.
 # It plays appearing and disappearing animations when it's not animating.
 # See `appear()` and `disappear()` for more information.
@@ -72,6 +74,18 @@ func _physics_process(delta: float) -> void:
 		var result := get_world_2d().direct_space_state.intersect_ray(params)
 		
 		if result:
+			var col = result.collider
+			var name = col.get_name() if col != null and col.has_method("get_name") else str(col)
+			var layer_info := ""
+			if col and col.has_meta("collision_layer") == false:
+				# attempt safe access if the collider is a PhysicsBody2D/CollisionObject2D
+				if "collision_layer" in col:
+					layer_info = " layer=" + str(col.collision_layer)
+			print_debug("Ray hit -> ", name, " at ", result.position, layer_info)
+		else:
+			print_debug("Ray: no hit from ", params.from, " to ", params.to)
+		
+		if result:
 			# world-space collision info
 			var collision_point_world: Vector2 = result.position
 			var collision_point_local: Vector2 = to_local(collision_point_world)
@@ -115,6 +129,7 @@ func _physics_process(delta: float) -> void:
 ##helper function for multiple collider initiation
 func makeColliders(points : Array) -> void:
 	# no. of segments
+	print(points)
 	var seg_count = max(0, points.size() - 1)
 
 	# If more segments than pool, clamp (or expand pool)
@@ -166,10 +181,17 @@ func transformCollider(fromTargetPos: Vector2, toTargetPos: Vector2, walkableCol
 
 
 func isWalkable(value : bool):
-	if value == true:
-		self.collision_layer = 2 #player
+	if value:
+		var bit := 1 << (walkable_layer - 1)
+		static_body_2d.collision_layer = bit
+		static_body_2d.collision_mask = bit
 	else:
-		self.collision_layer = 9 #null
+		static_body_2d.collision_layer = 0
+		static_body_2d.collision_mask = 0
+	#if value == true:
+		#set_collision_mask_value(2, true) #player
+	#else:
+		#set_collision_mask_value(2, false) #null
 
 
 func set_color(new_color : Color) -> void:
@@ -238,18 +260,42 @@ func handle_master_hit(sure_master: Node) -> Array:
 		spawn_new_beam(info["node"])
 	return outputs
 
+@export var walkable_layer : int = 1  # the layer number (1..32) that the player sits on
+
 func _init_collider_pool() -> void:
+	# Put static body at Light origin
 	static_body_2d.position = Vector2.ZERO
-	static_body_2d.collision_layer = 2   # example: player layer
-	static_body_2d.collision_mask = 1    # what it should collide with
+
+	# Set collision layers/masks using bitmasks so we avoid confusion:
+	# bitmask: layer n -> 1 << (n - 1)
+	var bit := 1 << (walkable_layer - 1)
+	static_body_2d.collision_layer = bit
+	static_body_2d.collision_mask = bit
 
 	# create a pool of CollisionShape2D nodes as children of static_body_2d
 	for i in range(max_segment_colliders):
 		var cs := CollisionShape2D.new()
-		# start disabled (no shape attached)
 		cs.shape = null
 		cs.disabled = true
 		static_body_2d.add_child(cs)
 		_collider_pool.append(cs)
-
 	_active_colliders = 0
+	#static_body_2d.position = Vector2.ZERO
+	#static_body_2d.collision_layer = 9  # example: player layer
+	#static_body_2d.collision_mask = 9  # what it should collide with
+#
+	## create a pool of CollisionShape2D nodes as children of static_body_2d
+	#for i in range(max_segment_colliders):
+		#var cs := CollisionShape2D.new()
+		## start disabled (no shape attached)
+		#cs.shape = null
+		#cs.disabled = true
+		#static_body_2d.add_child(cs)
+		#_collider_pool.append(cs)
+		#
+	#_active_colliders = 0
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_pressed("walk_on_light") and event.is_action_pressed("walk_on_light"):
+		can_walk_on_light = !can_walk_on_light
+		isWalkable(can_walk_on_light)

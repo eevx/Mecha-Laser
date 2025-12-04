@@ -85,6 +85,7 @@ color_ramp = SubResource("GradientTexture1D_c6hsp")
 
 [node name="Laser" type="RayCast2D"]
 target_position = Vector2(1400, 0)
+collision_mask = 256
 script = ExtResource("1_mou6w")
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -120,5 +121,7 @@ visibility_rect = Rect2(-2500, -2500, 5000, 5000)
 process_material = SubResource("ParticleProcessMaterial_y5j7k")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 64
-collision_mask = 64
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

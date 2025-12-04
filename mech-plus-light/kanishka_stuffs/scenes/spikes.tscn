@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqqm8fqs2beml"]
 
-[ext_resource type="Script" uid="uid://15gssq6xxldv" path="res://kanishka_stuffs/script/spikes.gd" id="1_bflj7"]
+[ext_resource type="Script" uid="uid://15gssq6xxldv" path="res://kanishka_stuffs/scenes/spikes.gd" id="1_bflj7"]
 [ext_resource type="Texture2D" uid="uid://dtmaikji2v81o" path="res://kanishka_stuffs/assets/spikes.png" id="1_xbcdo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kd5gq"]
 size = Vector2(72, 36)
 
-[node name="Spikes" type="Node2D"]
+[node name="Spikes" type="Area2D"]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_bflj7")
 
@@ -14,16 +14,10 @@ script = ExtResource("1_bflj7")
 position = Vector2(0, -8)
 texture = ExtResource("1_xbcdo")
 
-[node name="killzone" type="Area2D" parent="."]
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_kd5gq")
 
-[node name="Timer" type="Timer" parent="killzone"]
+[node name="Timer" type="Timer" parent="."]
 
-[connection signal="area_entered" from="killzone" to="." method="_on_killzone_area_entered"]
-[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]
-[connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
-[connection signal="timeout" from="killzone/Timer" to="killzone" method="_on_timer_timeout"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,7 +1,5 @@
-extends Node2D
+extends Area2D
 
-
-
-func _on_killzone_body_entered(_body: Node2D) -> void:
-
-	get_tree().reload_current_scene()
+func _on_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		get_tree().reload_current_scene()
