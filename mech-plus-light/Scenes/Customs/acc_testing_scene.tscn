@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=4 uid="uid://bwjuwg2ys4hw3"]
+
+[ext_resource type="Texture2D" uid="uid://d1flgrjnjhbc4" path="res://Assets/Defaults(guide)/sprites/images (1).png" id="1_n4god"]
+[ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="2_uihrh"]
+[ext_resource type="PackedScene" uid="uid://b87a0ivutsk03" path="res://Scenes/Customs/magnet.tscn" id="3_n8num"]
+[ext_resource type="PackedScene" uid="uid://cwo3g6sttlj3r" path="res://Scenes/Customs/New_Magnet.tscn" id="4_5cynb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uihrh"]
+texture = ExtResource("1_n4god")
+texture_region_size = Vector2i(100, 100)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+
+[sub_resource type="TileSet" id="TileSet_n8num"]
+tile_size = Vector2i(100, 100)
+physics_layer_0/collision_layer = 3
+sources/5 = SubResource("TileSetAtlasSource_uihrh")
+
+[node name="Acc_Testing_Scene" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAAABQABAAEAAAACAAAABQABAAEAAAADAAAABQABAAEAAAAEAAAABQABAAEAAAAFAAAABQABAAEAAAAGAAAABQABAAEAAAAGAP//BQABAAEAAAAGAP7/BQABAAEAAAAGAP3/BQABAAEAAAAGAPz/BQABAAEAAAAAAAAABQABAAEAAAD//wAABQABAAEAAAD+/wAABQABAAEAAAD9/wAABQABAAEAAAD8/wAABQABAAEAAAD7/wAABQABAAEAAAD6/wAABQABAAEAAAD6//z/BQABAAEAAAD6//3/BQABAAEAAAD6//7/BQABAAEAAAD6////BQABAAEAAAA=")
+tile_set = SubResource("TileSet_n8num")
+
+[node name="The_Better_Player" parent="." instance=ExtResource("2_uihrh")]
+
+[node name="Camera2D" type="Camera2D" parent="The_Better_Player"]
+position = Vector2(0, -8)
+limit_bottom = 80
+limit_smoothed = true
+position_smoothing_speed = 100.0
+
+[node name="Magnet" parent="." instance=ExtResource("3_n8num")]
+position = Vector2(-2, -95)
+Mradius = 90.0
+
+[node name="Magnet2" parent="." instance=ExtResource("4_5cynb")]
+position = Vector2(170, -88)
+rotation = -1.564674

@@ -18,7 +18,6 @@ func Physics_Update(delta):
 		else:
 			player.velocity.x = player.data.maxSpeed * dir
 	else:
-		print("To idle from run")
 		_decelerate(delta)
 		if is_zero_approx(abs(player.velocity.x)):
 			Transition("IdleState")

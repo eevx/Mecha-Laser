@@ -1,10 +1,10 @@
 extends Player_State
 
 func Enter():
+	player.PlayerSprite.play("jump")
 	if Input.is_action_just_pressed("jump") and player.jumpCount > 0:
 		player.velocity.y = -player.jumpMagnitude
 		player.jumpCount -= 1
-		player.PlayerSprite.play("jump")
 
 func Physics_Update(delta):
 	player._apply_gravity()

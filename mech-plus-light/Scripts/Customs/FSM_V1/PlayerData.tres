@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_cbohy")
-maxSpeed = 100.0
+maxSpeed = 500.0
 timeToReachZeroSpeed = 0.02
-jumpHeight = 40.0
+jumpHeight = 70.0
 gravityScale = 2.0
 dashTime = 0.05
 dashMagnitude = 200.0

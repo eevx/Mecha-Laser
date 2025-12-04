@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://fcxdyeg2ae1d" path="res://Scenes/Defaults(guide)/coin.tscn" id="5_i3me4"]
 [ext_resource type="PackedScene" uid="uid://b2ubuy15chijt" path="res://Scenes/Defaults(guide)/kill_area.tscn" id="6_3xtp6"]
 [ext_resource type="PackedScene" uid="uid://buu1mi6xignd0" path="res://Scenes/Defaults(guide)/slime.tscn" id="7_0r6oe"]
-[ext_resource type="PackedScene" path="res://Scenes/Customs/magnet.tscn" id="7_4l648"]
+[ext_resource type="PackedScene" uid="uid://b87a0ivutsk03" path="res://Scenes/Customs/magnet.tscn" id="7_4l648"]
 
 [sub_resource type="GDScript" id="GDScript_4l648"]
 
