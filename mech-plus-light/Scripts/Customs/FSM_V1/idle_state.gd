@@ -8,12 +8,12 @@ func Enter():
 func Physics_Update(_delta:float):
 	var dir := Input.get_axis("left","right")
 	if not player.is_on_floor():
-		print("why")
+		#print("why")
 		Transition("AirState")
 		return
 	if dir != 0:
 		Transition("RunState")
-		print("State to run ")
+		#print("State to run ")
 		return
 	
 	if Input.is_action_pressed("jump") and player.jumpCount > 0:

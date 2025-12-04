@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+@export_group('Settings')
 @export var move_speed := 600.0
 @export var drag_factor := 10.0
 @export var lasers : Array[Light]

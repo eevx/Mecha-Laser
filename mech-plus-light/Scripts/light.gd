@@ -9,6 +9,8 @@ extends RayCast2D
 # Base duration of the tween animation in seconds.
 @export var growth_time := 0.1
 @export var color := Color.RED
+var walkable_collider: CollisionShape2D
+@onready var static_body_2d: StaticBody2D = $StaticBody2D
 
 # If `true`, the laser is firing.
 # It plays appearing and disappearing animations when it's not animating.
@@ -23,6 +25,12 @@ var line_2d : Line2D
 var line_width : float
 var angle_of_incidence : float
 
+# pool settings
+@export var max_segment_colliders: int = 12
+var _collider_pool: Array = []
+var _active_colliders: int = 0
+
+
 func _ready() -> void:
 	line_2d = Line2D.new()
 	add_child(line_2d)
@@ -33,6 +41,8 @@ func _ready() -> void:
 	line_2d.points[0] = Vector2.RIGHT * start_distance 
 	line_2d.points[1] = Vector2.ZERO 
 	line_2d.visible = false
+	
+	_init_collider_pool()
 
 func _physics_process(delta: float) -> void:
 	# Grow laser until full length
@@ -50,14 +60,15 @@ func _physics_process(delta: float) -> void:
 	var loop_iterations := 0
 	while reflections <= max_reflections and remaining_length > 0.0 and loop_iterations < 32:
 		loop_iterations += 1
-		# compute end in world space for this segment based on remaining_length
 		var end_world: Vector2 = world_start + dir_world * remaining_length
-		# Ray query in WORLD space (don't add global_position again)
-		var params: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.new()
+		# Ray query in WORLD space (Reminder: don't add global_position)
+		var params := PhysicsRayQueryParameters2D.new()
 		params.from = world_start
 		params.to = end_world
-		params.exclude = [self]
-		# params.collision_mask = <set if you want specific layers>
+		# excluding self and static_body_2d so that the query won't hit the colliders
+		params.exclude = [self, static_body_2d] + static_body_2d.get_children()
+
+		# params.collision_mask = <set>
 		var result := get_world_2d().direct_space_state.intersect_ray(params)
 		
 		if result:
@@ -98,10 +109,69 @@ func _physics_process(delta: float) -> void:
 			despawn_new_beam()
 			break
 
-	# Update Line2D (local-space points)
 	line_2d.points = points
+	makeColliders(points)
 
-	
+##helper function for multiple collider initiation
+func makeColliders(points : Array) -> void:
+	# no. of segments
+	var seg_count = max(0, points.size() - 1)
+
+	# If more segments than pool, clamp (or expand pool)
+	if seg_count > _collider_pool.size():
+		seg_count = _collider_pool.size()
+
+	for cs in _collider_pool:
+		cs.shape = null
+		cs.disabled = true
+
+	_active_colliders = 0
+	for i in range(seg_count):
+		var a: Vector2 = points[i]
+		var b: Vector2 = points[i + 1]
+
+		if a.distance_to(b) < 1.0: #degenerate segments
+			continue
+
+		var cs = _collider_pool[_active_colliders]
+		_active_colliders += 1
+
+		var dir := b - a
+		var length := dir.length()
+		var thickness := 8.0  # adjustable collision thickness
+
+		var rect := RectangleShape2D.new()
+		rect.size = Vector2(length, thickness)
+		cs.shape = rect
+		cs.disabled = false
+
+		cs.position = (a + b) * 0.5
+		cs.rotation = dir.angle()
+
+
+
+func transformCollider(fromTargetPos: Vector2, toTargetPos: Vector2, walkableCollider: CollisionShape2D) -> void:
+	var dir := toTargetPos - fromTargetPos
+	var length := dir.length()
+	if length <= 0.0001:
+		return
+
+	var thickness := 8.0
+	var rect := RectangleShape2D.new()
+	rect.size = Vector2(length, thickness)
+	walkableCollider.shape = rect
+
+	walkableCollider.position = (fromTargetPos + toTargetPos) * 0.5
+	walkableCollider.rotation = dir.angle()
+
+
+func isWalkable(value : bool):
+	if value == true:
+		self.collision_layer = 2 #player
+	else:
+		self.collision_layer = 9 #null
+
+
 func set_color(new_color : Color) -> void:
 	color = new_color
 	if line_2d == null:
@@ -167,3 +237,19 @@ func handle_master_hit(sure_master: Node) -> Array:
 	for info in outputs:
 		spawn_new_beam(info["node"])
 	return outputs
+
+func _init_collider_pool() -> void:
+	static_body_2d.position = Vector2.ZERO
+	static_body_2d.collision_layer = 2   # example: player layer
+	static_body_2d.collision_mask = 1    # what it should collide with
+
+	# create a pool of CollisionShape2D nodes as children of static_body_2d
+	for i in range(max_segment_colliders):
+		var cs := CollisionShape2D.new()
+		# start disabled (no shape attached)
+		cs.shape = null
+		cs.disabled = true
+		static_body_2d.add_child(cs)
+		_collider_pool.append(cs)
+
+	_active_colliders = 0

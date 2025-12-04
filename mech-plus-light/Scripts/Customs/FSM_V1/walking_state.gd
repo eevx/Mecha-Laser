@@ -18,14 +18,14 @@ func Physics_Update(delta):
 		else:
 			player.velocity.x = player.data.maxSpeed * dir
 	else:
-		print("To idle from run")
+		#print("To idle from run")
 		_decelerate(delta)
 		if is_zero_approx(abs(player.velocity.x)):
 			Transition("IdleState")
 		return
 	
 	if Input.is_action_just_pressed("jump"):
-		print("To Air from run")
+		#print("To Air from run")
 		Transition("AirState")
 	
 	if Input.is_action_just_pressed("dash") and player.dashCount > 0:
