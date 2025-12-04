@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cw366me6gjoq1" path="res://Scripts/Customs/new_magnet.gd" id="1_std2h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeg1r"]
+size = Vector2(111, 281)
 
 [node name="Parent" type="StaticBody2D"]
 collision_layer = 3
@@ -21,8 +22,8 @@ collision_mask = 3
 script = ExtResource("1_std2h")
 MStrength = 10.0
 MWidth = 100.0
-MHeight = 100.0
+MHeight = 200.0
 
 [node name="Magnet_Field" type="CollisionShape2D" parent="Magnet"]
-position = Vector2(0, 73)
+position = Vector2(1.5, 146.5)
 shape = SubResource("RectangleShape2D_eeg1r")
