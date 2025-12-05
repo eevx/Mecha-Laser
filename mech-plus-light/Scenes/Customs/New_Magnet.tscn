@@ -19,7 +19,7 @@ texture = ExtResource("1_eeg1r")
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_std2h")
-MStrength = 10.0
+MStrength = 1.0
 MWidth = 100.0
 MHeight = 100.0
 

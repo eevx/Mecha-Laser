@@ -41,5 +41,4 @@ position = Vector2(274, -431)
 Mradius = 90.0
 
 [node name="Magnet2" parent="." instance=ExtResource("4_5cynb")]
-position = Vector2(445, -423)
-rotation = -1.564674
+position = Vector2(44.00003, -117.00003)

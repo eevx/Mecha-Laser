@@ -5,6 +5,7 @@ func Enter():
 	player.jumpCount = 1
 	player.dashCount = 1
 
+
 func Physics_Update(delta):
 	if not player.is_on_floor():
 		Transition("AirState")
@@ -30,6 +31,10 @@ func Physics_Update(delta):
 	if Input.is_action_just_pressed("dash") and player.dashCount > 0:
 		Transition("DashState")
 
+	if player.in_field:
+		Transition("MagState")
+
+
 func _decelerate(_delta:float):
 	var v = player.velocity.x
 	if abs(v) <= abs(player.deceleration * _delta):
@@ -38,6 +43,7 @@ func _decelerate(_delta:float):
 		player.velocity.x -= player.deceleration * _delta
 	elif v < 0:
 		player.velocity.x += player.deceleration * _delta
+
 
 func Exit():
 	pass

@@ -21,6 +21,7 @@ var wasMovingR := true
 var current_state : Player_State
 var states : Dictionary = {}
 var animScaleLock : Vector2
+var in_field := false
 
 func _ready() -> void:
 	animScaleLock = abs(PlayerSprite.scale)
@@ -41,13 +42,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	current_state.Update(delta)
-	_handle_facing()
-	#print(self.velocity.x)
+	#print(self.velocity.y)
 	if Input.is_action_just_pressed("toggle_view"):
 		toggle_view()
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+	_handle_facing()
 	current_state.Physics_Update(delta)
 
 
@@ -65,6 +66,8 @@ func _calc_cached_val():
 func _handle_facing():
 	if dashing:
 		return
+	if in_field:
+		PlayerSprite.scale.y = -animScaleLock.y
 	if Input.is_action_pressed("right"):
 		PlayerSprite.scale.x = animScaleLock.x
 		wasMovingR = true 
