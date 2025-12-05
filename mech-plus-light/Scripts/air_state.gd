@@ -5,20 +5,18 @@ var dir
 func Enter():
 	player.PlayerSprite.play("jump")
 	if Input.is_action_just_pressed("jump") and player.jumpCount > 0:
-		if player.in_field:
-			print("jump")
-			player.velocity.y = player.jumpMagnitude
-			player.jumpCount -= 1
-		else:
-			player.velocity.y = -player.jumpMagnitude
-			player.jumpCount -= 1
+		print("jump")
+		player.velocity.y = -player.jumpMagnitude
+		player.jumpCount -= 1
+
 
 
 func Physics_Update(delta):
 	player._apply_gravity()
 	
 	dir = Input.get_axis("left","right")
-
+	if Input.is_action_just_pressed("thruster") and player.thruster_fuel > 0.0:
+		Transition("ThrusterState")
 	if dir != 0:
 		if abs(player.velocity.x) < player.data.maxSpeed:
 			player.velocity.x += player.air_acceleration * dir * delta
@@ -36,8 +34,6 @@ func Physics_Update(delta):
 		else:
 			Transition("IdleState")
 
-	if player.in_field:
-		Transition("MagState")
 
 	if Input.is_action_just_pressed("dash") and player.dashCount > 0:
 		Transition("DashState")
