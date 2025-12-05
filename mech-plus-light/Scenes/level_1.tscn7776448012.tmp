@@ -27,7 +27,17 @@ rotation = 0.43994388
 player_ref = NodePath("../The_Better_Player")
 
 [node name="Laser" parent="Source" index="1"]
-beam_width = 50.0
+cast_speed = null
+max_length = null
+start_distance = null
+growth_time = null
+color = null
+beam_width = null
+is_casting = null
+max_reflections = null
+max_segment_colliders = null
+ray_cast_collision_layer = null
+walkable_layer = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("4_7p6j4")
@@ -51,7 +61,6 @@ position = Vector2(119, 796)
 
 [node name="Slave_Portal" parent="Portals" instance=ExtResource("6_xrdnt")]
 position = Vector2(-162.00006, 87.99994)
-beam_width = 130.0
 
 [node name="Platform" parent="." instance=ExtResource("10_af3po")]
 position = Vector2(-302, 748)

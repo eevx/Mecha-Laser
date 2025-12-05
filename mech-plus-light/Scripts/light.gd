@@ -2,219 +2,317 @@ class_name Light
 extends RayCast2D
 
 @export var cast_speed := 7000.0
-# Maximum length of the laser in pixels.
 @export var max_length := 1400.0
-# Distance in pixels from the origin to start drawing and firing the laser.
-@export var start_distance := 40.0
-# Base duration of the tween animation in seconds.
+@export var start_distance := 0.0
 @export var growth_time := 0.1
-@export var color := Color.RED
+@export var color : Color = Color.RED
 @export var player_ref : Player
-var walkable_collider: CollisionShape2D
-@onready var static_body_2d: StaticBody2D = $StaticBody2D
 
-var can_walk_on_light := false
+@export var beam_width : float = 8.0 : set = set_beam_width
 
-# If `true`, the laser is firing.
-# It plays appearing and disappearing animations when it's not animating.
-# See `appear()` and `disappear()` for more information.
 @export var is_casting : bool = false: set = set_is_casting
 
 @export var max_reflections := 3
-@onready var slaves : Array = []
-
-var tween: Tween = null
-var line_2d : Line2D
-var line_width : float
-var angle_of_incidence : float
-
-# pool settings
 @export var max_segment_colliders: int = 12
 @export var ray_cast_collision_layer := 3
-var _collider_pool: Array = []
-var _active_colliders: int = 0
-const LightScene := preload("res://Scenes/laser.tscn")
+@export var walkable_layer : int = 1
 
+# ----- scene / node refs -----
+var walkable_collider: CollisionShape2D
+var slave_portals_in_scene : Array = []
+@onready var static_body_2d: StaticBody2D = $StaticBody2D
+
+# ----- runtime vars -----
+var can_walk_on_light: bool = false
+@onready var slaves : Array = []
+var tween: Tween = null
+var line_2d : Line2D
+var line_width : float = 8.0
+var angle_of_incidence : float
+
+# collider pools
+var _collider_pool: Array = []
+var _rect_shape_pool: Array = [] 
+var _active_colliders: int = 0
+
+var target_pos : Vector2 = Vector2.ZERO
+var _current_master: Node = null
 
 func _ready() -> void:
+	add_to_group("Light")
+
+	
 	line_2d = Line2D.new()
 	add_child(line_2d)
-	line_width = line_2d.width
-	set_color(color) 
-	set_is_casting(is_casting)
-	line_2d.points = [Vector2.ZERO, Vector2.ZERO]
-	line_2d.points[0] = Vector2.RIGHT * start_distance 
-	line_2d.points[1] = Vector2.ZERO 
-	line_2d.visible = false
 	
+	line_width = beam_width
+	line_2d.width = line_width
+	line_2d.default_color = color
+	line_2d.points = [Vector2.ZERO, Vector2.ZERO]
+	line_2d.points[0] = Vector2.RIGHT * start_distance
+	line_2d.points[1] = Vector2.ZERO
+	line_2d.visible = false
+
+	# collect slave portals once at start <- I did not use this btw, maybe use somewhere in future
+	slave_portals_in_scene = []
+	collect_slave_portals_dfs(slave_portals_in_scene)
+
+	# init collider pool : pre-creating RectangleShape2D so that we can resize later
 	_init_collider_pool()
 
+	set_is_casting(is_casting)
+
+	if not is_casting:
+		_disable_all_colliders()
+
 func _physics_process(delta: float) -> void:
-	# Grow laser until full length
-	target_position = target_position.move_toward(Vector2.RIGHT * max_length, cast_speed * delta)
+	target_pos = target_pos.move_toward(Vector2.RIGHT * max_length, cast_speed * delta)
+
+	# per-frame master detection flag
+	var master_hit_this_frame: bool = false
+
 	var points: Array = []
 	var start_local: Vector2 = line_2d.points[0]
 	var world_start: Vector2 = global_position + start_local
-	# initial direction in WORLD space (node rotation applied)
 	var dir_world: Vector2 = Vector2.RIGHT.rotated(global_rotation).normalized()
 	var remaining_length: float = max_length
 	var reflections: int = 0
 	points.append(start_local)
 
-	# Safety limit to avoid infinite loops
 	var loop_iterations := 0
 	while reflections <= max_reflections and remaining_length > 0.0 and loop_iterations < 32:
 		loop_iterations += 1
 		var end_world: Vector2 = world_start + dir_world * remaining_length
-		# Ray query in WORLD space (Reminder: don't add global_position)
+
+		var exclude_rids: Array = []
+		var exclude_candidates := [self, static_body_2d, player_ref]
+		for child in static_body_2d.get_children():
+			exclude_candidates.append(child)
+		for obj in exclude_candidates:
+			if obj == null:
+				continue
+			if obj is CollisionObject2D:
+				exclude_rids.append(obj.get_rid())
+
+		# Raycast params , world sapce
 		var params := PhysicsRayQueryParameters2D.new()
 		params.from = world_start
 		params.to = end_world
-		# excluding self and static_body_2d so that the query won't hit the colliders
-		params.exclude = [self, static_body_2d, player_ref] + static_body_2d.get_children()
+		params.exclude = exclude_rids
 
-		params.collision_mask = ray_cast_collision_layer
+		# Prevent testing the walkable layer so lights dont hit each others walkables
+		var walkable_bit := 1 << (walkable_layer - 1)
+		params.collision_mask = ray_cast_collision_layer & ~walkable_bit
+
 		var result := get_world_2d().direct_space_state.intersect_ray(params)
-		
-		#if result:
-			#var col = result.collider
-			#var name = col.get_name() if col != null and col.has_method("get_name") else str(col)
-			#var layer_info := ""
-			#if col and col.has_meta("collision_layer") == false:
-				## attempt safe access if the collider is a PhysicsBody2D/CollisionObject2D
-				#if "collision_layer" in col:
-					#layer_info = " layer=" + str(col.collision_layer)
-			##print_debug("Ray hit -> ", name, " at ", result.position, layer_info)
-		##else:
-			##print_debug("Ray: no hit from ", params.from, " to ", params.to)
-		
+
 		if result:
+			# collider shortcut
+			var collider = null
+			if result.has("collider"):
+				collider = result.collider
+
+			# If hit a Light (or its child), treat as transparent
+			var hit_light_node = null
+			var maybe_node = collider
+			while maybe_node != null:
+				if maybe_node is Light:
+					hit_light_node = maybe_node
+					break
+				maybe_node = maybe_node.get_parent()
+
+			if hit_light_node != null and hit_light_node != self:
+				# advance slightly to skip other Light , note taht -> advance scaled to beam width
+				var advance_amount = max(0.5, beam_width * 0.1)
+				world_start += dir_world * advance_amount
+				remaining_length = max(0.0, remaining_length - advance_amount)
+				continue
+
 			# world-space collision info
 			var collision_point_world: Vector2 = result.position
 			var collision_point_local: Vector2 = to_local(collision_point_world)
-			var normal_world: Vector2 = (result.normal).normalized()
-			var collider : Node = result.collider if result.has("collider") and result.collider != null else null
-			var maybe_master: Node = null
-			if collider:
-				var collider_node: Node = result.collider
-				maybe_master = collider_node
-				if maybe_master != null:
+			var normal_world: Vector2 = result.normal.normalized()
+
+			# master detection and slave spawn handling
+			var collider_node: Node = collider if collider != null else null
+			if collider_node != null:
+				var maybe_master: Node = collider_node
+				while maybe_master != null:
 					if maybe_master.has_method("get_matching_outputs") and maybe_master.has_method("is_master_portal"):
-						slaves = handle_master_hit(collider_node)
-							# append the entry collision point to main beam and stop (or continue per design)
+						# master hit
+						master_hit_this_frame = true
+						if _current_master != maybe_master:
+							despawn_new_beam()
+							_current_master = maybe_master
+							slaves = handle_master_hit(maybe_master)
+						else:
+							if slaves.is_empty():
+								slaves = handle_master_hit(maybe_master)
+
 						points.append(collision_point_local)
-							# break or continue depending on whether master blocks main beam; here we stop the main beam
 						break
-					else: 
-						#despawn
-						despawn_new_beam()
-						maybe_master = null
-			#despawn
-			despawn_new_beam()
+					maybe_master = maybe_master.get_parent()
+
+				if master_hit_this_frame:
+					break
+
+			# Normal reflection handling (append and reflect)
 			points.append(collision_point_local)
-			# prepare for the next reflection (all in world space)
 			world_start = collision_point_world
 			if normal_world != Vector2.ZERO:
 				dir_world = dir_world.bounce(normal_world).normalized()
-			# remaining length measured from the original local start point
+
 			remaining_length = max_length - (collision_point_local - points[0]).length()
 			reflections += 1
 		else:
-			# no hit: append local-space equivalent of end_world and break
+			# no hit -> append end and break
 			points.append(to_local(end_world))
-			#despawn
-			despawn_new_beam()
 			break
 
+	# Update visuals & colliders
 	line_2d.points = points
+	line_2d.width = line_width
+	line_2d.default_color = color
 	makeColliders(points)
 
-##helper function for multiple collider initiation
-func makeColliders(points : Array) -> void:
-	# no. of segments
-	#print(points)
-	var seg_count = max(0, points.size() - 1)
+	# If we had a master previously but none this frame, turn slaves off
+	if not master_hit_this_frame and _current_master != null:
+		despawn_new_beam()
+		_current_master = null
 
-	# If more segments than pool, clamp (or expand pool)
+# ----- collider pool management -----
+func _init_collider_pool() -> void:
+	# Position static body at origin
+	if static_body_2d != null:
+		static_body_2d.position = Vector2.ZERO
+
+	# configuring static body layer/mask to walkable by default
+	_enable_walkable_layer_on_static_body()
+
+	# clear old pools if re-init
+	_collider_pool.clear()
+	_rect_shape_pool.clear()
+
+	# creating pools: CollisionShape2D nodes and RectangleShape2D resources
+	for i in range(max_segment_colliders):
+		var cs := CollisionShape2D.new()
+		var rect := RectangleShape2D.new()
+		# set initial empty size; will be sized in makeColliders()
+		rect.size = Vector2(1.0, beam_width)  # start with small length to avoid degenerate rects
+		cs.shape = null
+		cs.disabled = true
+		static_body_2d.add_child(cs)
+		_collider_pool.append(cs)
+		_rect_shape_pool.append(rect)
+
+	_active_colliders = 0
+
+func makeColliders(points : Array) -> void:
+	# Beam off = collider off
+	if not is_casting:
+		_disable_all_colliders()
+		return
+
+	# number of segments
+	var seg_count = max(0, points.size() - 1)
 	if seg_count > _collider_pool.size():
 		seg_count = _collider_pool.size()
 
+	# disabling all first
 	for cs in _collider_pool:
-		cs.shape = null
 		cs.disabled = true
+		cs.shape = null
 
 	_active_colliders = 0
 	for i in range(seg_count):
 		var a: Vector2 = points[i]
 		var b: Vector2 = points[i + 1]
 
-		if a.distance_to(b) < 1.0: #degenerate segments
+		if a.distance_to(b) < 1.0:
 			continue
 
 		var cs = _collider_pool[_active_colliders]
+		var rect = _rect_shape_pool[_active_colliders]
 		_active_colliders += 1
 
 		var dir := b - a
 		var length := dir.length()
-		var thickness := 8.0  # adjustable collision thickness
+		var thickness = max(0.1, beam_width)
 
-		var rect := RectangleShape2D.new()
-		rect.size = Vector2(length, thickness)
+		rect.size = Vector2(max(1.0, length), thickness)
+
+		# assigning shape and enable collider
 		cs.shape = rect
 		cs.disabled = false
-
 		cs.position = (a + b) * 0.5
 		cs.rotation = dir.angle()
 
-func transformCollider(fromTargetPos: Vector2, toTargetPos: Vector2, walkableCollider: CollisionShape2D) -> void:
-	var dir := toTargetPos - fromTargetPos
-	var length := dir.length()
-	if length <= 0.0001:
-		return
+	# ensuring leftover colliders are definitely cleared
+	for j in range(_active_colliders, _collider_pool.size()):
+		_collider_pool[j].disabled = true
+		_collider_pool[j].shape = null
 
-	var thickness := 8.0
-	var rect := RectangleShape2D.new()
-	rect.size = Vector2(length, thickness)
-	walkableCollider.shape = rect
+#helpers to enable/disable colliders & walkable layer
+func _disable_all_colliders() -> void:
+	for cs in _collider_pool:
+		cs.disabled = true
+		cs.shape = null
+	_active_colliders = 0
+	if static_body_2d != null:
+		static_body_2d.collision_layer = 0
+		static_body_2d.collision_mask = 0
 
-	walkableCollider.position = (fromTargetPos + toTargetPos) * 0.5
-	walkableCollider.rotation = dir.angle()
-
-func isWalkable(value : bool):
-	if value:
+func _enable_walkable_layer_on_static_body() -> void:
+	if static_body_2d != null:
 		var bit := 1 << (walkable_layer - 1)
 		static_body_2d.collision_layer = bit
 		static_body_2d.collision_mask = bit
-	else:
-		static_body_2d.collision_layer = 0
-		static_body_2d.collision_mask = 0
-	#if value == true:
-		#set_collision_mask_value(2, true) #player
-	#else:
-		#set_collision_mask_value(2, false) #null
 
-func set_color(new_color : Color) -> void:
-	color = new_color
-	if line_2d == null:
-		return
-	line_2d.modulate = new_color
-	
+#helper function to set beam width if it wasnt obvious heh
+func set_beam_width(new_width: float) -> void:
+	if new_width <= 0.0:
+		new_width = 0.1
+	beam_width = new_width
+	line_width = beam_width
+	if line_2d != null:
+		line_2d.width = line_width
+
+	# resizing all existing rect shapes in pool (so future activation uses correct width)
+	for i in range(_rect_shape_pool.size()):
+		var rect = _rect_shape_pool[i]
+		if rect != null and rect is RectangleShape2D:
+			var sz = rect.size
+			if sz.x <= 0.0:
+				sz.x = 1.0
+			sz.y = beam_width
+			rect.size = sz
+
+	# if beam is currently active, rebuild current colliders to match new width
+	if is_casting:
+		makeColliders(line_2d.points)
+
+# appearance & casting control
 func set_is_casting(new_value: bool) -> void:
 	if is_casting == new_value:
 		return
 	is_casting = new_value
 	set_physics_process(is_casting)
-	
-	if new_value == false :
+
+	if new_value == false:
+		# turn off colliders immediately so they won't block
+		_disable_all_colliders()
+		# turn off any slave portals spawned by this light
 		despawn_new_beam()
 
 	if is_casting:
+		# enabling/re-enabling walkable static body for players
+		_enable_walkable_layer_on_static_body()
 		var laser_start := Vector2.RIGHT * start_distance
 		line_2d.points[0] = laser_start
 		line_2d.points[1] = laser_start
 		appear()
 	else:
-		target_position = Vector2.ZERO
+		target_pos = Vector2.ZERO
 		disappear()
 
 func appear() -> void:
@@ -222,92 +320,117 @@ func appear() -> void:
 	if tween and tween.is_running():
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(line_2d, "width", line_width, growth_time * 2.0).from(0.0)
+	# animate to current beam width
+	tween.tween_property(line_2d, "width", beam_width, growth_time * 2.0).from(0.0)
 
 func disappear() -> void:
 	if tween and tween.is_running():
 		tween.kill()
 	tween = create_tween()
+	# animate width to zero then hide
 	tween.tween_property(line_2d, "width", 0.0, growth_time).from_current()
 	tween.tween_callback(line_2d.hide)
-	
+
+#spawning / despawning slave portals
 func spawn_new_beam(slave_node: Node) -> void:
-	var laser := RayCast2D.new()
-	slave_node.add_child(laser)
-	laser.global_transform = slave_node.global_transform
-	laser.enabled = true
-	laser.target_position = Vector2(0, 2000)
-	
-	var laser_line := Line2D.new()
-	laser_line.width = line_2d.width
-	laser_line.default_color = color
-	laser_line.z_index = line_2d.z_index
-	slave_node.add_child(laser_line)
-	
-	laser_line.points = [ Vector2.ZERO, Vector2(0,2000) ]
+	if slave_node == null:
+		return
 
-#func spawn_new_beam(slave_node: Node) -> void:
-	#var new_light: Light = LightScene.instantiate()
-	#slave_node.add_child(new_light)
-	#new_light.global_transform = slave_node.global_transform
-	#new_light.color = color
-	#new_light.max_length = max_length
-	#new_light.cast_speed = cast_speed
-	#new_light.max_reflections = max_reflections
-	#new_light.is_casting = true  # start casting immediately
-#
-	## You can copy any other variables you need:
-	#new_light.player_ref = player_ref  
+	# prefer portal API
+	if slave_node.has_method("set_is_casting"):
+		# color matching already applied earlier in handle_master_hit
+		slave_node.set_is_casting(true)
+	else:
+		#toggle a Laser child if present
+		if slave_node.has_node("Laser"):
+			var l = slave_node.get_node("Laser")
+			if l != null:
+				if l.has_method("set_is_casting"):
+					l.set_is_casting(true)
+				elif "is_casting" in l:
+					l.is_casting = true
 
-func despawn_new_beam() -> void: 
-	for slave in slaves : 
-		for child in slave["node"].get_children() :
-			if child is RayCast2D or child is Line2D :
-				child.queue_free() 
+func despawn_new_beam() -> void:
+	for entry in slaves:
+		var node_ref: Node = null
+		if typeof(entry) == TYPE_DICTIONARY and entry.has("node"):
+			node_ref = entry["node"]
+		elif entry is Node:
+			node_ref = entry
+
+		if node_ref == null:
+			continue
+
+		if node_ref.has_method("set_is_casting"):
+			node_ref.set_is_casting(false)
+		else:
+			if node_ref.has_node("Laser"):
+				var l = node_ref.get_node("Laser")
+				if l != null:
+					if l.has_method("set_is_casting"):
+						l.set_is_casting(false)
+					elif "is_casting" in l:
+						l.is_casting = false
+
 	slaves.clear()
 
+# color-matched spawning
 func handle_master_hit(sure_master: Node) -> Array:
 	var outputs : Array = sure_master.get_matching_outputs()
+	var spawned := []
+	var master_color: Color
+	if sure_master != null and "color" in sure_master:
+		master_color = sure_master.color
+
 	for info in outputs:
-		spawn_new_beam(info["node"])
-	return outputs
+		if info.has("node") and info["node"] != null:
+			var candidate = info["node"]
+			var do_spawn := true
+			if master_color != null and ("color" in candidate):
+				if candidate.color != master_color:
+					do_spawn = false
+			if do_spawn:
+				spawn_new_beam(candidate)
+				spawned.append({"node": candidate})
+	return spawned
 
-@export var walkable_layer : int = 1  # the layer number (1..32) that the player sits on
 
-func _init_collider_pool() -> void:
-	# Put static body at Light origin
-	static_body_2d.position = Vector2.ZERO
+func isWalkable(value : bool) -> void:
+	if value:
+		_enable_walkable_layer_on_static_body()
+	else:
+		if static_body_2d != null:
+			static_body_2d.collision_layer = 0
+			static_body_2d.collision_mask = 0
 
-	# Set collision layers/masks using bitmasks so we avoid confusion:
-	# bitmask: layer n -> 1 << (n - 1)
-	var bit := 1 << (walkable_layer - 1)
-	static_body_2d.collision_layer = bit
-	static_body_2d.collision_mask = bit
+func transformCollider(fromTargetPos: Vector2, toTargetPos: Vector2, walkableCollider: CollisionShape2D) -> void:
+	var dir := toTargetPos - fromTargetPos
+	var length := dir.length()
+	if length <= 0.0001:
+		return
+	var rect := RectangleShape2D.new()
+	rect.size = Vector2(length, beam_width)
+	walkableCollider.shape = rect
+	walkableCollider.position = (fromTargetPos + toTargetPos) * 0.5
+	walkableCollider.rotation = dir.angle()
 
-	# create a pool of CollisionShape2D nodes as children of static_body_2d
-	for i in range(max_segment_colliders):
-		var cs := CollisionShape2D.new()
-		cs.shape = null
-		cs.disabled = true
-		static_body_2d.add_child(cs)
-		_collider_pool.append(cs)
-	_active_colliders = 0
-	#static_body_2d.position = Vector2.ZERO
-	#static_body_2d.collision_layer = 9  # example: player layer
-	#static_body_2d.collision_mask = 9  # what it should collide with
-#
-	## create a pool of CollisionShape2D nodes as children of static_body_2d
-	#for i in range(max_segment_colliders):
-		#var cs := CollisionShape2D.new()
-		## start disabled (no shape attached)
-		#cs.shape = null
-		#cs.disabled = true
-		#static_body_2d.add_child(cs)
-		#_collider_pool.append(cs)
-		#
-	#_active_colliders = 0
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("walk_on_light") and event.is_action_pressed("walk_on_light"):
 		can_walk_on_light = !can_walk_on_light
 		isWalkable(can_walk_on_light)
+
+#Not relevant but DSA ka class finally yaha kaam aya, yeah
+func collect_slave_portals_dfs(out: Array, start_node: Node = null) -> void:
+	if start_node == null:
+		start_node = collect_top_ancestor(self)
+	if start_node is SlavePortal:
+		out.push_back(start_node)
+	for child in start_node.get_children():
+		collect_slave_portals_dfs(out, child)
+
+func collect_top_ancestor(node: Node) -> Node:
+	var parent := node.get_parent()
+	if parent == null:
+		return node
+	return collect_top_ancestor(parent)

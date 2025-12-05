@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhf8kmv0a5ydq"]
+
+[ext_resource type="Script" uid="uid://u2nlkf4liq70" path="res://Scripts/portal.gd" id="1_j7glw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evi0p"]
+radius = 14.0
+height = 156.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrdnt"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lsmp6"]
+material = SubResource("StandardMaterial3D_xrdnt")
+radius = 10.0
+height = 30.0
+
+[node name="Master_Portal" type="StaticBody2D"]
+rotation = -2.443461
+collision_layer = 2
+script = ExtResource("1_j7glw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_evi0p")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D"]
+position = Vector2(0, 2.2015596e-05)
+scale = Vector2(1.4548461, 7.0850263)
+mesh = SubResource("CapsuleMesh_lsmp6")
