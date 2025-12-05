@@ -112,11 +112,9 @@ func _physics_process(delta: float) -> void:
 						despawn_new_beam()
 						maybe_master = null
 				if maybe_light_node != null : 
-					print(maybe_light_node)
-					print(maybe_master)
-					print("1st Step")
+					#print(maybe_light_node)
 					if maybe_light_node.has_method("i_am_light_dependent") :
-						print("2nd Step")
+						#print("2nd Step")
 						maybe_light_node.disable()
 						points.append(collision_point_local)
 						break

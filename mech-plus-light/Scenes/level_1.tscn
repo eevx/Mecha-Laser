@@ -1,9 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://dj8scj85tj2j2"]
+[gd_scene load_steps=17 format=3 uid="uid://dj8scj85tj2j2"]
 
-[ext_resource type="PackedScene" uid="uid://br248huea2eo2" path="res://Scenes/laser.tscn" id="1_8ffim"]
 [ext_resource type="PackedScene" uid="uid://db2sg5dk7xs1j" path="res://SG/Scenes/rotor_lever.tscn" id="1_chwpn"]
-[ext_resource type="Script" uid="uid://cxm8wul6p3d40" path="res://Scripts/source.gd" id="1_xfk5q"]
-[ext_resource type="Texture2D" uid="uid://bwyimiilb11g4" path="res://Placeholder Assets/topdown-player.svg" id="2_evi0p"]
+[ext_resource type="PackedScene" uid="uid://di2uxeey7wuu6" path="res://Scenes/source.tscn" id="2_wrinw"]
 [ext_resource type="Environment" uid="uid://c8ol6uwdees61" path="res://Placeholder Assets/2d_environment.tres" id="4_7p6j4"]
 [ext_resource type="Texture2D" uid="uid://c3wvqm5a4npxv" path="res://Placeholder Assets/asteroid.svg" id="5_lsmp6"]
 [ext_resource type="Script" uid="uid://u2nlkf4liq70" path="res://Scripts/portal.gd" id="6_evi0p"]
@@ -11,10 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/platform.tscn" id="10_af3po"]
 [ext_resource type="Script" uid="uid://1minlmb4csjf" path="res://Scripts/light_node.gd" id="11_af3po"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="11_uy8f0"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6444e"]
-radius = 46.21
-height = 92.42
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6444e"]
 
@@ -44,28 +38,10 @@ height = 20.0
 position = Vector2(-462.00003, 716)
 rotation = 0.017601617
 scale = Vector2(0.66, 0.66)
-object_to_rotate = NodePath("../Source")
+object_to_rotate = NodePath("")
 
-[node name="Source" type="RigidBody2D" parent="." node_paths=PackedStringArray("player_ref", "lasers")]
+[node name="Source" parent="." instance=ExtResource("2_wrinw")]
 position = Vector2(-286, 300)
-rotation = 0.53596437
-collision_mask = 2
-gravity_scale = 0.0
-script = ExtResource("1_xfk5q")
-player_ref = NodePath("../The_Better_Player")
-lasers = [NodePath("Laser")]
-
-[node name="Sprite2D" type="Sprite2D" parent="Source"]
-z_index = 1
-texture = ExtResource("2_evi0p")
-
-[node name="Laser" parent="Source" instance=ExtResource("1_8ffim")]
-target_position = Vector2(2000, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Source"]
-position = Vector2(-6, -1)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_6444e")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("4_7p6j4")
