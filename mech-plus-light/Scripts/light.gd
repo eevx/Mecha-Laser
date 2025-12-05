@@ -9,6 +9,7 @@ extends RayCast2D
 # Base duration of the tween animation in seconds.
 @export var growth_time := 0.1
 @export var color := Color.RED
+@export var player_ref : Player
 var walkable_collider: CollisionShape2D
 @onready var static_body_2d: StaticBody2D = $StaticBody2D
 
@@ -68,9 +69,9 @@ func _physics_process(delta: float) -> void:
 		params.from = world_start
 		params.to = end_world
 		# excluding self and static_body_2d so that the query won't hit the colliders
-		params.exclude = [self, static_body_2d] + static_body_2d.get_children()
+		params.exclude = [self, static_body_2d, player_ref] + static_body_2d.get_children()
 
-		# params.collision_mask = <set>
+		params.collision_mask = 3
 		var result := get_world_2d().direct_space_state.intersect_ray(params)
 		
 		if result:

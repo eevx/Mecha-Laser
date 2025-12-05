@@ -49,8 +49,10 @@ lasers = [NodePath("Laser")]
 z_index = 1
 texture = ExtResource("2_evi0p")
 
-[node name="Laser" parent="Source" instance=ExtResource("1_8ffim")]
+[node name="Laser" parent="Source" node_paths=PackedStringArray("player_ref") instance=ExtResource("1_8ffim")]
 target_position = Vector2(2000, 0)
+color = Color(1, 0, 0, 0)
+player_ref = NodePath("../../The_Better_Player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Source"]
 position = Vector2(-6, -1)
@@ -136,13 +138,13 @@ collision_layer = 1
 collision_mask = 1
 
 [node name="The_Better_Player" parent="." instance=ExtResource("11_uy8f0")]
-position = Vector2(61, 297)
+position = Vector2(81, 297)
 collision_layer = 1
 collision_mask = 1
-safe_margin = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="The_Better_Player"]
+position = Vector2(83.99999, 121.99999)
 scale = Vector2(0.99999994, 0.99999994)
-zoom = Vector2(0.6, 0.6)
+zoom = Vector2(1.41, 1.41)
 
 [connection signal="area_entered" from="Portal(new)" to="Portal(new)" method="_on_area_entered"]
