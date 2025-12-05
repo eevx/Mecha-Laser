@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dj8scj85tj2j2"]
+[gd_scene load_steps=20 format=3 uid="uid://dj8scj85tj2j2"]
 
 [ext_resource type="PackedScene" uid="uid://br248huea2eo2" path="res://Scenes/laser.tscn" id="1_8ffim"]
 [ext_resource type="PackedScene" uid="uid://db2sg5dk7xs1j" path="res://SG/Scenes/rotor_lever.tscn" id="1_chwpn"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://u2nlkf4liq70" path="res://Scripts/portal.gd" id="6_evi0p"]
 [ext_resource type="Script" uid="uid://cme38r8hglvro" path="res://Scripts/output_red.gd" id="7_lsmp6"]
 [ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/platform.tscn" id="10_af3po"]
+[ext_resource type="Script" uid="uid://1minlmb4csjf" path="res://Scripts/light_node.gd" id="11_af3po"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="11_uy8f0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6444e"]
@@ -30,6 +31,12 @@ height = 156.0
 material = SubResource("StandardMaterial3D_xrdnt")
 radius = 10.0
 height = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_chwpn"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_chwpn"]
+radius = 10.0
+height = 20.0
 
 [node name="Level" type="Node2D"]
 
@@ -129,6 +136,17 @@ collision_layer = 1
 collision_mask = 1
 
 [node name="Camera2D" type="Camera2D" parent="The_Better_Player"]
-position = Vector2(83.99999, 121.99999)
-scale = Vector2(0.99999994, 0.99999994)
 zoom = Vector2(1.41, 1.41)
+
+[node name="LightNode" type="StaticBody2D" parent="."]
+position = Vector2(0.99999994, 462.00003)
+scale = Vector2(2.09, 2.09)
+collision_layer = 2
+script = ExtResource("11_af3po")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightNode"]
+shape = SubResource("CircleShape2D_chwpn")
+debug_color = Color(0.8440486, 0.18754724, 0.8085107, 0.41960785)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="LightNode/CollisionShape2D"]
+mesh = SubResource("SphereMesh_chwpn")

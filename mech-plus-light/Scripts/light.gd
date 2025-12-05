@@ -95,9 +95,11 @@ func _physics_process(delta: float) -> void:
 			var normal_world: Vector2 = (result.normal).normalized()
 			var collider : Node = result.collider if result.has("collider") and result.collider != null else null
 			var maybe_master: Node = null
+			var maybe_light_node : Node = null
 			if collider:
 				var collider_node: Node = result.collider
 				maybe_master = collider_node
+				maybe_light_node = collider_node
 				if maybe_master != null:
 					if maybe_master.has_method("get_matching_outputs") and maybe_master.has_method("is_master_portal"):
 						slaves = handle_master_hit(collider_node)
@@ -109,6 +111,15 @@ func _physics_process(delta: float) -> void:
 						#despawn
 						despawn_new_beam()
 						maybe_master = null
+				if maybe_light_node != null : 
+					print(maybe_light_node)
+					print(maybe_master)
+					print("1st Step")
+					if maybe_light_node.has_method("i_am_light_dependent") :
+						print("2nd Step")
+						maybe_light_node.disable()
+						points.append(collision_point_local)
+						break
 			#despawn
 			despawn_new_beam()
 			points.append(collision_point_local)
