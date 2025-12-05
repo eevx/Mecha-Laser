@@ -7,7 +7,7 @@ func Enter():
 
 func Physics_Update(_delta:float):
 	var dir := Input.get_axis("left","right")
-
+	player._apply_gravity()
 	if not player.is_on_floor():
 		Transition("AirState")
 		return
@@ -22,6 +22,7 @@ func Physics_Update(_delta:float):
 	if Input.is_action_pressed("dash") and player.dashCount > 0:
 		Transition("DashState")
 	
-
+	if player.in_field:
+		Transition("MagState")
 func Exit():
 	pass

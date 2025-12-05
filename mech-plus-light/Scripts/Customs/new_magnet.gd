@@ -46,6 +46,7 @@ func _fext(body):
 	if body.is_in_group("object"):
 		print("player out")
 		player_in = false
+		player.in_field = false
 		player = null
 
 func _fent(body):
@@ -53,3 +54,4 @@ func _fent(body):
 		print("player in")
 		player_in = true
 		player = body
+		player.in_field = true

@@ -3,7 +3,7 @@ extends Node
 class_name Player_State
 signal State_Transition(state, new_state: String)
 
-var player
+var player : Player
 func Enter():
 	pass
 
