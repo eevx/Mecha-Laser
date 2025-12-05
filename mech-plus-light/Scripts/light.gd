@@ -33,6 +33,7 @@ var angle_of_incidence : float
 @export var ray_cast_collision_layer := 3
 var _collider_pool: Array = []
 var _active_colliders: int = 0
+const LightScene := preload("res://Scenes/laser.tscn")
 
 
 func _ready() -> void:
@@ -75,17 +76,17 @@ func _physics_process(delta: float) -> void:
 		params.collision_mask = ray_cast_collision_layer
 		var result := get_world_2d().direct_space_state.intersect_ray(params)
 		
-		if result:
-			var col = result.collider
-			var name = col.get_name() if col != null and col.has_method("get_name") else str(col)
-			var layer_info := ""
-			if col and col.has_meta("collision_layer") == false:
-				# attempt safe access if the collider is a PhysicsBody2D/CollisionObject2D
-				if "collision_layer" in col:
-					layer_info = " layer=" + str(col.collision_layer)
-			print_debug("Ray hit -> ", name, " at ", result.position, layer_info)
-		else:
-			print_debug("Ray: no hit from ", params.from, " to ", params.to)
+		#if result:
+			#var col = result.collider
+			#var name = col.get_name() if col != null and col.has_method("get_name") else str(col)
+			#var layer_info := ""
+			#if col and col.has_meta("collision_layer") == false:
+				## attempt safe access if the collider is a PhysicsBody2D/CollisionObject2D
+				#if "collision_layer" in col:
+					#layer_info = " layer=" + str(col.collision_layer)
+			##print_debug("Ray hit -> ", name, " at ", result.position, layer_info)
+		##else:
+			##print_debug("Ray: no hit from ", params.from, " to ", params.to)
 		
 		if result:
 			# world-space collision info
@@ -131,7 +132,7 @@ func _physics_process(delta: float) -> void:
 ##helper function for multiple collider initiation
 func makeColliders(points : Array) -> void:
 	# no. of segments
-	print(points)
+	#print(points)
 	var seg_count = max(0, points.size() - 1)
 
 	# If more segments than pool, clamp (or expand pool)
@@ -165,8 +166,6 @@ func makeColliders(points : Array) -> void:
 		cs.position = (a + b) * 0.5
 		cs.rotation = dir.angle()
 
-
-
 func transformCollider(fromTargetPos: Vector2, toTargetPos: Vector2, walkableCollider: CollisionShape2D) -> void:
 	var dir := toTargetPos - fromTargetPos
 	var length := dir.length()
@@ -181,7 +180,6 @@ func transformCollider(fromTargetPos: Vector2, toTargetPos: Vector2, walkableCol
 	walkableCollider.position = (fromTargetPos + toTargetPos) * 0.5
 	walkableCollider.rotation = dir.angle()
 
-
 func isWalkable(value : bool):
 	if value:
 		var bit := 1 << (walkable_layer - 1)
@@ -194,7 +192,6 @@ func isWalkable(value : bool):
 		#set_collision_mask_value(2, true) #player
 	#else:
 		#set_collision_mask_value(2, false) #null
-
 
 func set_color(new_color : Color) -> void:
 	color = new_color
@@ -248,6 +245,19 @@ func spawn_new_beam(slave_node: Node) -> void:
 	slave_node.add_child(laser_line)
 	
 	laser_line.points = [ Vector2.ZERO, Vector2(0,2000) ]
+
+#func spawn_new_beam(slave_node: Node) -> void:
+	#var new_light: Light = LightScene.instantiate()
+	#slave_node.add_child(new_light)
+	#new_light.global_transform = slave_node.global_transform
+	#new_light.color = color
+	#new_light.max_length = max_length
+	#new_light.cast_speed = cast_speed
+	#new_light.max_reflections = max_reflections
+	#new_light.is_casting = true  # start casting immediately
+#
+	## You can copy any other variables you need:
+	#new_light.player_ref = player_ref  
 
 func despawn_new_beam() -> void: 
 	for slave in slaves : 

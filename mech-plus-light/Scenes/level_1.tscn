@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dj8scj85tj2j2"]
+[gd_scene load_steps=17 format=3 uid="uid://dj8scj85tj2j2"]
 
 [ext_resource type="PackedScene" uid="uid://br248huea2eo2" path="res://Scenes/laser.tscn" id="1_8ffim"]
+[ext_resource type="PackedScene" uid="uid://db2sg5dk7xs1j" path="res://SG/Scenes/rotor_lever.tscn" id="1_chwpn"]
 [ext_resource type="Script" uid="uid://cxm8wul6p3d40" path="res://Scripts/source.gd" id="1_xfk5q"]
 [ext_resource type="Texture2D" uid="uid://bwyimiilb11g4" path="res://Placeholder Assets/topdown-player.svg" id="2_evi0p"]
 [ext_resource type="Environment" uid="uid://c8ol6uwdees61" path="res://Placeholder Assets/2d_environment.tres" id="4_7p6j4"]
@@ -31,6 +32,12 @@ radius = 10.0
 height = 30.0
 
 [node name="Level" type="Node2D"]
+
+[node name="rotor_lever" parent="." node_paths=PackedStringArray("object_to_rotate") instance=ExtResource("1_chwpn")]
+position = Vector2(-462.00003, 716)
+rotation = 0.017601617
+scale = Vector2(0.66, 0.66)
+object_to_rotate = NodePath("../Source")
 
 [node name="Source" type="RigidBody2D" parent="." node_paths=PackedStringArray("player_ref", "lasers")]
 position = Vector2(-286, 300)
