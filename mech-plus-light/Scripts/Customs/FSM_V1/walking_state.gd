@@ -7,19 +7,22 @@ func Enter():
 
 
 func Physics_Update(delta):
-	player._apply_gravity()
-	
 	var dir := Input.get_axis("left", "right")
+	
+	var floor_dir = player.get_floor_normal().rotated(PI/2.)
 	
 	if dir != 0:
 		if abs(player.velocity.x) < player.data.maxSpeed:
-			player.velocity.x += player.acceleration * dir * delta
+			player.velocity += floor_dir * player.acceleration * dir * delta
 		else:
-			player.velocity.x = player.data.maxSpeed * dir
+			player.velocity = floor_dir * player.data.maxSpeed * dir
 	else:
-		_decelerate(delta)
-		if is_zero_approx(abs(player.velocity.x)):
-			Transition("IdleState")
+		_decelerate(delta, floor_dir)
+	
+	player._apply_gravity()
+	
+	if is_zero_approx(abs(player.velocity.x)):
+		Transition("IdleState")
 		return
 
 	if not player.is_on_floor():
@@ -37,14 +40,14 @@ func Physics_Update(delta):
 		Transition("MagState")
 
 
-func _decelerate(_delta:float):
+func _decelerate(delta:float, floor_dir:Vector2):
 	var v = player.velocity.x
-	if abs(v) <= abs(player.deceleration * _delta):
+	if abs(v) <= abs(player.deceleration * delta):
 		player.velocity.x = 0
 	elif v > 0:
-		player.velocity.x -= player.deceleration * _delta
+		player.velocity -= floor_dir * player.deceleration * delta
 	elif v < 0:
-		player.velocity.x += player.deceleration * _delta
+		player.velocity += floor_dir * player.deceleration * delta
 
 
 func Exit():

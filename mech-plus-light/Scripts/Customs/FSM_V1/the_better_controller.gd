@@ -42,7 +42,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	current_state.Update(delta)
-	print(self.velocity.y)
 	if Input.is_action_just_pressed("toggle_view"):
 		toggle_view()
 
@@ -52,7 +51,6 @@ func _physics_process(delta: float) -> void:
 	_handle_facing()
 	
 	current_state.Physics_Update(delta)
-
 
 func _calc_cached_val():
 	acceleration = data.maxSpeed / data.timeToReachMaxSpeed
