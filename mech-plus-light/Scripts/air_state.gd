@@ -5,8 +5,13 @@ var dir
 func Enter():
 	player.PlayerSprite.play("jump")
 	if Input.is_action_just_pressed("jump") and player.jumpCount > 0:
-		player.velocity.y = -player.jumpMagnitude
-		player.jumpCount -= 1
+		if player.in_field:
+			print("jump")
+			player.velocity.y = player.jumpMagnitude
+			player.jumpCount -= 1
+		else:
+			player.velocity.y = -player.jumpMagnitude
+			player.jumpCount -= 1
 
 
 func Physics_Update(delta):
@@ -31,12 +36,15 @@ func Physics_Update(delta):
 		else:
 			Transition("IdleState")
 
+	if player.in_field:
+		Transition("MagState")
+
 	if Input.is_action_just_pressed("dash") and player.dashCount > 0:
 		Transition("DashState")
 
 
 func _air_decel(delta):
-	print("airdecel ACTIVE")
+	#print("airdecel ACTIVE")
 	var v = player.velocity.x
 	#im not proud of this shit, but im tired atp
 
