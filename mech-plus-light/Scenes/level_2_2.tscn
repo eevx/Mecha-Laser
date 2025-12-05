@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b263n63gl7q7j"]
 
-[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/platform.tscn" id="1_7t3yi"]
-[ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/platform.tscn" id="2_xg6ww"]
+[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="1_7t3yi"]
+[ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/movingplatform.tscn" id="2_xg6ww"]
 [ext_resource type="PackedScene" uid="uid://cwo3g6sttlj3r" path="res://Scenes/Customs/New_Magnet.tscn" id="3_lf0fy"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="4_f0p21"]
 
@@ -412,8 +412,7 @@ point_a = Vector2(403, 432)
 point_b = Vector2(403, 250)
 
 [node name="Magent" parent="." instance=ExtResource("3_lf0fy")]
-position = Vector2(99, 669)
-rotation = 3.1415927
+position = Vector2(95, -1)
 scale = Vector2(0.5, 0.5)
 
 [node name="Magnet2" parent="." instance=ExtResource("3_lf0fy")]
