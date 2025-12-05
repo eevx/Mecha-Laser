@@ -34,11 +34,10 @@ height = 20.0
 
 [node name="Level" type="Node2D"]
 
-[node name="rotor_lever" parent="." node_paths=PackedStringArray("object_to_rotate") instance=ExtResource("1_chwpn")]
+[node name="rotor_lever" parent="." instance=ExtResource("1_chwpn")]
 position = Vector2(-462.00003, 716)
 rotation = 0.017601617
 scale = Vector2(0.66, 0.66)
-object_to_rotate = NodePath("")
 
 [node name="Source" parent="." instance=ExtResource("2_wrinw")]
 position = Vector2(-286, 300)
