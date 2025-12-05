@@ -12,11 +12,13 @@ var _target: Vector2
 var _waiting_time_remaining: float = 0.0
 var _previous_position: Vector2
 var _bodies := []   # list of Node references currently on platform
+var original_speed: float = 120.0
 
 func _ready():
 	_target = point_b
 	global_position = point_a
 	_previous_position = global_position
+	original_speed = speed
 	
 func _physics_process(delta: float) -> void:
 	if _waiting_time_remaining > 0.0:
@@ -56,3 +58,9 @@ func _on_body_entered(body: Node) -> void:
 
 func _on_body_exited(body: Node) -> void:
 	_bodies.erase(body)
+	
+func change_speed(new_speed: float) -> void:
+	speed = new_speed
+	
+func get_og_speed() -> float:
+	return original_speed
