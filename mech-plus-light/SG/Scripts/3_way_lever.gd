@@ -8,6 +8,7 @@ enum Position { LEFT, CENTER, RIGHT }
 var current_position: int = Position.CENTER
 var is_player_near: bool = false
 var is_active: bool = false # True when player has pressed 'E'
+@export var master_portal : Node = null
 
 func _ready() -> void:
 	update_visuals()
@@ -52,11 +53,17 @@ func update_visuals() -> void:
 		Position.LEFT:
 			animated_sprite.play("Left")
 			print("Lever is LEFT")
+			if master_portal:
+				master_portal.change_color(Color.GREEN)
 			
 		Position.CENTER:
 			animated_sprite.play("Center")
 			print("Lever is CENTER")
+			if master_portal:
+				master_portal.change_color(Color.YELLOW)
 			
 		Position.RIGHT:
 			animated_sprite.play("Right")
 			print("Lever is RIGHT")
+			if master_portal:
+				master_portal.change_color(Color.RED)
