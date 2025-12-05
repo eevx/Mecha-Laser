@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwo3g6sttlj3r"]
+[gd_scene load_steps=5 format=3 uid="uid://cwo3g6sttlj3r"]
 
 [ext_resource type="Texture2D" uid="uid://g308ihvgskvc" path="res://icon.svg" id="1_eeg1r"]
 [ext_resource type="Script" uid="uid://cw366me6gjoq1" path="res://Scripts/Customs/new_magnet.gd" id="1_std2h"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_std2h"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeg1r"]
+size = Vector2(124, 711)
 
 [node name="Parent" type="StaticBody2D"]
 collision_layer = 3
@@ -23,6 +26,12 @@ MStrength = 10.0
 MWidth = 100.0
 MHeight = 100.0
 
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Magnet"]
+modulate = Color(1, 1, 1, 0.15294118)
+position = Vector2(0, 355)
+scale = Vector2(126, 710.00006)
+mesh = SubResource("BoxMesh_std2h")
+
 [node name="Magnet_Field" type="CollisionShape2D" parent="Magnet"]
-position = Vector2(0, 73)
+position = Vector2(0, 355.5)
 shape = SubResource("RectangleShape2D_eeg1r")

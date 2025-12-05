@@ -1,0 +1,191 @@
+[gd_scene load_steps=17 format=3 uid="uid://0ox7w08h12jc"]
+
+[ext_resource type="Script" uid="uid://15gssq6xxldv" path="res://kanishka_stuffs/scenes/spikes.gd" id="1_5e78q"]
+[ext_resource type="PackedScene" uid="uid://7hq1ioohc2gc" path="res://kanishka_stuffs/scenes/button.tscn" id="2_53xsp"]
+[ext_resource type="PackedScene" uid="uid://db2sg5dk7xs1j" path="res://SG/Scenes/rotor_lever.tscn" id="3_5e78q"]
+[ext_resource type="PackedScene" uid="uid://cwo3g6sttlj3r" path="res://Scenes/Customs/New_Magnet.tscn" id="4_l4wr6"]
+[ext_resource type="PackedScene" uid="uid://deq86blqun7sd" path="res://Scenes/light_node.tscn" id="5_5rvg2"]
+[ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="7_53xsp"]
+[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/platform.tscn" id="8_5e78q"]
+[ext_resource type="PackedScene" uid="uid://di2uxeey7wuu6" path="res://Scenes/source.tscn" id="8_l4wr6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nbwsh"]
+radius = 17.593
+height = 94.816
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c81s1"]
+size = Vector2(20, 315)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n4vm5"]
+size = Vector3(20, 430.005, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxnjf"]
+size = Vector2(20.499992, 222)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjeco"]
+size = Vector2(20.499992, 222)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j77fg"]
+size = Vector2(20.499992, 148)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgmqw"]
+size = Vector2(20, 248)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s80er"]
+size = Vector3(248, 20, 1)
+
+[node name="Level3" type="Node2D"]
+
+[node name="mirror" type="MeshInstance2D" parent="."]
+modulate = Color(0.7019608, 0.7019608, 0.7019608, 1)
+position = Vector2(366.77643, 183)
+rotation = 1.5707964
+scale = Vector2(0.56609124, 1.8315301)
+mesh = SubResource("CapsuleMesh_nbwsh")
+
+[node name="hazardous" type="Area2D" parent="."]
+position = Vector2(720, 216)
+script = ExtResource("1_5e78q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hazardous"]
+position = Vector2(0, -58.5)
+shape = SubResource("RectangleShape2D_c81s1")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="hazardous/CollisionShape2D"]
+modulate = Color(1, 0.09019608, 0, 1)
+position = Vector2(0, -0.0012512207)
+scale = Vector2(1, 0.73255545)
+mesh = SubResource("BoxMesh_n4vm5")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="hazardous"]
+position = Vector2(1, 321)
+shape = SubResource("RectangleShape2D_fxnjf")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="hazardous/CollisionShape2D3"]
+modulate = Color(1, 0.09019608, 0, 1)
+scale = Vector2(1, 0.51627314)
+mesh = SubResource("BoxMesh_n4vm5")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="hazardous"]
+position = Vector2(-609, -33)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_xjeco")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="hazardous/CollisionShape2D4"]
+modulate = Color(1, 0.09019608, 0, 1)
+scale = Vector2(1, 0.51627314)
+mesh = SubResource("BoxMesh_n4vm5")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="hazardous"]
+position = Vector2(-207, -171)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_j77fg")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="hazardous/CollisionShape2D6"]
+modulate = Color(1, 0.09019608, 0, 1)
+scale = Vector2(1, 0.345584)
+mesh = SubResource("BoxMesh_n4vm5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hazardous"]
+position = Vector2(134, -171)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_kgmqw")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="hazardous/CollisionShape2D2"]
+modulate = Color(1, 0.09019608, 0, 1)
+position = Vector2(0, 5.9604645e-08)
+rotation = -1.5707964
+mesh = SubResource("BoxMesh_s80er")
+
+[node name="platforms" type="Node2D" parent="."]
+
+[node name="Platform" parent="platforms" instance=ExtResource("8_5e78q")]
+position = Vector2(589, 651)
+scale = Vector2(39.53, 1)
+
+[node name="Platform2" parent="platforms" instance=ExtResource("8_5e78q")]
+position = Vector2(2, 283)
+rotation = 1.5707964
+scale = Vector2(26.755, 1)
+
+[node name="Platform3" parent="platforms" instance=ExtResource("8_5e78q")]
+position = Vector2(1148, 264)
+rotation = -1.5707964
+scale = Vector2(26.755, 1)
+
+[node name="Platform4" parent="platforms" instance=ExtResource("8_5e78q")]
+position = Vector2(1053, 182)
+scale = Vector2(5.865, 1)
+
+[node name="Platform5" parent="platforms" instance=ExtResource("8_5e78q")]
+position = Vector2(904, 406)
+scale = Vector2(5.865, 1)
+
+[node name="Platform6" parent="platforms" instance=ExtResource("8_5e78q")]
+position = Vector2(581, 307)
+scale = Vector2(8.05, 1)
+
+[node name="button" parent="." instance=ExtResource("2_53xsp")]
+position = Vector2(901.99994, 397.99997)
+scale = Vector2(0.525, 0.525)
+
+[node name="rotor_lever" parent="." instance=ExtResource("3_5e78q")]
+position = Vector2(1091, 159)
+scale = Vector2(0.35, 0.35)
+
+[node name="magnets" type="Node2D" parent="."]
+
+[node name="Parent" parent="magnets" instance=ExtResource("4_l4wr6")]
+position = Vector2(63, -57)
+
+[node name="Parent2" parent="magnets" instance=ExtResource("4_l4wr6")]
+position = Vector2(187, -57)
+
+[node name="Parent3" parent="magnets" instance=ExtResource("4_l4wr6")]
+position = Vector2(313, -57)
+
+[node name="Parent4" parent="magnets" instance=ExtResource("4_l4wr6")]
+position = Vector2(437, -57)
+
+[node name="Parent5" parent="magnets" instance=ExtResource("4_l4wr6")]
+position = Vector2(563, -57)
+
+[node name="Parent6" parent="magnets" instance=ExtResource("4_l4wr6")]
+position = Vector2(687, -57)
+
+[node name="Parent7" parent="magnets" instance=ExtResource("4_l4wr6")]
+position = Vector2(813, -57)
+
+[node name="Parent8" parent="magnets" instance=ExtResource("4_l4wr6")]
+position = Vector2(937, -57)
+
+[node name="light_node" parent="." instance=ExtResource("5_5rvg2")]
+position = Vector2(19, 18)
+
+[node name="light_node2" parent="." instance=ExtResource("5_5rvg2")]
+position = Vector2(470, 292)
+
+[node name="The_Better_Player" parent="." instance=ExtResource("7_53xsp")]
+position = Vector2(1065, 634)
+
+[node name="Source" parent="." instance=ExtResource("8_l4wr6")]
+position = Vector2(672.105, 34.665)
+rotation = 1.5707964
+scale = Vector2(0.64, 0.64)
+
+[node name="Source2" parent="." instance=ExtResource("8_l4wr6")]
+position = Vector2(1023, 26.999998)
+rotation = 1.5707964
+scale = Vector2(0.64, 0.64)
+
+[node name="Source3" parent="." instance=ExtResource("8_l4wr6")]
+position = Vector2(170, 26.999998)
+rotation = 1.5707964
+scale = Vector2(0.64, 0.64)
+
+[node name="Source4" parent="." instance=ExtResource("8_l4wr6")]
+position = Vector2(23, 538)
+rotation = 0.0
+scale = Vector2(0.64, 0.64)
+
+[connection signal="body_entered" from="hazardous" to="hazardous" method="_on_body_entered"]
