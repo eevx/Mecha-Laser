@@ -36,7 +36,7 @@ func Physics_Update(delta):
 
 
 func _air_decel(delta):
-	print("airdecel ACTIVE")
+
 	var v = player.velocity.x
 	#im not proud of this shit, but im tired atp
 

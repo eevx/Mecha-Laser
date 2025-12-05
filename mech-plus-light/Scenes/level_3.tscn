@@ -129,9 +129,10 @@ scale = Vector2(8.05, 1)
 position = Vector2(901.99994, 397.99997)
 scale = Vector2(0.525, 0.525)
 
-[node name="rotor_lever" parent="." instance=ExtResource("3_5e78q")]
+[node name="rotor_lever" parent="." node_paths=PackedStringArray("object_to_rotate") instance=ExtResource("3_5e78q")]
 position = Vector2(1091, 159)
 scale = Vector2(0.35, 0.35)
+object_to_rotate = NodePath("../Source")
 
 [node name="magnets" type="Node2D" parent="."]
 

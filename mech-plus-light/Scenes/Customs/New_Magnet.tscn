@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwo3g6sttlj3r"]
+[gd_scene load_steps=6 format=3 uid="uid://cwo3g6sttlj3r"]
 
+[ext_resource type="Script" uid="uid://dl1j86c1lfjd1" path="res://Scenes/Customs/magnet_parent.gd" id="1_5xvfw"]
 [ext_resource type="Texture2D" uid="uid://g308ihvgskvc" path="res://icon.svg" id="1_eeg1r"]
 [ext_resource type="Script" uid="uid://cw366me6gjoq1" path="res://Scripts/Customs/new_magnet.gd" id="1_std2h"]
 
@@ -8,9 +9,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeg1r"]
 size = Vector2(124, 711)
 
-[node name="Parent" type="StaticBody2D"]
+[node name="Parent" type="StaticBody2D" node_paths=PackedStringArray("magnet")]
 collision_layer = 3
 collision_mask = 3
+script = ExtResource("1_5xvfw")
+magnet = NodePath("Magnet")
 
 [node name="Magnet_Collider" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-55, 60, -54, -60, 55, -59, 55, 60)
