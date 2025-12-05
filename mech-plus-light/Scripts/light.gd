@@ -30,6 +30,7 @@ var angle_of_incidence : float
 
 # pool settings
 @export var max_segment_colliders: int = 12
+@export var ray_cast_collision_layer := 3
 var _collider_pool: Array = []
 var _active_colliders: int = 0
 
@@ -71,7 +72,7 @@ func _physics_process(delta: float) -> void:
 		# excluding self and static_body_2d so that the query won't hit the colliders
 		params.exclude = [self, static_body_2d, player_ref] + static_body_2d.get_children()
 
-		params.collision_mask = 3
+		params.collision_mask = ray_cast_collision_layer
 		var result := get_world_2d().direct_space_state.intersect_ray(params)
 		
 		if result:
