@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwo3g6sttlj3r"]
+
+[ext_resource type="Texture2D" uid="uid://g308ihvgskvc" path="res://icon.svg" id="1_eeg1r"]
+[ext_resource type="Script" uid="uid://cw366me6gjoq1" path="res://Scripts/Customs/new_magnet.gd" id="1_std2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeg1r"]
+
+[node name="Area2D" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Magnet_Collider" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-55, 60, -54, -60, 55, -59, 55, 60)
+
+[node name="Magnet_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_eeg1r")
+
+[node name="Magnet" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_std2h")
+MStrength = 10.0
+MWidth = 100.0
+MHeight = 100.0
+
+[node name="Magnet_Field" type="CollisionShape2D" parent="Magnet"]
+position = Vector2(0, 73)
+shape = SubResource("RectangleShape2D_eeg1r")

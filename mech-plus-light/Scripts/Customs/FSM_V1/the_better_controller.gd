@@ -33,8 +33,8 @@ func _ready() -> void:
 			states[child.name] = child
 			child.player = self
 			child.State_Transition.connect(on_child_transition)
-			for key in states.keys():
-				print(key, "->", states[key])
+			#for key in states.keys():
+				#print(key, "->", states[key])
 	if initial_state:
 		print("state set")
 		current_state = initial_state
@@ -43,13 +43,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	current_state.Update(delta)
 	_handle_facing()
-	
+	#print(self.velocity.x)
 	if Input.is_action_just_pressed("toggle_view"):
 		toggle_view()
 
 func _physics_process(delta: float) -> void:
-	current_state.Physics_Update(delta)
 	move_and_slide()
+	current_state.Physics_Update(delta)
+
 
 func _calc_cached_val():
 	acceleration = data.maxSpeed / data.timeToReachMaxSpeed
@@ -107,7 +108,6 @@ func on_child_transition(state, new_state_name):
 	
 
 #view toggling
-
 @onready var cam := $Camera2D
 
 var zoom_normal := Vector2(4, 4)
@@ -116,5 +116,7 @@ var zoom_toggled := false
 
 func toggle_view():
 	zoom_toggled = !zoom_toggled
-	cam.zoom = zoom_out if zoom_toggled else zoom_normal
+	var target_zoom = zoom_out if zoom_toggled else zoom_normal
 	
+	var tween := create_tween()
+	tween.tween_property(cam, "zoom", target_zoom, 0.3)
