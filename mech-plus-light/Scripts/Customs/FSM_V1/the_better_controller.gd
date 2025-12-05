@@ -68,6 +68,8 @@ func _handle_facing():
 		return
 	if in_field:
 		PlayerSprite.scale.y = -animScaleLock.y
+	if not in_field:
+		PlayerSprite.scale.y = animScaleLock.y
 	if Input.is_action_pressed("right"):
 		PlayerSprite.scale.x = animScaleLock.x
 		wasMovingR = true 
