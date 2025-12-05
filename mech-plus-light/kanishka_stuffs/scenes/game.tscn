@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://d3v6jw1nk82vw"]
 
-[ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/platform.tscn" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/movingplatform.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://7hq1ioohc2gc" path="res://kanishka_stuffs/scenes/button.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="3_efdkv"]
 [ext_resource type="PackedScene" uid="uid://cqqm8fqs2beml" path="res://kanishka_stuffs/scenes/spikes.tscn" id="4_2rjfm"]

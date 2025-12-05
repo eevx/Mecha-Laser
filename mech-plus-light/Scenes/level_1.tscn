@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c3wvqm5a4npxv" path="res://Placeholder Assets/asteroid.svg" id="5_lsmp6"]
 [ext_resource type="PackedScene" uid="uid://bhf8kmv0a5ydq" path="res://Scenes/master_portal.tscn" id="5_xrdnt"]
 [ext_resource type="PackedScene" uid="uid://dh78khmu25g7i" path="res://Scenes/slave_portal.tscn" id="6_xrdnt"]
-[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/platform.tscn" id="10_af3po"]
+[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="10_af3po"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="11_uy8f0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6444e"]
@@ -27,7 +27,7 @@ rotation = 0.43994388
 player_ref = NodePath("../The_Better_Player")
 
 [node name="Laser" parent="Source" index="1"]
-beam_width = 50.0
+canWalkable = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("4_7p6j4")
@@ -59,14 +59,13 @@ scale = Vector2(57.73, 1)
 collision_layer = 1
 collision_mask = 1
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(165, 419)
-scale = Vector2(0.99999994, 0.99999994)
-zoom = Vector2(0.61, 0.61)
-
 [node name="The_Better_Player" parent="." instance=ExtResource("11_uy8f0")]
 position = Vector2(81, 297)
 collision_layer = 1
 collision_mask = 1
+
+[node name="Camera2D" type="Camera2D" parent="The_Better_Player"]
+position = Vector2(84, 122)
+scale = Vector2(0.99999994, 0.99999994)
 
 [editable path="Source"]
