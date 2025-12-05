@@ -8,7 +8,7 @@ extends RigidBody2D
 var current_velocity := Vector2.ZERO
 
 func _process(_delta: float) -> void:
-	look_at(get_global_mouse_position())
+	#look_at(get_global_mouse_position())
 	#laser.is_casting = Input.is_action_pressed("fire_weapon")
 	for laser in lasers:
 		laser.player_ref = player_ref
