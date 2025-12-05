@@ -37,22 +37,22 @@ size = Vector2(215, 31)
 
 [node name="Level" type="Node2D"]
 
-[node name="Source" type="RigidBody2D" parent="." node_paths=PackedStringArray("lasers")]
+[node name="Source" type="RigidBody2D" parent="." node_paths=PackedStringArray("player_ref", "lasers")]
 position = Vector2(-286, 300)
 rotation = 0.53596437
 collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_xfk5q")
+player_ref = NodePath("../The_Better_Player")
 lasers = [NodePath("Laser")]
 
 [node name="Sprite2D" type="Sprite2D" parent="Source"]
 z_index = 1
 texture = ExtResource("2_evi0p")
 
-[node name="Laser" parent="Source" node_paths=PackedStringArray("player_ref") instance=ExtResource("1_8ffim")]
+[node name="Laser" parent="Source" instance=ExtResource("1_8ffim")]
 target_position = Vector2(2000, 0)
 color = Color(1, 0, 0, 0)
-player_ref = NodePath("../../The_Better_Player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Source"]
 position = Vector2(-6, -1)
