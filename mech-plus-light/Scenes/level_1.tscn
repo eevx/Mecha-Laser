@@ -47,7 +47,6 @@ texture = ExtResource("2_evi0p")
 
 [node name="Laser" parent="Source" instance=ExtResource("1_8ffim")]
 target_position = Vector2(2000, 0)
-color = Color(1, 0, 0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Source"]
 position = Vector2(-6, -1)
