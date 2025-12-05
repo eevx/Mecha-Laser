@@ -131,3 +131,12 @@ func toggle_view():
 	
 	var tween := create_tween()
 	tween.tween_property(cam, "zoom", target_zoom, 0.3)
+
+func change_gravity(new_gravity: float):
+	data.gravityScale += new_gravity
+	
+func get_gravity_value() -> float:
+	return data.gravityScale
+
+func reset_gravity(new_gravity: float):
+	data.gravityScale = new_gravity
