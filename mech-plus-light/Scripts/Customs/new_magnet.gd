@@ -80,13 +80,13 @@ func _on_body_entered(body):
 			#player.gravity = increased_gravity
 		else:
 			# magnet is above → decrease gravity
-			player.change_gravity(increased_gravity)
+			player.change_gravity(-decreased_gravity)
 			#player.gravity = decreased_gravity
 
 func _on_body_exited(body):
 	if body == player:
 		print("I am going")
 		# restore original gravity
-		player.change_gravity(original_gravity)
+		player.reset_gravity(original_gravity)
  		#player.gravity = original_gravity
 		player = null
