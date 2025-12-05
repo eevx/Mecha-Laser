@@ -7,6 +7,13 @@ class_name Player
 @export var PlayerCol : CollisionPolygon2D
 @export var data : PlayerData
 
+# Thruster config
+@export var thruster_force: float = -900.0
+@export var thruster_max_fuel: float = 1.8
+@export var thruster_drain_rate: float = 1.0
+@export var thruster_refill_rate: float = 0.6
+@export var thruster_refill_delay: float = 0.4
+
 #running vars
 var jumpCount : int
 var dashCount : int
@@ -21,8 +28,13 @@ var wasMovingR := true
 var current_state : Player_State
 var states : Dictionary = {}
 var animScaleLock : Vector2
-var in_field := false
-var was_on_floor := false
+
+# Thruster runtime
+var thruster_fuel: float = thruster_max_fuel
+var thruster_using: bool = false
+var thruster_refill_timer: float = 0.0
+
+
 func _ready() -> void:
 	animScaleLock = abs(PlayerSprite.scale)
 	
@@ -42,15 +54,32 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	current_state.Update(delta)
+	_handle_facing()
+	#print(self.velocity.x)
 	if Input.is_action_just_pressed("toggle_view"):
 		toggle_view()
 
+	# start thruster state while holding "thruster"
+	if Input.is_action_pressed("thruster") and current_state and current_state.name != "ThrusterState" and thruster_fuel > 0.0:
+		current_state.Exit()
+		var ns = states.get("ThrusterState")
+		if ns:
+			current_state = ns
+			current_state.Enter()
+
 func _physics_process(delta: float) -> void:
+	# thruster refill handling
+	if not thruster_using:
+		if thruster_fuel < thruster_max_fuel:
+			thruster_refill_timer += delta
+			if thruster_refill_timer >= thruster_refill_delay:
+				thruster_fuel = min(thruster_fuel + thruster_refill_rate * delta, thruster_max_fuel)
+	else:
+		thruster_refill_timer = 0.0
+
 	move_and_slide()
-	
-	_handle_facing()
-	
 	current_state.Physics_Update(delta)
+
 
 func _calc_cached_val():
 	acceleration = data.maxSpeed / data.timeToReachMaxSpeed
@@ -66,10 +95,6 @@ func _calc_cached_val():
 func _handle_facing():
 	if dashing:
 		return
-	if in_field:
-		PlayerSprite.scale.y = -animScaleLock.y
-	if not in_field:
-		PlayerSprite.scale.y = animScaleLock.y
 	if Input.is_action_pressed("right"):
 		PlayerSprite.scale.x = animScaleLock.x
 		wasMovingR = true 
@@ -78,18 +103,9 @@ func _handle_facing():
 		wasMovingR = false
 
 func _apply_gravity():
-	if self.is_on_floor():
-		
-		#print("doing the snap")
-		var dot := self.velocity.dot(self.get_floor_normal())
-		if dot > 0:
-			self.velocity -= self.get_floor_normal()*dot*5
-
 	if not gravityActive: 
 		return
-
 	var g = data.gravityScale
-
 	if velocity.y > 0:
 		g *= data.descendingGravityFactor
 	
@@ -97,7 +113,7 @@ func _apply_gravity():
 	
 	if velocity.y > data.terminalVelocity:
 		velocity.y = data.terminalVelocity
-	
+
 func _pause_gravity(t):
 	gravityActive = false
 	
@@ -133,3 +149,25 @@ func toggle_view():
 	
 	var tween := create_tween()
 	tween.tween_property(cam, "zoom", target_zoom, 0.3)
+
+
+# Thruster helpers
+func can_use_thruster() -> bool:
+	return thruster_fuel > 0.0
+
+func apply_thruster_force(delta: float) -> void:
+	velocity.y += thruster_force * delta
+
+func start_thruster_effects() -> void:
+	thruster_using = true
+	# if has_node("ThrusterParticles"): $ThrusterParticles.emitting = true
+	# if has_node("AudioThruster"): $AudioThruster.play()
+
+func stop_thruster_effects() -> void:
+	thruster_using = false
+	# if has_node("ThrusterParticles"): $ThrusterParticles.emitting = false
+	# if has_node("AudioThruster"): $AudioThruster.stop()
+
+
+func _get_property_list() -> Array:
+	return []
