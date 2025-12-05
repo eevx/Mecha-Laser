@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b263n63gl7q7j"]
+[gd_scene load_steps=9 format=3 uid="uid://b263n63gl7q7j"]
 
 [ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="1_7t3yi"]
 [ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/movingplatform.tscn" id="2_xg6ww"]
+[ext_resource type="PackedScene" uid="uid://dh78khmu25g7i" path="res://Scenes/slave_portal.tscn" id="3_acc1b"]
 [ext_resource type="PackedScene" uid="uid://cwo3g6sttlj3r" path="res://Scenes/Customs/New_Magnet.tscn" id="3_lf0fy"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="4_f0p21"]
+[ext_resource type="PackedScene" uid="uid://bhf8kmv0a5ydq" path="res://Scenes/master_portal.tscn" id="5_lf0fy"]
+[ext_resource type="PackedScene" uid="uid://cm4a1ilc5hk1h" path="res://SG/Scenes/3_way_lever.tscn" id="6_f0p21"]
+[ext_resource type="PackedScene" uid="uid://di2uxeey7wuu6" path="res://Scenes/source.tscn" id="8_acc1b"]
 
 [node name="level_2_2" type="Node2D"]
 
@@ -61,6 +65,37 @@ scale = Vector2(1, 2.5)
 
 [node name="Platform48" parent="platforms" instance=ExtResource("1_7t3yi")]
 position = Vector2(751, 506)
+scale = Vector2(1, 2.5)
+
+[node name="Platform128" parent="platforms" instance=ExtResource("1_7t3yi")]
+position = Vector2(931, 556)
+scale = Vector2(1, 2.5)
+
+[node name="Platform129" parent="platforms" instance=ExtResource("1_7t3yi")]
+position = Vector2(962, 555)
+scale = Vector2(1, 2.5)
+
+[node name="Platform130" parent="platforms" instance=ExtResource("1_7t3yi")]
+position = Vector2(994, 555)
+scale = Vector2(1, 2.5)
+
+[node name="Platform131" parent="platforms" instance=ExtResource("1_7t3yi")]
+position = Vector2(1025, 555)
+scale = Vector2(1, 2.5)
+
+[node name="Platform132" parent="platforms" instance=ExtResource("1_7t3yi")]
+position = Vector2(1051, 562)
+rotation = 1.5707964
+scale = Vector2(1, 2.5)
+
+[node name="Platform133" parent="platforms" instance=ExtResource("1_7t3yi")]
+position = Vector2(1050, 593)
+rotation = 1.5707964
+scale = Vector2(1, 2.5)
+
+[node name="Platform134" parent="platforms" instance=ExtResource("1_7t3yi")]
+position = Vector2(1051, 625)
+rotation = 1.5707964
 scale = Vector2(1, 2.5)
 
 [node name="Platform49" parent="platforms" instance=ExtResource("1_7t3yi")]
@@ -412,7 +447,8 @@ point_a = Vector2(403, 432)
 point_b = Vector2(403, 250)
 
 [node name="Magent" parent="." instance=ExtResource("3_lf0fy")]
-position = Vector2(95, -1)
+position = Vector2(95, 668)
+rotation = 3.1415927
 scale = Vector2(0.5, 0.5)
 
 [node name="Magnet2" parent="." instance=ExtResource("3_lf0fy")]
@@ -421,4 +457,31 @@ rotation = 3.1415927
 scale = Vector2(0.5, 0.5)
 
 [node name="The_Better_Player" parent="." instance=ExtResource("4_f0p21")]
-position = Vector2(27, 626)
+position = Vector2(157, 378)
+
+[node name="Master_color_controller" parent="." node_paths=PackedStringArray("master_portal") instance=ExtResource("6_f0p21")]
+position = Vector2(173, 431)
+scale = Vector2(0.06, 0.06)
+master_portal = NodePath("../Portals/Master_Portal")
+
+[node name="Portals" type="Node" parent="."]
+
+[node name="Red _Slave" parent="Portals" instance=ExtResource("3_acc1b")]
+position = Vector2(25.000004, 51.999996)
+rotation = -1.5707964
+scale = Vector2(0.38, 0.38)
+
+[node name="Master_Portal" parent="Portals" instance=ExtResource("5_lf0fy")]
+position = Vector2(403, 645)
+rotation = 1.5707964
+scale = Vector2(0.38, 0.38)
+
+[node name="Green_Slave" parent="Portals" instance=ExtResource("3_acc1b")]
+position = Vector2(802, 383)
+rotation = 1.0471976
+scale = Vector2(0.38, 0.38)
+color_of_the_portal = "GREEN"
+
+[node name="Source2" parent="." instance=ExtResource("8_acc1b")]
+position = Vector2(28.999985, 425)
+scale = Vector2(0.31, 0.31)
