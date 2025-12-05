@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpsthaf42l76v"]
+
+[ext_resource type="PackedScene" uid="uid://c3wofjirnbav1" path="res://SG/Scenes/timed_button.tscn" id="1_nqbd5"]
+[ext_resource type="PackedScene" uid="uid://cw56trbwejtcn" path="res://SG/Scenes/Sample/Sample_player.tscn" id="2_qq52f"]
+[ext_resource type="PackedScene" uid="uid://cm4a1ilc5hk1h" path="res://SG/Scenes/3_way_lever.tscn" id="3_5imy5"]
+[ext_resource type="PackedScene" uid="uid://db2sg5dk7xs1j" path="res://SG/Scenes/rotor_lever.tscn" id="4_nyoth"]
+[ext_resource type="Texture2D" uid="uid://bgg6lbw8t35ej" path="res://SG/Assets/Sprites/Gear.png" id="5_yr2cj"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j5yw3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Timed_Button" parent="." instance=ExtResource("1_nqbd5")]
+position = Vector2(39, -3)
+scale = Vector2(0.1, 0.1)
+
+[node name="Player" parent="." instance=ExtResource("2_qq52f")]
+position = Vector2(34, -97)
+scale = Vector2(3, 3)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 5)
+shape = SubResource("WorldBoundaryShape2D_j5yw3")
+
+[node name="3_way_lever" parent="." instance=ExtResource("3_5imy5")]
+position = Vector2(-49, -15.000002)
+scale = Vector2(0.05, 0.05)
+
+[node name="rotor_lever" parent="." node_paths=PackedStringArray("object_to_rotate") instance=ExtResource("4_nyoth")]
+position = Vector2(146, -10)
+scale = Vector2(0.25, 0.25)
+object_to_rotate = NodePath("../Gear")
+
+[node name="Gear" type="Sprite2D" parent="."]
+position = Vector2(92, -90)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_yr2cj")

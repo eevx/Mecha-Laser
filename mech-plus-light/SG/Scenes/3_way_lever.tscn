@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://cm4a1ilc5hk1h"]
+
+[ext_resource type="Texture2D" uid="uid://baeoxowu3iwbf" path="res://SG/Assets/Sprites/3 way lever.png" id="1_gchru"]
+[ext_resource type="Script" uid="uid://c3ldv1k6q4vlm" path="res://SG/Scripts/3_way_lever.gd" id="2_h3u21"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3u21"]
+atlas = ExtResource("1_gchru")
+region = Rect2(1607, 0, 724, 1088)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swivs"]
+atlas = ExtResource("1_gchru")
+region = Rect2(1607, 0, 724, 1088)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kccgk"]
+atlas = ExtResource("1_gchru")
+region = Rect2(2331, 0, 724, 1088)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm5yi"]
+atlas = ExtResource("1_gchru")
+region = Rect2(159, 0, 724, 1088)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkc4u"]
+atlas = ExtResource("1_gchru")
+region = Rect2(1607, 0, 724, 1088)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc5hr"]
+atlas = ExtResource("1_gchru")
+region = Rect2(883, 0, 724, 1088)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqsrw"]
+atlas = ExtResource("1_gchru")
+region = Rect2(3055, 0, 724, 1088)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sayjx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3u21")
+}],
+"loop": false,
+"name": &"Center",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swivs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kccgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm5yi")
+}],
+"loop": false,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkc4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc5hr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqsrw")
+}],
+"loop": false,
+"name": &"Right",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swivs"]
+size = Vector2(740, 844)
+
+[node name="3_way_lever" type="Area2D"]
+script = ExtResource("2_h3u21")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sayjx")
+animation = &"Right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-23, -23)
+shape = SubResource("RectangleShape2D_swivs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

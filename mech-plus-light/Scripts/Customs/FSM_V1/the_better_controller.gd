@@ -23,6 +23,7 @@ var states : Dictionary = {}
 var animScaleLock : Vector2
 var in_field := false
 
+
 func _ready() -> void:
 	animScaleLock = abs(PlayerSprite.scale)
 	

@@ -1,0 +1,125 @@
+[gd_scene load_steps=18 format=3 uid="uid://br248huea2eo2"]
+
+[ext_resource type="Script" uid="uid://dn8yiimgnu2v1" path="res://Scripts/light.gd" id="1_mou6w"]
+[ext_resource type="Texture2D" uid="uid://b3c7crawnb23u" path="res://Placeholder Assets/glowing_circle.png" id="2_jsuue"]
+
+[sub_resource type="Gradient" id="Gradient_3pc01"]
+offsets = PackedFloat32Array(0.583, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c8ure"]
+gradient = SubResource("Gradient_3pc01")
+width = 64
+
+[sub_resource type="Curve" id="Curve_krwe7"]
+_data = [Vector2(0.518072, 1), 0.0, -3.53434, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_c6hsp"]
+width = 2048
+curve = SubResource("Curve_krwe7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cnw57"]
+initial_velocity_min = 114.75
+initial_velocity_max = 114.75
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_c6hsp")
+color_ramp = SubResource("GradientTexture1D_c8ure")
+
+[sub_resource type="Gradient" id="Gradient_3f48o"]
+offsets = PackedFloat32Array(0, 0.719557, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mou6w"]
+gradient = SubResource("Gradient_3f48o")
+
+[sub_resource type="Curve" id="6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.503614, 0.957505), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3pc01"]
+curve = SubResource("6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c8ure"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(700, 20, 1)
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = 99.99999
+tangential_accel_max = 99.99999
+scale_min = 0.29999998
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_3pc01")
+color_ramp = SubResource("GradientTexture1D_mou6w")
+
+[sub_resource type="Gradient" id="Gradient_krwe7"]
+offsets = PackedFloat32Array(0.583, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c6hsp"]
+gradient = SubResource("Gradient_krwe7")
+width = 64
+
+[sub_resource type="Curve" id="3"]
+_data = [Vector2(0.518072, 1), 0.0, -3.53434, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cnw57"]
+width = 2048
+curve = SubResource("3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y5j7k"]
+particle_flag_disable_z = true
+spread = 50.0
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_cnw57")
+color_ramp = SubResource("GradientTexture1D_c6hsp")
+
+[node name="Laser" type="RayCast2D"]
+target_position = Vector2(1400, 0)
+collision_mask = 256
+script = ExtResource("1_mou6w")
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(40, 0, 1440, 0)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="CastingParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(40, 0)
+emitting = false
+texture = ExtResource("2_jsuue")
+lifetime = 0.3
+visibility_rect = Rect2(0, -18.722, 29, 39)
+process_material = SubResource("ParticleProcessMaterial_cnw57")
+
+[node name="BeamParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(740, 0)
+emitting = false
+amount = 50
+texture = ExtResource("2_jsuue")
+preprocess = 1.0
+randomness = 1.0
+visibility_rect = Rect2(-2500, -2500, 5000, 5000)
+process_material = SubResource("ParticleProcessMaterial_c8ure")
+
+[node name="CollisionParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+texture = ExtResource("2_jsuue")
+lifetime = 0.3
+visibility_rect = Rect2(-2500, -2500, 5000, 5000)
+process_material = SubResource("ParticleProcessMaterial_y5j7k")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 256
+collision_mask = 256
