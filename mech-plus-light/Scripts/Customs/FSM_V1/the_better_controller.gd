@@ -22,8 +22,7 @@ var current_state : Player_State
 var states : Dictionary = {}
 var animScaleLock : Vector2
 var in_field := false
-
-
+var was_on_floor := false
 func _ready() -> void:
 	animScaleLock = abs(PlayerSprite.scale)
 	
@@ -43,13 +42,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	current_state.Update(delta)
-	#print(self.velocity.y)
+	print(self.velocity.y)
 	if Input.is_action_just_pressed("toggle_view"):
 		toggle_view()
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+	
 	_handle_facing()
+	
 	current_state.Physics_Update(delta)
 
 
@@ -77,9 +78,18 @@ func _handle_facing():
 		wasMovingR = false
 
 func _apply_gravity():
+	if self.is_on_floor():
+		
+		#print("doing the snap")
+		var dot := self.velocity.dot(self.get_floor_normal())
+		if dot > 0:
+			self.velocity -= self.get_floor_normal()*dot*5
+
 	if not gravityActive: 
 		return
+
 	var g = data.gravityScale
+
 	if velocity.y > 0:
 		g *= data.descendingGravityFactor
 	
@@ -87,7 +97,7 @@ func _apply_gravity():
 	
 	if velocity.y > data.terminalVelocity:
 		velocity.y = data.terminalVelocity
-
+	
 func _pause_gravity(t):
 	gravityActive = false
 	

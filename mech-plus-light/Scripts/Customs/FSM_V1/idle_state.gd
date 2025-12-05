@@ -7,7 +7,7 @@ func Enter():
 
 func Physics_Update(_delta:float):
 	var dir := Input.get_axis("left","right")
-
+	player._apply_gravity()
 	if not player.is_on_floor():
 		Transition("AirState")
 		return

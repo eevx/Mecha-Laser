@@ -7,9 +7,7 @@ func Enter():
 
 
 func Physics_Update(delta):
-	if not player.is_on_floor():
-		Transition("AirState")
-		return
+	player._apply_gravity()
 	
 	var dir := Input.get_axis("left", "right")
 	
@@ -23,7 +21,11 @@ func Physics_Update(delta):
 		if is_zero_approx(abs(player.velocity.x)):
 			Transition("IdleState")
 		return
-	
+
+	if not player.is_on_floor():
+		Transition("AirState")
+		return
+
 	if Input.is_action_just_pressed("jump"):
 		#print("To Air from run")
 		Transition("AirState")

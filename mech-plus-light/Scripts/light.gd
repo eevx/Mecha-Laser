@@ -83,9 +83,10 @@ func _physics_process(delta: float) -> void:
 				# attempt safe access if the collider is a PhysicsBody2D/CollisionObject2D
 				if "collision_layer" in col:
 					layer_info = " layer=" + str(col.collision_layer)
-			print_debug("Ray hit -> ", name, " at ", result.position, layer_info)
+			#print_debug("Ray hit -> ", name, " at ", result.position, layer_info)
 		else:
-			print_debug("Ray: no hit from ", params.from, " to ", params.to)
+			pass
+			#print_debug("Ray: no hit from ", params.from, " to ", params.to)
 		
 		if result:
 			# world-space collision info
@@ -131,7 +132,7 @@ func _physics_process(delta: float) -> void:
 ##helper function for multiple collider initiation
 func makeColliders(points : Array) -> void:
 	# no. of segments
-	print(points)
+	#print(points)
 	var seg_count = max(0, points.size() - 1)
 
 	# If more segments than pool, clamp (or expand pool)
