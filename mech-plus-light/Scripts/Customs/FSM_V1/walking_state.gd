@@ -1,13 +1,22 @@
 extends Player_State
 
+var was_on_light: bool = false
+
 func Enter():
-	# Play run animation when entering run state
-	player.PlayerSprite.play("run")
+	# Check if light walk mode is active
+	was_on_light = _is_light_walk_active()
+	player.PlayerSprite.play("light_run" if was_on_light else "run")
 	player.jumpCount = 1
 	player.dashCount = 1
 
 func Physics_Update(delta):
 	var dir := Input.get_axis("left", "right")
+	
+	# Check if light walk toggle changed, update animation immediately
+	var light_active = _is_light_walk_active()
+	if light_active != was_on_light:
+		was_on_light = light_active
+		player.PlayerSprite.play("light_run" if light_active else "run")
 	
 	var floor_dir = player.get_floor_normal().rotated(PI/2.)
 	
@@ -49,3 +58,11 @@ func _decelerate(delta:float, floor_dir:Vector2):
 
 func Exit():
 	pass
+
+# Helper function to check if light walk mode is active (regardless of floor contact)
+func _is_light_walk_active() -> bool:
+	var lights = get_tree().get_nodes_in_group("Light")
+	for light in lights:
+		if light.can_walk_on_light and light.is_casting:
+			return true
+	return false
