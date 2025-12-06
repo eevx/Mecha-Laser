@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cehc71vdi51dk"]
 
 [ext_resource type="Script" uid="uid://15gssq6xxldv" path="res://kanishka_stuffs/scenes/spikes.gd" id="1_pjkk1"]
-[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_oltdr"]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Tilemaps_00.png" id="2_oltdr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08i8a"]
 size = Vector2(500, 20)
