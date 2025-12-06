@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://diux1ypcrw6em"]
+[gd_scene load_steps=16 format=3 uid="uid://diux1ypcrw6em"]
 
 [ext_resource type="Script" uid="uid://t82yk37vr7an" path="res://UI_Elements/main_menu.gd" id="1_hvkgu"]
 [ext_resource type="Texture2D" uid="uid://b407p0roctb3" path="res://UI_Elements/ui_assets/Title Screen Background 100P.png" id="2_3acur"]
@@ -8,14 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://dsfhf1egywvt1" path="res://UI_Elements/ui_assets/Title Screen Background 100P Blurred.png" id="4_rsdsy"]
 [ext_resource type="Texture2D" uid="uid://da74drb77ou35" path="res://UI_Elements/ui_assets/Deselected State_Main Menu.png" id="4_uvg1g"]
 [ext_resource type="Script" uid="uid://dugd88d86ecrj" path="res://UI_Elements/title.gd" id="5_t2x1d"]
-[ext_resource type="Texture2D" uid="uid://dse3thl5obq5n" path="res://UI_Elements/ui_assets/Deselected State_Start.png" id="8_57m7x"]
-[ext_resource type="Texture2D" uid="uid://dyj8eoadcdp1c" path="res://UI_Elements/ui_assets/Deselected State_Options.png" id="9_72yfl"]
-[ext_resource type="Texture2D" uid="uid://cp4pfm5iosunv" path="res://UI_Elements/ui_assets/Deselected State_Quit Game.png" id="10_rsdsy"]
 [ext_resource type="Texture2D" uid="uid://btflg2ph33f2s" path="res://UI_Elements/ui_assets/Deselected State_Level 1.png" id="11_6dgwm"]
 [ext_resource type="Texture2D" uid="uid://bupnbumbpe223" path="res://UI_Elements/ui_assets/Deselected State_Level 2.png" id="12_t2x1d"]
 [ext_resource type="Texture2D" uid="uid://c5qc8epb4h1vx" path="res://UI_Elements/ui_assets/Deselected State_Level 3.png" id="13_djuen"]
 [ext_resource type="Texture2D" uid="uid://o2f04jlx00br" path="res://UI_Elements/ui_assets/Deselected State_Audio.png" id="15_57m7x"]
 [ext_resource type="Texture2D" uid="uid://b6c63sg5ypwpr" path="res://UI_Elements/ui_assets/Deselected State_Key Mapping.png" id="16_72yfl"]
+[ext_resource type="PackedScene" uid="uid://d4cbj23tacajw" path="res://UI_Elements/custom_button.tscn" id="17_72yfl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t2x1d"]
 shader = ExtResource("4_djuen")
@@ -43,10 +41,10 @@ texture = ExtResource("2_3acur")
 
 [node name="Title" type="Label" parent="."]
 material = SubResource("ShaderMaterial_t2x1d")
-offset_left = 160.0
-offset_top = 128.0
-offset_right = 1000.0
-offset_bottom = 295.0
+offset_left = 168.0
+offset_top = 136.0
+offset_right = 1008.0
+offset_bottom = 303.0
 theme = ExtResource("4_6dgwm")
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_color = Color(1, 1, 0.35686275, 1)
@@ -59,30 +57,30 @@ text = "DUEX EX MACHINA"
 script = ExtResource("5_t2x1d")
 
 [node name="Main_Menu" type="VBoxContainer" parent="."]
-offset_left = 424.0
-offset_top = 376.0
-offset_right = 788.0
-offset_bottom = 609.0
+offset_left = 542.0
+offset_top = 430.0
+offset_right = 906.0
+offset_bottom = 663.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Start" type="TextureButton" parent="Main_Menu"]
+[node name="Start" parent="Main_Menu" instance=ExtResource("17_72yfl")]
 layout_mode = 2
-texture_normal = ExtResource("8_57m7x")
+text = "Start"
 
-[node name="Options" type="TextureButton" parent="Main_Menu"]
+[node name="Options" parent="Main_Menu" instance=ExtResource("17_72yfl")]
 layout_mode = 2
-texture_normal = ExtResource("9_72yfl")
+text = "Options"
 
-[node name="Quit Game" type="TextureButton" parent="Main_Menu"]
+[node name="Quit Game" parent="Main_Menu" instance=ExtResource("17_72yfl")]
 layout_mode = 2
-texture_normal = ExtResource("10_rsdsy")
+text = "Quit Game"
 
 [node name="Level_Selector" type="VBoxContainer" parent="."]
 visible = false
-offset_left = 392.0
-offset_top = 136.0
-offset_right = 756.0
-offset_bottom = 544.0
+offset_left = 400.0
+offset_top = 216.0
+offset_right = 764.0
+offset_bottom = 449.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Level 1" type="TextureButton" parent="Level_Selector"]
@@ -152,9 +150,9 @@ texture_normal = ExtResource("4_uvg1g")
 [node name="Options Screen" type="VBoxContainer" parent="."]
 visible = false
 offset_left = 400.0
-offset_top = 216.0
+offset_top = 379.0
 offset_right = 764.0
-offset_bottom = 545.0
+offset_bottom = 612.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Audio" type="TextureButton" parent="Options Screen"]
@@ -217,9 +215,6 @@ layout_mode = 2
 layout_mode = 2
 texture_normal = ExtResource("4_uvg1g")
 
-[connection signal="pressed" from="Main_Menu/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Main_Menu/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Main_Menu/Quit Game" to="." method="_on_quit_game_pressed"]
 [connection signal="pressed" from="Level_Selector/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Level_Selector/Level 2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="Level_Selector/Level 3" to="." method="_on_level_3_pressed"]

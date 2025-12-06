@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 @export var main_menu : VBoxContainer
 @export var level_selector : VBoxContainer
 @export var options_screen : VBoxContainer
@@ -14,17 +14,20 @@ extends Control
 @export var bg_blurred : CompressedTexture2D
 
 func _ready() -> void:
-	for b : TextureButton in level_selector.get_children() + options_screen.get_children():
-		b.disabled = true
+	for b in level_selector.get_children() + options_screen.get_children():
+		if b is TextureButton:
+			b.disabled = true
 	level_selector.hide()
 	options_screen.hide()
 
 func _on_start_pressed() -> void:
 	title.hide()
+	show_main_menu_screen(false)
 	title_screen_bg.texture = bg_blurred
 	level_selector.show()
-	for b : TextureButton in level_selector.get_children():
-		b.disabled = false
+	for b in level_selector.get_children():
+		if b is TextureButton:
+			b.disabled = false
 
 func _on_options_pressed() -> void:
 	title.hide()
@@ -66,30 +69,36 @@ func _on_keymapping_pressed() -> void:
 
 func show_options(value : bool= true):
 	if value == true:
-		for b : TextureButton in options_screen.get_children():
-			b.disabled = false
+		for b in options_screen.get_children():
+			if b is TextureButton:
+				b.disabled = false
 		options_screen.show()
 	else:
-		for b : TextureButton in options_screen.get_children():
-			b.disabled = true
+		for b in options_screen.get_children():
+			if b is TextureButton:
+				b.disabled = true
 		options_screen.hide()
 		
 func show_level_selector(value : bool= true):
 	if value == true:
-		for b : TextureButton in level_selector.get_children():
-			b.disabled = false
+		for b in level_selector.get_children():
+			if b is TextureButton:
+				b.disabled = false
 		level_selector.show()
 	else:
-		for b : TextureButton in level_selector.get_children():
-			b.disabled = true
+		for b in level_selector.get_children():
+			if b is TextureButton:
+				b.disabled = true
 		level_selector.hide()
 		
 func show_main_menu_screen(value : bool= true):
 	if value == true:
-		for b : TextureButton in main_menu.get_children():
-			b.disabled = false
+		for b in main_menu.get_children():
+			if b is TextureButton:
+				b.disabled = false
 		main_menu.show()
 	else:
-		for b : TextureButton in main_menu.get_children():
-			b.disabled = true
+		for b in main_menu.get_children():
+			if b is TextureButton:
+				b.disabled = true
 		main_menu.hide()

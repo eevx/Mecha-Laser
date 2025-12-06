@@ -10,7 +10,7 @@ const BUS_SFX := "SFX"
 const MUTE_DB := -80.0
 const MIN_DB := -80.0
 const MAX_DB := 0.0
-
+@export var main_menu_scene : PackedScene
 @onready var master_slider: HSlider = $bar_container/Master
 @onready var music_slider: HSlider = $bar_container/Music
 @onready var sfx_slider: HSlider = $bar_container/SFX
@@ -71,3 +71,7 @@ func _load_settings() -> void:
 	master_slider.value = master_val
 	music_slider.value = music_val
 	sfx_slider.value = sfx_val
+
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().change_scene_to_packed(main_menu_scene)

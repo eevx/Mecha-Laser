@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://d4cbj23tacajw"]
+
+[ext_resource type="Theme" uid="uid://cal7iq2xw07up" path="res://UI_Elements/theme.tres" id="1_ybkht"]
+[ext_resource type="Script" uid="uid://hkgufoi240wf" path="res://UI_Elements/custom_button.gd" id="2_57nw8"]
+[ext_resource type="Texture2D" uid="uid://b1lucgpikbt6x" path="res://UI_Elements/ui_assets/buttons/button_frame.svg" id="3_w7b0h"]
+[ext_resource type="Texture2D" uid="uid://bkvi46hyg6761" path="res://UI_Elements/ui_assets/buttons/button_hover.svg" id="4_qrbuo"]
+[ext_resource type="Texture2D" uid="uid://depdqil33bswr" path="res://UI_Elements/ui_assets/buttons/button_clicked.svg" id="5_yhgqc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72yfl"]
+size = Vector2(320, 75)
+
+[node name="Custom_Button" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("1_ybkht")
+theme_override_font_sizes/font_size = 54
+text = "Button"
+script = ExtResource("2_57nw8")
+texture_normal = ExtResource("3_w7b0h")
+texture_hover = ExtResource("4_qrbuo")
+texture_pressed = ExtResource("5_yhgqc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(56, 24)
+texture = ExtResource("3_w7b0h")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+position = Vector2(-56, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(56, 23.5)
+shape = SubResource("RectangleShape2D_72yfl")
+
+[connection signal="mouse_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_mouse_entered"]

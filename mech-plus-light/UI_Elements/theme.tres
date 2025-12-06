@@ -1,7 +1,10 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cal7iq2xw07up"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cal7iq2xw07up"]
 
+[ext_resource type="Texture2D" uid="uid://b1lucgpikbt6x" path="res://UI_Elements/ui_assets/buttons/button_frame.svg" id="1_cxuln"]
 [ext_resource type="FontFile" uid="uid://dj8rke273gpt0" path="res://UI_Elements/Long_Shot.ttf" id="1_t71y6"]
 
 [resource]
 default_font = ExtResource("1_t71y6")
 default_font_size = 22
+Button/constants/align_to_largest_stylebox = 8
+Button/icons/icon = ExtResource("1_cxuln")
