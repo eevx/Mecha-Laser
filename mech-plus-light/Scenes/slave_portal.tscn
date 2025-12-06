@@ -13,7 +13,7 @@ rotation = 1.5707964
 scale = Vector2(1.4548461, 2.6214597)
 texture = ExtResource("2_ycs21")
 region_enabled = true
-region_rect = Rect2(400, 1000, 100, 100)
+region_rect = Rect2(500, 1000, 100, 100)
 
 [node name="ExitFace" type="Marker2D" parent="."]
 rotation = 1.5707964
