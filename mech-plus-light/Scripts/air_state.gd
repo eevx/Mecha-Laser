@@ -16,7 +16,7 @@ func Enter():
 	
 	if Input.is_action_just_pressed("jump") and player.jumpCount > 0:
 		print("jump")
-		player.velocity.y = -player.jumpMagnitude
+		player.velocity.y = -player.jumpMagnitude * sign(player.data.gravityScale)
 		player.jumpCount -= 1
 		# Ensure jump animation plays on double jump
 		player.PlayerSprite.play("light_jump" if was_on_light else "jump")
@@ -36,7 +36,7 @@ func Physics_Update(delta):
 			player.PlayerSprite.play("light_jump" if light_active else "jump")
 	
 	# Switch to fall animation when moving downward
-	if player.velocity.y > 0:
+	if player.velocity.y * sign(player.data.gravityScale) > 0:
 		var current_anim = player.PlayerSprite.animation
 		var fall_anim = "light_fall" if light_active else "fall"
 		if current_anim != fall_anim:
@@ -56,7 +56,7 @@ func Physics_Update(delta):
 	else:
 		_air_decel(delta)
 	
-	if player.data.shortHopAct and Input.is_action_just_released("jump") and player.velocity.y < 0:
+	if player.data.shortHopAct and Input.is_action_just_released("jump") and player.velocity.y * sign(player.data.gravityScale) < 0:
 			player.velocity.y /= player.data.jumpVariable
 	
 	if player.is_on_floor():

@@ -26,7 +26,10 @@ var thruster_fuel: float
 var thruster_using: bool = false
 var thruster_refill_timer: float = 0.0
 
+var _original_gravity : float
+
 func _ready() -> void:
+	_original_gravity = data.gravityScale
 	max_thruster_fuel = data.thruster_max_fuel
 	animScaleLock = abs(PlayerSprite.scale)
 	thruster_fuel = self.data.thruster_max_fuel
@@ -145,10 +148,15 @@ func toggle_view():
 	tween.tween_property(cam, "zoom", target_zoom, 0.3)
 
 func change_gravity(new_gravity: float):
-	data.gravityScale += new_gravity
+	data.gravityScale = new_gravity
+	up_direction = Vector2(0., -sign(new_gravity))
+	scale.y = sign(new_gravity)
 	
 func get_gravity_value() -> float:
 	return data.gravityScale
 
-func reset_gravity(new_gravity: float):
-	data.gravityScale = new_gravity
+func reset_gravity(_new_gravity: float):
+	data.gravityScale = _original_gravity
+	up_direction = Vector2(0., -1.)
+	scale.y = 1.
+	

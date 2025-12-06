@@ -59,7 +59,7 @@
 
 extends Node2D
 
-@export var horizontal: bool = true     # true = move on X axis, false = move on Y axis
+@export var horizontal: bool = false     # true = move on X axis, false = move on Y axis
 @export var distance: float = 200.0     # how far from start point it moves
 @export var speed: float = 120.0
 @export var arrive_threshold: float = 2.0
