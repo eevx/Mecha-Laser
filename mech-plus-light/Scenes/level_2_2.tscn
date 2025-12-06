@@ -485,3 +485,5 @@ color_of_the_portal = "GREEN"
 [node name="Source2" parent="." instance=ExtResource("8_acc1b")]
 position = Vector2(28.999985, 425)
 scale = Vector2(0.31, 0.31)
+
+[editable path="Source2"]
