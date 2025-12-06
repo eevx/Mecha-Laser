@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://csk6sp4x1yk0j"]
+[gd_scene load_steps=34 format=4 uid="uid://csk6sp4x1yk0j"]
 
 [ext_resource type="PackedScene" uid="uid://7hq1ioohc2gc" path="res://kanishka_stuffs/scenes/button.tscn" id="1_f5f4d"]
 [ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/movingplatform.tscn" id="2_6va3c"]
@@ -9,6 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://71ednibt2mf8" path="res://Scenes/mirror_animated.tscn" id="6_8wbvx"]
 [ext_resource type="PackedScene" uid="uid://ccl5r1h7gl0cp" path="res://Scenes/sourcelight.tscn" id="7_46t1k"]
 [ext_resource type="PackedScene" uid="uid://cuh3k36hca1wd" path="res://kanishka_stuffs/scenes/danger.tscn" id="8_8wbvx"]
+[ext_resource type="Texture2D" uid="uid://yvqrktvhu805" path="res://Assets/fx_assets/bg1.png" id="10_yxca5"]
+[ext_resource type="Script" uid="uid://cbian77aymv82" path="res://fx_scripts/plx.gd" id="11_08x0n"]
+[ext_resource type="Texture2D" uid="uid://dd6jv3pfecj57" path="res://Assets/fx_assets/gradient_circle.png" id="12_08x0n"]
+[ext_resource type="Texture2D" uid="uid://cy5o4rdo36m1y" path="res://Assets/fx_assets/smoke_particles.png" id="13_wup4i"]
+[ext_resource type="Texture2D" uid="uid://djhx7tmklku0h" path="res://Assets/fx_assets/Group 86.png" id="14_3b4w1"]
+[ext_resource type="Texture2D" uid="uid://bc2j3op4hwdj8" path="res://Assets/fx_assets/gear1.png" id="15_r6fwu"]
+[ext_resource type="Script" uid="uid://bydpx66y1hyil" path="res://fx_scripts/rotate_constant.gd" id="16_ccau8"]
+[ext_resource type="Texture2D" uid="uid://njh0k8gf3aqo" path="res://Assets/fx_assets/pillar1.png" id="17_3b4w1"]
+[ext_resource type="Shader" uid="uid://02rikk7b67bl" path="res://Assets/fx_assets/film_grain.gdshader" id="18_r6fwu"]
 
 [sub_resource type="Animation" id="Animation_8wbvx"]
 length = 0.001
@@ -374,6 +383,62 @@ terrain_set_0/terrain_1/name = "Floating"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_a2yat")
 
+[sub_resource type="Environment" id="Environment_rclhr"]
+background_mode = 3
+tonemap_mode = 4
+glow_enabled = true
+glow_bloom = 0.08
+glow_blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_pfrjk"]
+offsets = PackedFloat32Array(0, 0.28481013, 0.6962025, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.6106195, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vh7je"]
+gradient = SubResource("Gradient_pfrjk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wup4i"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1000, 1)
+spread = 180.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.099999994
+color_ramp = SubResource("GradientTexture1D_vh7je")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5dkvm"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dly8m"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1000, 300, 1)
+spread = 9.673
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_vh7je")
+anim_offset_max = 1.0
+
+[sub_resource type="Gradient" id="Gradient_r6fwu"]
+offsets = PackedFloat32Array(0.24299066, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ccau8"]
+gradient = SubResource("Gradient_r6fwu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ccau8"]
+shader = ExtResource("18_r6fwu")
+shader_parameter/grain_amount = 0.05
+shader_parameter/grain_size = 1.0
+
 [node name="Node2D" type="Node2D"]
 
 [node name="danger2" parent="." instance=ExtResource("8_8wbvx")]
@@ -428,9 +493,15 @@ scale = Vector2(3, 3)
 [node name="The_Better_Player" parent="." instance=ExtResource("4_a2yat")]
 position = Vector2(125, 649)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(736, 120)
-zoom = Vector2(0.5, 0.5)
+[node name="Camera2D" type="Camera2D" parent="The_Better_Player"]
+position = Vector2(0, -152)
+zoom = Vector2(1.49, 1.49)
+
+[node name="PointLight2D" type="PointLight2D" parent="The_Better_Player"]
+position = Vector2(3, -52)
+energy = 0.5
+texture = ExtResource("12_08x0n")
+texture_scale = 2.55
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
 tile_map_data = PackedByteArray("AAAOAAcAAAAJAAcAAAANAAcAAAAJAAcAAAAMAAcAAAAJAAcAAAALAAcAAAAJAAcAAAAKAAcAAAAJAAcAAAAJAAcAAAAJAAcAAAAIAAcAAAAJAAcAAAAHAAcAAAAJAAcAAAAGAAcAAAAJAAcAAAAFAAcAAAAJAAcAAAAEAAcAAAAJAAcAAAADAAcAAAAJAAcAAAACAAcAAAAJAAcAAAABAAcAAAAJAAcAAAAAAAcAAAAJAAcAAAD//wcAAAAJAAcAAAD+/wcAAAAJAAcAAAD9/wcAAAAJAAcAAAD8/wcAAAAKAAkAAAD8/wYAAAAKAAgAAAD8/wUAAAAKAAgAAAD8/wQAAAAKAAgAAAD8/wMAAAAKAAgAAAD8/wIAAAAKAAgAAAD8/wEAAAAKAAgAAAD8/wAAAAAKAAgAAAD8////AAAKAAgAAAD8//7/AAAKAAgAAAD8//3/AAAKAAgAAAD8//z/AAAKAAgAAAD8//v/AAAKAAkAAQD9//v/AAAJAAcAAgD+//v/AAAJAAcAAgD///v/AAAJAAcAAgAAAPv/AAAJAAcAAgABAPv/AAAJAAcAAgACAPv/AAAJAAcAAgADAPv/AAAJAAcAAgAEAPv/AAAJAAcAAgAFAPv/AAAJAAcAAgAGAPv/AAAJAAcAAgAHAPv/AAAJAAcAAgAIAPv/AAAJAAcAAgAJAPv/AAAJAAcAAgAKAPv/AAAJAAcAAgALAPv/AAAJAAcAAgAMAPv/AAAJAAcAAgANAPv/AAAJAAcAAgAOAPv/AAAJAAcAAgAPAPv/AAAJAAcAAgAQAPv/AAAJAAcAAgARAPv/AAAJAAcAAgASAPv/AAAIAAkAAQASAAMAAAAIAAgAAAASAAIAAAAIAAgAAAASAAEAAAAIAAgAAAASAAAAAAAIAAgAAAASAP//AAAIAAgAAAASAP7/AAAIAAgAAAASAP3/AAAIAAgAAAASAPz/AAAIAAgAAAASAAYAAAAIAAcAAAASAAQAAAAIAAcAAQATAPv/AAAJAAgAAAASAAcAAAAIAAkAAAAQAAcAAAAJAAcAAAAPAAcAAAAJAAcAAAARAAcAAAAJAAcAAAAUAAcAAAAKAAgAAAAUAAYAAAAKAAcAAAAUAAQAAAAKAAcAAQAUAAMAAAAKAAgAAAAUAAIAAAAKAAgAAAAUAAEAAAAKAAgAAAAUAAAAAAAKAAgAAAAUAP//AAAKAAgAAAAUAP7/AAAKAAgAAAAUAP3/AAAKAAgAAAAUAPz/AAAKAAgAAAAUAPv/AAAKAAgAAAATAAcAAAAJAAgAAAATAAYAAAAJAAcAAAATAAQAAAAJAAcAAgATAAMAAAAJAAgAAAATAAIAAAAJAAkAAAATAAEAAAAJAAgAAAATAAAAAAAJAAgAAAATAP//AAAJAAgAAAATAP7/AAAJAAgAAAATAP3/AAAJAAgAAAATAPz/AAAJAAgAAAAUAAoAAAAKAAcAAQAUAAkAAAAKAAgAAAAUAAgAAAAKAAgAAAATAAoAAAAJAAcAAgATAAkAAAAJAAgAAAATAAgAAAAJAAgAAAASAAoAAAAJAAcAAgASAAkAAAAJAAkAAAASAAgAAAAJAAkAAAARAAoAAAAJAAcAAgARAAkAAAAJAAkAAAARAAgAAAAJAAgAAAAQAAoAAAAJAAcAAgAQAAkAAAAJAAkAAAAQAAgAAAAJAAgAAAAPAAoAAAAJAAcAAgAPAAkAAAAJAAkAAAAPAAgAAAAJAAgAAAAOAAoAAAAJAAcAAgAOAAkAAAAJAAkAAAAOAAgAAAAJAAgAAAANAAoAAAAJAAcAAgANAAkAAAAJAAkAAAANAAgAAAAJAAkAAAAMAAoAAAAJAAcAAgAMAAkAAAAJAAgAAAAMAAgAAAAJAAkAAAALAAoAAAAJAAcAAgALAAkAAAAJAAkAAAALAAgAAAAJAAkAAAAKAAoAAAAJAAcAAgAKAAkAAAAJAAkAAAAKAAgAAAAJAAgAAAAJAAoAAAAJAAcAAgAJAAkAAAAJAAkAAAAJAAgAAAAJAAkAAAAIAAoAAAAJAAcAAgAIAAkAAAAJAAkAAAAIAAgAAAAJAAkAAAAHAAoAAAAJAAcAAgAHAAkAAAAJAAkAAAAHAAgAAAAJAAgAAAAGAAoAAAAJAAcAAgAGAAkAAAAJAAgAAAAGAAgAAAAJAAgAAAAFAAoAAAAJAAcAAgAFAAkAAAAJAAgAAAAFAAgAAAAJAAkAAAAEAAoAAAAJAAcAAgAEAAkAAAAJAAkAAAAEAAgAAAAJAAkAAAADAAoAAAAJAAcAAgADAAkAAAAJAAkAAAADAAgAAAAJAAgAAAACAAoAAAAJAAcAAgACAAkAAAAJAAkAAAACAAgAAAAJAAkAAAABAAoAAAAJAAcAAgABAAkAAAAJAAkAAAABAAgAAAAJAAkAAAAAAAoAAAAJAAcAAgAAAAkAAAAJAAgAAAAAAAgAAAAJAAkAAAD//woAAAAJAAcAAgD//wkAAAAJAAkAAAD//wgAAAAJAAgAAAD+/woAAAAJAAcAAgD+/wkAAAAJAAgAAAD+/wgAAAAJAAkAAAD9/woAAAAJAAcAAgD9/wkAAAAJAAkAAAD9/wgAAAAJAAkAAAD8/woAAAAJAAcAAgD8/wkAAAAJAAgAAAD8/wgAAAAJAAgAAAAUAPr/AAAKAAcAAAATAPr/AAAJAAcAAAASAPr/AAAJAAcAAAARAPr/AAAJAAcAAAAQAPr/AAAJAAcAAAAPAPr/AAAJAAcAAAAOAPr/AAAJAAcAAAANAPr/AAAJAAcAAAAMAPr/AAAJAAcAAAALAPr/AAAJAAcAAAAKAPr/AAAJAAcAAAAJAPr/AAAJAAcAAAAIAPr/AAAJAAcAAAAHAPr/AAAJAAcAAAAGAPr/AAAJAAcAAAAFAPr/AAAJAAcAAAAEAPr/AAAJAAcAAAADAPr/AAAJAAcAAAACAPr/AAAJAAcAAAABAPr/AAAJAAcAAAAAAPr/AAAJAAcAAAD///r/AAAJAAcAAAD+//r/AAAJAAcAAAD9//r/AAAJAAcAAAD8//r/AAAJAAcAAAD7/woAAAAJAAcAAgD7/wkAAAAJAAgAAAD7/wgAAAAJAAgAAAD7/wcAAAAJAAkAAAD7/wYAAAAJAAkAAAD7/wUAAAAJAAkAAAD7/wQAAAAJAAgAAAD7/wMAAAAJAAgAAAD7/wIAAAAJAAkAAAD7/wEAAAAJAAkAAAD7/wAAAAAJAAgAAAD7////AAAJAAkAAAD7//7/AAAJAAgAAAD7//3/AAAJAAkAAAD7//z/AAAJAAkAAAD7//v/AAAJAAkAAAD7//r/AAAJAAcAAAD6/woAAAAJAAcAAgD6/wkAAAAJAAgAAAD6/wgAAAAJAAgAAAD6/wcAAAAJAAkAAAD6/wYAAAAJAAkAAAD6/wUAAAAJAAgAAAD6/wQAAAAJAAgAAAD6/wMAAAAJAAkAAAD6/wIAAAAJAAkAAAD6/wEAAAAJAAkAAAD6/wAAAAAJAAgAAAD6////AAAJAAkAAAD6//7/AAAJAAgAAAD6//3/AAAJAAgAAAD6//z/AAAJAAkAAAD6//v/AAAJAAkAAAD6//r/AAAJAAcAAAD5/woAAAAIAAcAAQD5/wkAAAAIAAgAAAD5/wgAAAAIAAgAAAD5/wcAAAAIAAgAAAD5/wYAAAAIAAgAAAD5/wUAAAAIAAgAAAD5/wQAAAAIAAgAAAD5/wMAAAAIAAgAAAD5/wIAAAAIAAgAAAD5/wEAAAAIAAgAAAD5/wAAAAAIAAgAAAD5////AAAIAAgAAAD5//7/AAAIAAgAAAD5//3/AAAIAAgAAAD5//z/AAAIAAgAAAD5//v/AAAIAAgAAAD5//r/AAAIAAcAAAA=")
@@ -447,3 +518,300 @@ rotation = 0.0
 [node name="Source2" parent="." instance=ExtResource("7_46t1k")]
 position = Vector2(-128, -184)
 rotation = 0.0
+
+[node name="environment" type="Node2D" parent="."]
+
+[node name="Bg1" type="Sprite2D" parent="environment"]
+modulate = Color(0.52906674, 0.5290667, 0.5290667, 1)
+z_index = -1
+position = Vector2(704, 254)
+scale = Vector2(1.5916667, 1.5916667)
+texture = ExtResource("10_yxca5")
+
+[node name="Plx" type="Node" parent="environment/Bg1"]
+script = ExtResource("11_08x0n")
+depth = -10
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="environment"]
+environment = SubResource("Environment_rclhr")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="environment"]
+color = Color(0.64340085, 0.6082763, 0.6083021, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="environment"]
+modulate = Color(0.8942175, 0.7649894, 0.6617167, 1)
+position = Vector2(732, 182)
+amount = 50
+texture = ExtResource("12_08x0n")
+lifetime = 8.0
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+process_material = SubResource("ParticleProcessMaterial_wup4i")
+
+[node name="Plx" type="Node" parent="environment/GPUParticles2D"]
+script = ExtResource("11_08x0n")
+depth = -9
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="environment"]
+modulate = Color(2.4194987, 2.08624, 1.8135737, 1)
+position = Vector2(732, 182)
+amount = 50
+texture = ExtResource("12_08x0n")
+lifetime = 8.0
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+process_material = SubResource("ParticleProcessMaterial_wup4i")
+
+[node name="Plx" type="Node" parent="environment/GPUParticles2D2"]
+script = ExtResource("11_08x0n")
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="environment"]
+modulate = Color(0.89, 0.76273, 0.6586, 0.07450981)
+material = SubResource("CanvasItemMaterial_5dkvm")
+position = Vector2(811, 332)
+amount = 30
+texture = ExtResource("13_wup4i")
+lifetime = 8.0
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+process_material = SubResource("ParticleProcessMaterial_dly8m")
+
+[node name="Plx" type="Node" parent="environment/GPUParticles2D3"]
+script = ExtResource("11_08x0n")
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="PointLight2D" type="PointLight2D" parent="environment"]
+position = Vector2(111, 495)
+texture = ExtResource("14_3b4w1")
+
+[node name="PointLight2D2" type="PointLight2D" parent="environment"]
+position = Vector2(107, -168)
+texture = ExtResource("14_3b4w1")
+
+[node name="Gear1" type="Sprite2D" parent="environment"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(-363, -286)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/Gear1"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/Gear1"]
+script = ExtResource("16_ccau8")
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear2" type="Sprite2D" parent="environment"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(283, -285.00003)
+rotation = 0.2600777
+scale = Vector2(0.63602656, 0.63602656)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/Gear2"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/Gear2"]
+script = ExtResource("16_ccau8")
+dir = 1
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear3" type="Sprite2D" parent="environment"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(-275, 737)
+rotation = 0.2600777
+scale = Vector2(0.63602656, 0.63602656)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/Gear3"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/Gear3"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.2
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear7" type="Sprite2D" parent="environment"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(-440.00003, 340.00003)
+rotation = 0.26007766
+scale = Vector2(0.4299718, 0.4299718)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/Gear7"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/Gear7"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.2
+dir = 1
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear4" type="Sprite2D" parent="environment"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(1167, 558)
+rotation = 0.2600777
+scale = Vector2(0.63602656, 0.63602656)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/Gear4"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/Gear4"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.5
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear5" type="Sprite2D" parent="environment"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(770, 718.99994)
+rotation = 0.26007766
+scale = Vector2(0.42133883, 0.42133883)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/Gear5"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/Gear5"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.5
+dir = 1
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear6" type="Sprite2D" parent="environment"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(1553, 700.99994)
+rotation = 0.26007766
+scale = Vector2(0.42133883, 0.42133883)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/Gear6"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/Gear6"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.5
+dir = 1
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear8" type="Sprite2D" parent="environment"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(1172, 739)
+rotation = 0.26007766
+scale = Vector2(0.41971844, 0.41971844)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/Gear8"]
+script = ExtResource("11_08x0n")
+depth = -9
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/Gear8"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.5
+dir = 1
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Pillar1" type="Sprite2D" parent="environment"]
+modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
+z_index = -1
+position = Vector2(-84, 168)
+scale = Vector2(0.728, 2.032)
+texture = ExtResource("17_3b4w1")
+
+[node name="Plx" type="Node" parent="environment/Pillar1"]
+script = ExtResource("11_08x0n")
+depth = -5
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="Pillar2" type="Sprite2D" parent="environment"]
+modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
+z_index = -1
+position = Vector2(925, 150.00002)
+scale = Vector2(0.728, 2.032)
+texture = ExtResource("17_3b4w1")
+
+[node name="Plx" type="Node" parent="environment/Pillar2"]
+script = ExtResource("11_08x0n")
+depth = -3
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="Pillar3" type="Sprite2D" parent="environment"]
+modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
+z_index = -1
+position = Vector2(1529, 121.000015)
+scale = Vector2(0.728, 2.032)
+texture = ExtResource("17_3b4w1")
+
+[node name="Plx" type="Node" parent="environment/Pillar3"]
+script = ExtResource("11_08x0n")
+depth = -5
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="Pillar4" type="Sprite2D" parent="environment"]
+modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
+z_index = -1
+position = Vector2(614, 121.000015)
+scale = Vector2(0.448, 2.032)
+texture = ExtResource("17_3b4w1")
+
+[node name="Plx" type="Node" parent="environment/Pillar4"]
+script = ExtResource("11_08x0n")
+depth = -9
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="Sprite2D" type="Sprite2D" parent="environment"]
+position = Vector2(724.4514, 955)
+rotation = -1.5707964
+scale = Vector2(2.8447354, 2763.294)
+texture = SubResource("GradientTexture1D_ccau8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="environment"]
+position = Vector2(724.4514, -467)
+rotation = -4.712389
+scale = Vector2(2.6252904, 2763.294)
+texture = SubResource("GradientTexture1D_ccau8")
+
+[node name="Sprite2D3" type="Sprite2D" parent="environment"]
+position = Vector2(-560.00006, 166.00002)
+rotation = -6.2831855
+scale = Vector2(3.0335312, 2763.294)
+texture = SubResource("GradientTexture1D_ccau8")
+
+[node name="Sprite2D4" type="Sprite2D" parent="environment"]
+position = Vector2(1901, 166.00002)
+rotation = -9.424778
+scale = Vector2(4.7839413, 2763.294)
+texture = SubResource("GradientTexture1D_ccau8")
+
+[node name="postprocessing" type="CanvasLayer" parent="environment"]
+
+[node name="film_grain_overlay" type="ColorRect" parent="environment/postprocessing"]
+material = SubResource("ShaderMaterial_ccau8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
