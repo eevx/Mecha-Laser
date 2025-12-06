@@ -24,18 +24,13 @@ position = Vector2(-7.9910607, -1.0690932)
 rotation = -0.069264114
 
 [node name="Laser" parent="Source" index="1"]
-max_length = 20000.0
+color = Color(1, 0.77843577, 0.74179983, 1)
 canWalkable = true
 
 [node name="Source2" parent="." instance=ExtResource("2_xrdnt")]
 visible = false
 position = Vector2(216, 402)
 rotation = 2.796696
-
-[node name="Laser" parent="Source2" index="1"]
-max_length = 20000.0
-color = Color(1, 0, 1, 1)
-canWalkable = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("4_7p6j4")
@@ -55,23 +50,21 @@ shape = SubResource("CircleShape2D_evi0p")
 [node name="Portals" type="Node2D" parent="."]
 position = Vector2(485, -89)
 
-[node name="Master_Portal2" parent="Portals" instance=ExtResource("5_xrdnt")]
-position = Vector2(177.99997, 694)
-
 [node name="Master_Portal" parent="Portals" instance=ExtResource("5_xrdnt")]
-position = Vector2(-848.00006, 693)
-rotation = -0.3647492
-color_of_the_portal = "GREEN"
+position = Vector2(78, 657)
+rotation = -2.462892
 
-[node name="Slave_Poral2" parent="Portals" instance=ExtResource("6_xrdnt")]
-position = Vector2(-653.00006, 295)
-rotation = -0.22232503
+[node name="Master_Portal2" parent="Portals" instance=ExtResource("5_xrdnt")]
+position = Vector2(-773, 667)
+rotation = -0.46517694
 color_of_the_portal = "GREEN"
 
 [node name="Slave_Poral" parent="Portals" instance=ExtResource("6_xrdnt")]
-position = Vector2(26, 323)
-rotation = 0.56683046
+position = Vector2(-576, 248)
 color_of_the_portal = "GREEN"
+
+[node name="Slave_Poral2" parent="Portals" instance=ExtResource("6_xrdnt")]
+position = Vector2(-98, 250)
 
 [node name="Platform" parent="." instance=ExtResource("10_af3po")]
 position = Vector2(-302, 748)

@@ -3652,7 +3652,7 @@ sources/0 = SubResource("TileSetAtlasSource_u0g4a")
 [node name="Node2D" type="Node2D"]
 
 [node name="The_Better_Player" parent="." instance=ExtResource("2_m1kcu")]
-position = Vector2(-328, -13)
+position = Vector2(1652, -587)
 
 [node name="Hazardous_area" parent="." instance=ExtResource("3_f2ags")]
 position = Vector2(1258, -249)
@@ -3672,13 +3672,10 @@ position = Vector2(1057, -717)
 zoom = Vector2(0.4, 0.4)
 
 [node name="Platform" parent="." instance=ExtResource("4_m1kcu")]
-position = Vector2(1627, -533)
+position = Vector2(1627, -514)
 
 [node name="Platform2" parent="." instance=ExtResource("4_m1kcu")]
 position = Vector2(1158, -713)
-
-[node name="Platform3" parent="." instance=ExtResource("4_m1kcu")]
-position = Vector2(1627, -533)
 
 [node name="Platform4" parent="." instance=ExtResource("4_m1kcu")]
 position = Vector2(2103, -934)
@@ -3711,7 +3708,7 @@ position = Vector2(1062, -757)
 position = Vector2(1250, -757)
 
 [node name="Parent" parent="." instance=ExtResource("10_m65wr")]
-position = Vector2(1635, -1618)
+position = Vector2(1629, -1562.0001)
 scale = Vector2(3, 3)
 
 [node name="Hazardous_Light" parent="." instance=ExtResource("11_gw5c3")]
