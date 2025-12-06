@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://hc3pjsbxw7eu"]
+[gd_scene load_steps=5 format=3 uid="uid://cehc71vdi51dk"]
 
-[ext_resource type="Script" uid="uid://15gssq6xxldv" path="res://kanishka_stuffs/scenes/spikes.gd" id="1_spxbl"]
-[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_5t3o0"]
+[ext_resource type="Script" uid="uid://15gssq6xxldv" path="res://kanishka_stuffs/scenes/spikes.gd" id="1_pjkk1"]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_oltdr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08i8a"]
 size = Vector2(500, 20)
@@ -9,8 +9,8 @@ size = Vector2(500, 20)
 [sub_resource type="BoxMesh" id="BoxMesh_spxbl"]
 size = Vector3(500, 20, 1)
 
-[node name="Hazardous_area" type="Area2D"]
-script = ExtResource("1_spxbl")
+[node name="Hazardous_Light" type="Area2D"]
+script = ExtResource("1_pjkk1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 3)
@@ -21,8 +21,6 @@ mesh = SubResource("BoxMesh_spxbl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(5.1378207, 1.8952079)
-texture = ExtResource("2_5t3o0")
+texture = ExtResource("2_oltdr")
 region_enabled = true
-region_rect = Rect2(600, 900, 100, 100)
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+region_rect = Rect2(700, 900, 100, 100)

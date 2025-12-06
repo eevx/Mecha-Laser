@@ -53,6 +53,9 @@ func _ready() -> void:
 	_init_collider_pool()
 	set_is_casting(is_casting)
 	isWalkable(canWalkable)
+	
+	can_walk_on_light = canWalkable
+	
 	if not is_casting:
 		_disable_all_colliders()
 	player_ref = auto_collect_player_ref()
@@ -337,6 +340,11 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("walk_on_light") and event.is_action_pressed("walk_on_light"):
 		can_walk_on_light = !can_walk_on_light
 		isWalkable(can_walk_on_light)
+		
+		for light in get_tree().get_nodes_in_group("Light"):
+			if light != self and light.has_method("isWalkable"):
+				light.can_walk_on_light = can_walk_on_light
+				light.isWalkable(can_walk_on_light)
 
 func collect_slave_portals_dfs(out: Array, start_node: Node = null) -> void:
 	if start_node == null:
