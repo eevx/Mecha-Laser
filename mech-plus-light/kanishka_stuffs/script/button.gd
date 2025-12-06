@@ -22,6 +22,9 @@ var mirror_parent: Node
 
 @export var magnet: Node2D
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -75,8 +78,12 @@ func _input(event: InputEvent) -> void:
 				_show_new_object()
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				#_show_newer_object()
 
+=======
+				
+>>>>>>> Stashed changes
 =======
 				
 >>>>>>> Stashed changes
