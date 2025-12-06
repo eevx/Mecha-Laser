@@ -21,10 +21,9 @@ position = Vector2(-462.00003, 716)
 rotation = 0.017601617
 scale = Vector2(0.66, 0.66)
 
-[node name="Source" parent="." node_paths=PackedStringArray("player_ref") instance=ExtResource("2_xrdnt")]
+[node name="Source" parent="." instance=ExtResource("2_xrdnt")]
 position = Vector2(-286, 300)
 rotation = 0.43994388
-player_ref = NodePath("../The_Better_Player")
 
 [node name="Laser" parent="Source" index="1"]
 canWalkable = true
