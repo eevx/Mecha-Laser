@@ -1,229 +1,47 @@
-[gd_scene load_steps=18 format=3 uid="uid://diux1ypcrw6em"]
+[gd_scene load_steps=3 format=3 uid="uid://diux1ypcrw6em"]
 
 [ext_resource type="Script" uid="uid://t82yk37vr7an" path="res://UI_Elements/main_menu.gd" id="1_hvkgu"]
 [ext_resource type="Texture2D" uid="uid://b407p0roctb3" path="res://UI_Elements/ui_assets/Title Screen Background 100P.png" id="2_3acur"]
-[ext_resource type="PackedScene" uid="uid://cj6ffj6cddi57" path="res://UI_Elements/AudioSelector.tscn" id="2_72yfl"]
-[ext_resource type="Theme" uid="uid://cal7iq2xw07up" path="res://UI_Elements/theme.tres" id="4_6dgwm"]
-[ext_resource type="Shader" uid="uid://d1yww53m5tb0" path="res://UI_Elements/text_shine.gdshader" id="4_djuen"]
-[ext_resource type="Texture2D" uid="uid://dsfhf1egywvt1" path="res://UI_Elements/ui_assets/Title Screen Background 100P Blurred.png" id="4_rsdsy"]
-[ext_resource type="Texture2D" uid="uid://da74drb77ou35" path="res://UI_Elements/ui_assets/Deselected State_Main Menu.png" id="4_uvg1g"]
-[ext_resource type="Script" uid="uid://dugd88d86ecrj" path="res://UI_Elements/title.gd" id="5_t2x1d"]
-[ext_resource type="Texture2D" uid="uid://dse3thl5obq5n" path="res://UI_Elements/ui_assets/Deselected State_Start.png" id="8_57m7x"]
-[ext_resource type="Texture2D" uid="uid://dyj8eoadcdp1c" path="res://UI_Elements/ui_assets/Deselected State_Options.png" id="9_72yfl"]
-[ext_resource type="Texture2D" uid="uid://cp4pfm5iosunv" path="res://UI_Elements/ui_assets/Deselected State_Quit Game.png" id="10_rsdsy"]
-[ext_resource type="Texture2D" uid="uid://btflg2ph33f2s" path="res://UI_Elements/ui_assets/Deselected State_Level 1.png" id="11_6dgwm"]
-[ext_resource type="Texture2D" uid="uid://bupnbumbpe223" path="res://UI_Elements/ui_assets/Deselected State_Level 2.png" id="12_t2x1d"]
-[ext_resource type="Texture2D" uid="uid://c5qc8epb4h1vx" path="res://UI_Elements/ui_assets/Deselected State_Level 3.png" id="13_djuen"]
-[ext_resource type="Texture2D" uid="uid://o2f04jlx00br" path="res://UI_Elements/ui_assets/Deselected State_Audio.png" id="15_57m7x"]
-[ext_resource type="Texture2D" uid="uid://b6c63sg5ypwpr" path="res://UI_Elements/ui_assets/Deselected State_Key Mapping.png" id="16_72yfl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2x1d"]
-shader = ExtResource("4_djuen")
-shader_parameter/shine_color = Color(1, 1, 1, 1)
-shader_parameter/shine_progress = 0.0
-shader_parameter/shine_size = 0.1
-shader_parameter/shine_angle = 45.0
-shader_parameter/text_size = Vector2(100, 100)
-
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("main_menu", "level_selector", "options_screen", "title_screen_bg", "title")]
+[node name="MainMenu" type="Node2D"]
 script = ExtResource("1_hvkgu")
-main_menu = NodePath("Main_Menu")
-level_selector = NodePath("Level_Selector")
-options_screen = NodePath("Options Screen")
-title_screen_bg = NodePath("TitleScreenBackground100p")
-title = NodePath("Title")
-audio_scene = ExtResource("2_72yfl")
-bg = ExtResource("2_3acur")
-bg_blurred = ExtResource("4_rsdsy")
+
+[node name="main_menu" type="VBoxContainer" parent="."]
+offset_left = 469.0
+offset_top = 282.0
+offset_right = 663.0
+offset_bottom = 459.0
+
+[node name="Start" type="TextureButton" parent="main_menu"]
+layout_mode = 2
+
+[node name="Options" type="TextureButton" parent="main_menu"]
+layout_mode = 2
+
+[node name="Quit Game" type="TextureButton" parent="main_menu"]
+layout_mode = 2
+
+[node name="level_selector" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Level 1" type="TextureButton" parent="level_selector"]
+layout_mode = 2
+
+[node name="Level 2" type="TextureButton" parent="level_selector"]
+layout_mode = 2
+
+[node name="Level 3" type="TextureButton" parent="level_selector"]
+layout_mode = 2
+
+[node name="Main Menu" type="TextureButton" parent="level_selector"]
+layout_mode = 2
+
+[node name="options_screen" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="TitleScreenBackground100p" type="Sprite2D" parent="."]
-position = Vector2(582, 324)
-scale = Vector2(0.6101852, 0.6101852)
+position = Vector2(575, 318)
+scale = Vector2(0.60740745, 0.60740745)
 texture = ExtResource("2_3acur")
-
-[node name="Title" type="Label" parent="."]
-material = SubResource("ShaderMaterial_t2x1d")
-offset_left = 160.0
-offset_top = 128.0
-offset_right = 1000.0
-offset_bottom = 295.0
-theme = ExtResource("4_6dgwm")
-theme_type_variation = &"HeaderLarge"
-theme_override_colors/font_color = Color(1, 1, 0.35686275, 1)
-theme_override_colors/font_shadow_color = Color(0.25882354, 0.25882354, 0.25882354, 1)
-theme_override_colors/font_outline_color = Color(0.5489626, 0.5489626, 0.54896253, 1)
-theme_override_constants/shadow_offset_x = -2
-theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 160
-text = "DUEX EX MACHINA"
-script = ExtResource("5_t2x1d")
-
-[node name="Main_Menu" type="VBoxContainer" parent="."]
-offset_left = 424.0
-offset_top = 376.0
-offset_right = 788.0
-offset_bottom = 609.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Start" type="TextureButton" parent="Main_Menu"]
-layout_mode = 2
-texture_normal = ExtResource("8_57m7x")
-
-[node name="Options" type="TextureButton" parent="Main_Menu"]
-layout_mode = 2
-texture_normal = ExtResource("9_72yfl")
-
-[node name="Quit Game" type="TextureButton" parent="Main_Menu"]
-layout_mode = 2
-texture_normal = ExtResource("10_rsdsy")
-
-[node name="Level_Selector" type="VBoxContainer" parent="."]
-visible = false
-offset_left = 392.0
-offset_top = 136.0
-offset_right = 756.0
-offset_bottom = 544.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Level 1" type="TextureButton" parent="Level_Selector"]
-layout_mode = 2
-texture_normal = ExtResource("11_6dgwm")
-
-[node name="Level 2" type="TextureButton" parent="Level_Selector"]
-layout_mode = 2
-texture_normal = ExtResource("12_t2x1d")
-
-[node name="Level 3" type="TextureButton" parent="Level_Selector"]
-layout_mode = 2
-texture_normal = ExtResource("13_djuen")
-
-[node name="HSeparator" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator3" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator4" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator5" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator6" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator7" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator8" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator9" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator10" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator11" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator12" type="HSeparator" parent="Level_Selector"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="Main Menu Button" type="TextureButton" parent="Level_Selector"]
-layout_mode = 2
-texture_normal = ExtResource("4_uvg1g")
-
-[node name="Options Screen" type="VBoxContainer" parent="."]
-visible = false
-offset_left = 400.0
-offset_top = 216.0
-offset_right = 764.0
-offset_bottom = 545.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Audio" type="TextureButton" parent="Options Screen"]
-layout_mode = 2
-texture_normal = ExtResource("15_57m7x")
-
-[node name="Keymapping" type="TextureButton" parent="Options Screen"]
-layout_mode = 2
-texture_normal = ExtResource("16_72yfl")
-
-[node name="HSeparator" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator3" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator4" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator5" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator6" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator7" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator8" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator9" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator10" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator11" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="HSeparator12" type="HSeparator" parent="Options Screen"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="Main Menu Button" type="TextureButton" parent="Options Screen"]
-layout_mode = 2
-texture_normal = ExtResource("4_uvg1g")
-
-[connection signal="pressed" from="Main_Menu/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Main_Menu/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Main_Menu/Quit Game" to="." method="_on_quit_game_pressed"]
-[connection signal="pressed" from="Level_Selector/Level 1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="Level_Selector/Level 2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="Level_Selector/Level 3" to="." method="_on_level_3_pressed"]
-[connection signal="pressed" from="Level_Selector/Main Menu Button" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="Options Screen/Audio" to="." method="_on_audio_pressed"]
-[connection signal="pressed" from="Options Screen/Keymapping" to="." method="_on_keymapping_pressed"]
-[connection signal="pressed" from="Options Screen/Main Menu Button" to="." method="_on_main_menu_button_pressed"]
