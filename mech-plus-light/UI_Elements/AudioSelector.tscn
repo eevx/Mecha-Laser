@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj6ffj6cddi57"]
+
+[ext_resource type="Script" uid="uid://dcj0pyus7cwos" path="res://UI_Elements/audio_selector.gd" id="1_5kjnq"]
+[ext_resource type="Theme" uid="uid://cal7iq2xw07up" path="res://UI_Elements/theme.tres" id="2_5kjnq"]
+
+[node name="AudioSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5kjnq")
+
+[node name="bar_container" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 278.0
+offset_right = 649.0
+offset_bottom = 335.0
+
+[node name="Master" type="HSlider" parent="bar_container"]
+layout_mode = 2
+theme = ExtResource("2_5kjnq")
+
+[node name="HSeparator" type="HSeparator" parent="bar_container"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Music" type="HSlider" parent="bar_container"]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="bar_container"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="SFX" type="HSlider" parent="bar_container"]
+layout_mode = 2
+
+[node name="bar_container2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 398.0
+offset_top = 275.0
+offset_right = 523.0
+offset_bottom = 352.0
+
+[node name="Master" type="Label" parent="bar_container2"]
+layout_mode = 2
+theme = ExtResource("2_5kjnq")
+text = "Master"
+
+[node name="Music" type="Label" parent="bar_container2"]
+layout_mode = 2
+theme = ExtResource("2_5kjnq")
+text = "Music"
+
+[node name="SFX" type="Label" parent="bar_container2"]
+layout_mode = 2
+theme = ExtResource("2_5kjnq")
+text = "SFX"
+
+[connection signal="changed" from="bar_container/Master" to="." method="_on_master_changed"]
+[connection signal="changed" from="bar_container/Music" to="." method="_on_music_changed"]
+[connection signal="changed" from="bar_container/SFX" to="." method="_on_sfx_changed"]

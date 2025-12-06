@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj8scj85tj2j2"]
+[gd_scene load_steps=10 format=3 uid="uid://dj8scj85tj2j2"]
 
-[ext_resource type="PackedScene" uid="uid://db2sg5dk7xs1j" path="res://SG/Scenes/rotor_lever.tscn" id="1_chwpn"]
 [ext_resource type="PackedScene" uid="uid://ccl5r1h7gl0cp" path="res://Scenes/sourcelight.tscn" id="2_xrdnt"]
 [ext_resource type="Environment" uid="uid://c8ol6uwdees61" path="res://Placeholder Assets/2d_environment.tres" id="4_7p6j4"]
 [ext_resource type="Texture2D" uid="uid://c3wvqm5a4npxv" path="res://Placeholder Assets/asteroid.svg" id="5_lsmp6"]
@@ -16,22 +15,33 @@ radius = 105.0
 
 [node name="Level" type="Node2D"]
 
-[node name="rotor_lever" parent="." instance=ExtResource("1_chwpn")]
-position = Vector2(-462.00003, 716)
-rotation = 0.017601617
-scale = Vector2(0.66, 0.66)
-
 [node name="Source" parent="." instance=ExtResource("2_xrdnt")]
 position = Vector2(-286, 300)
-rotation = 0.43994388
+rotation = 0.3157788
+
+[node name="Sprite2D" parent="Source" index="0"]
+position = Vector2(-7.9910607, -1.0690932)
+rotation = -0.069264114
 
 [node name="Laser" parent="Source" index="1"]
+max_length = 20000.0
+canWalkable = true
+
+[node name="Source2" parent="." instance=ExtResource("2_xrdnt")]
+visible = false
+position = Vector2(216, 402)
+rotation = 2.796696
+
+[node name="Laser" parent="Source2" index="1"]
+max_length = 20000.0
+color = Color(1, 0, 1, 1)
 canWalkable = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("4_7p6j4")
 
 [node name="Asteroid" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(538, 347)
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_6444e")
@@ -45,24 +55,23 @@ shape = SubResource("CircleShape2D_evi0p")
 [node name="Portals" type="Node2D" parent="."]
 position = Vector2(485, -89)
 
-[node name="Master_Portal" parent="Portals" instance=ExtResource("5_xrdnt")]
-position = Vector2(119, 796)
-
 [node name="Master_Portal2" parent="Portals" instance=ExtResource("5_xrdnt")]
-position = Vector2(-822.00006, 749.0001)
-rotation = -0.7607752
-color_of_the_portal = "BLUE"
+position = Vector2(177.99997, 694)
 
-[node name="Slave_Portal" parent="Portals" instance=ExtResource("6_xrdnt")]
-position = Vector2(-86, 273)
-beam_width = 130.0
-is_walkable = true
+[node name="Master_Portal" parent="Portals" instance=ExtResource("5_xrdnt")]
+position = Vector2(-848.00006, 693)
+rotation = -0.3647492
+color_of_the_portal = "GREEN"
 
-[node name="Slave_Portal2" parent="Portals" instance=ExtResource("6_xrdnt")]
-position = Vector2(-689, 261)
-color_of_the_portal = "BLUE"
-beam_width = 130.0
-is_walkable = true
+[node name="Slave_Poral2" parent="Portals" instance=ExtResource("6_xrdnt")]
+position = Vector2(-653.00006, 295)
+rotation = -0.22232503
+color_of_the_portal = "GREEN"
+
+[node name="Slave_Poral" parent="Portals" instance=ExtResource("6_xrdnt")]
+position = Vector2(26, 323)
+rotation = 0.56683046
+color_of_the_portal = "GREEN"
 
 [node name="Platform" parent="." instance=ExtResource("10_af3po")]
 position = Vector2(-302, 748)
@@ -80,3 +89,4 @@ position = Vector2(84, 122)
 scale = Vector2(0.99999994, 0.99999994)
 
 [editable path="Source"]
+[editable path="Source2"]
