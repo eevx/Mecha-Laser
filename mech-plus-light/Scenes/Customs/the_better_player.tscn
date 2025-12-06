@@ -278,9 +278,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m6iw3")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
-"speed": 6.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -337,9 +337,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0lb5h")
 }],
-"loop": true,
+"loop": false,
 "name": &"light_jump",
-"speed": 6.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -416,9 +416,8 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_itxrw"]
-radius = 14.75
-height = 81.5
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0v1y0"]
+size = Vector2(26, 82)
 
 [sub_resource type="Curve" id="Curve_0v1y0"]
 _data = [Vector2(0.015576325, 0.63528675), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -440,12 +439,11 @@ data = ExtResource("2_xl5gx")
 position = Vector2(-1.0000038, -46.000004)
 scale = Vector2(0.51111114, 0.51111114)
 sprite_frames = SubResource("SpriteFrames_q1qaa")
-animation = &"light_run"
-frame_progress = 0.33299977
+animation = &"light_jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -41)
-shape = SubResource("CapsuleShape2D_itxrw")
+position = Vector2(0, -41)
+shape = SubResource("RectangleShape2D_0v1y0")
 
 [node name="IdleState" type="Node" parent="."]
 script = ExtResource("3_hp6qx")

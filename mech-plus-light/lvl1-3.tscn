@@ -1,14 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://csk6sp4x1yk0j"]
+[gd_scene load_steps=4 format=4 uid="uid://des3pxtemqshi"]
 
-[ext_resource type="PackedScene" uid="uid://7hq1ioohc2gc" path="res://kanishka_stuffs/scenes/button.tscn" id="1_f5f4d"]
-[ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/movingplatform.tscn" id="2_6va3c"]
-[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="3_46t1k"]
-[ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="4_a2yat"]
-[ext_resource type="PackedScene" uid="uid://di2uxeey7wuu6" path="res://Scenes/source.tscn" id="5_8wbvx"]
-[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="6_6va3c"]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="1_gymm4"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_46t1k"]
-texture = ExtResource("6_6va3c")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jfooc"]
+texture = ExtResource("1_gymm4")
 texture_region_size = Vector2i(100, 100)
 50:0/0 = 0
 51:0/0 = 0
@@ -3584,7 +3579,7 @@ texture_region_size = Vector2i(100, 100)
 13:0/0 = 0
 12:8/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_a2yat"]
+[sub_resource type="TileSet" id="TileSet_bpuo8"]
 tile_size = Vector2i(100, 100)
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
@@ -3592,45 +3587,10 @@ terrain_set_0/terrain_0/name = "Static_Platform"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_0/terrain_1/name = "Floating"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_46t1k")
+sources/0 = SubResource("TileSetAtlasSource_jfooc")
 
-[node name="Node2D" type="Node2D"]
-
-[node name="button" parent="." instance=ExtResource("1_f5f4d")]
-position = Vector2(1016, 200)
-
-[node name="Platforms" type="Node" parent="."]
-
-[node name="Platform2" parent="Platforms" instance=ExtResource("3_46t1k")]
-position = Vector2(560, 522)
-rotation = -0.18151425
-
-[node name="AnimatableBody2D" parent="Platforms" instance=ExtResource("2_6va3c")]
-position = Vector2(136, -80)
-horizontal = false
-distance = 550.0
-
-[node name="Platform" parent="Platforms" instance=ExtResource("3_46t1k")]
-position = Vector2(928, 272)
-
-[node name="The_Better_Player" parent="." instance=ExtResource("4_a2yat")]
-position = Vector2(125, 649)
-
-[node name="Source" parent="." instance=ExtResource("5_8wbvx")]
-position = Vector2(-120, 488)
-rotation = 0.0
-
-[node name="button2" parent="." instance=ExtResource("1_f5f4d")]
-position = Vector2(956, 19)
-
-[node name="Source2" parent="." instance=ExtResource("5_8wbvx")]
-position = Vector2(-104, -104)
-rotation = 0.0
+[node name="Lvl13" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAQAAcAAAAJAAcAAAAPAAcAAAAJAAcAAAAOAAcAAAAJAAcAAAANAAcAAAAJAAcAAAAMAAcAAAAJAAcAAAALAAcAAAAJAAcAAAAKAAcAAAAJAAcAAAAJAAcAAAAJAAcAAAAIAAcAAAAJAAcAAAAHAAcAAAAJAAcAAAAGAAcAAAAJAAcAAAAFAAcAAAAJAAcAAAAEAAcAAAAJAAcAAAADAAcAAAAJAAcAAAACAAcAAAAJAAcAAAABAAcAAAAJAAcAAAAAAAcAAAAJAAcAAAD//wcAAAAJAAcAAAD+/wYAAAAKAAgAAAD+/wUAAAAKAAgAAAD+/wQAAAAKAAgAAAD+/wMAAAAKAAgAAAD+/wIAAAAKAAgAAAD+/wEAAAAKAAgAAAD+/wAAAAAKAAgAAAD+////AAAKAAgAAAD+//7/AAAKAAgAAAD+//3/AAAKAAgAAAD+/wcAAAAKAAkAAAA=")
-tile_set = SubResource("TileSet_a2yat")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(840, 192)
-zoom = Vector2(0.59, 0.59)
+tile_set = SubResource("TileSet_bpuo8")
