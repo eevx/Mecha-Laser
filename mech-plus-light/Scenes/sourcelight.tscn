@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccl5r1h7gl0cp"]
+[gd_scene load_steps=6 format=3 uid="uid://ccl5r1h7gl0cp"]
 
 [ext_resource type="Script" uid="uid://cxm8wul6p3d40" path="res://Scripts/source.gd" id="1_adik6"]
 [ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_adik6"]
 [ext_resource type="PackedScene" uid="uid://br248huea2eo2" path="res://Scenes/light.tscn" id="3_cc6hi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxhja"]
+atlas = ExtResource("2_adik6")
+region = Rect2(398.765, 702.115, 102.2, 117.13)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6444e"]
 radius = 46.21
@@ -18,9 +22,7 @@ lasers = [NodePath("Laser")]
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 rotation = 1.5707964
-texture = ExtResource("2_adik6")
-region_enabled = true
-region_rect = Rect2(500, 600, 100, 100)
+texture = SubResource("AtlasTexture_vxhja")
 
 [node name="Laser" parent="." instance=ExtResource("3_cc6hi")]
 target_position = Vector2(2000, 0)

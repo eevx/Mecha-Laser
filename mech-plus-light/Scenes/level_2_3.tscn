@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bfw218pm3xcsc"]
+[gd_scene load_steps=13 format=4 uid="uid://bfw218pm3xcsc"]
 
 [ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="1_6eygh"]
 [ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/movingplatform.tscn" id="2_y5cx8"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="5_6oft8"]
 [ext_resource type="PackedScene" uid="uid://bhf8kmv0a5ydq" path="res://Scenes/master_portal.tscn" id="5_kdq04"]
 [ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="6_kdq04"]
+[ext_resource type="PackedScene" uid="uid://cm4a1ilc5hk1h" path="res://SG/Scenes/3_way_lever.tscn" id="8_v68xs"]
+[ext_resource type="PackedScene" uid="uid://cy6kwm3dpgvks" path="res://SG/Scenes/yellow_rotor.tscn" id="9_j2ari"]
+[ext_resource type="PackedScene" uid="uid://qo0rs772p5jg" path="res://SG/Scenes/geen_rotor.tscn" id="10_fbrg7"]
+[ext_resource type="PackedScene" uid="uid://ccl5r1h7gl0cp" path="res://Scenes/sourcelight.tscn" id="10_g8fa4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gramy"]
 texture = ExtResource("6_kdq04")
@@ -3600,43 +3604,9 @@ sources/0 = SubResource("TileSetAtlasSource_gramy")
 
 [node name="AnimatableBody2D" parent="Platforms" instance=ExtResource("2_y5cx8")]
 position = Vector2(552, -96)
-horizontal = false
 
 [node name="Platform" parent="Platforms" instance=ExtResource("1_6eygh")]
 position = Vector2(-96, 232)
-
-[node name="Platform12" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(-472, 368)
-
-[node name="Platform18" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(-472, 560)
-
-[node name="Platform19" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(-184, 560)
-
-[node name="Platform20" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(104, 560)
-
-[node name="Platform21" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(392, 560)
-
-[node name="Platform22" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(680, 560)
-
-[node name="Platform23" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(968, 560)
-
-[node name="Platform24" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(1998, 552)
-
-[node name="Platform25" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(2288, 552)
-
-[node name="Platform26" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(2574, 552)
-
-[node name="Platform27" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(2862, 552)
 
 [node name="Platform6" parent="Platforms" instance=ExtResource("1_6eygh")]
 position = Vector2(192, 232)
@@ -3644,70 +3614,58 @@ position = Vector2(192, 232)
 [node name="Platform2" parent="Platforms" instance=ExtResource("1_6eygh")]
 position = Vector2(936, 232)
 
-[node name="Platform17" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(3152, 232)
-
-[node name="Platform28" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(3152, 552)
-
 [node name="Platform3" parent="Platforms" instance=ExtResource("1_6eygh")]
 position = Vector2(1016, -192)
 
 [node name="Platform4" parent="Platforms" instance=ExtResource("1_6eygh")]
 position = Vector2(936, -464)
 
-[node name="Platform7" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(936, -888)
-
-[node name="Platform11" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(1224, -888)
-
-[node name="Platform29" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(1400, -1064)
-rotation = -1.5707964
-
-[node name="Platform13" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(1728, -880)
-
-[node name="Platform14" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(2016, -880)
-
-[node name="Platform15" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(2304, -880)
-
-[node name="Platform16" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(2592, -880)
-
-[node name="Platform8" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(648, -888)
-
-[node name="Platform9" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(360, -888)
-
-[node name="Platform10" parent="Platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(72, -888)
-
 [node name="Platform5" parent="Platforms" instance=ExtResource("1_6eygh")]
 position = Vector2(1224, -464)
 
 [node name="trips" type="Node2D" parent="."]
 
+[node name="Hazardous_area4" parent="trips" instance=ExtResource("4_6oft8")]
+modulate = Color(0, 0.5512107, 0.9883382, 1)
+position = Vector2(441, -519.00006)
+rotation = -2.6468275
+scale = Vector2(2.3714488, 1.1267661)
+skew = 1.0373143
+
+[node name="Hazardous_area6" parent="trips" instance=ExtResource("4_6oft8")]
+modulate = Color(0, 0.5512107, 0.9883382, 1)
+position = Vector2(2355, -147)
+rotation = -1.8709929
+scale = Vector2(2.776, 1.32)
+skew = 1.0373143
+
 [node name="Hazardous_area" parent="trips" instance=ExtResource("4_6oft8")]
 modulate = Color(1, 0.15686275, 0, 1)
-position = Vector2(-103.99994, 95.000015)
+position = Vector2(1754.0001, -636.00006)
 rotation = -0.4184065
-scale = Vector2(0.603, 0.05)
+scale = Vector2(1.678, 0.139)
+
+[node name="Hazardous_area7" parent="trips" instance=ExtResource("4_6oft8")]
+modulate = Color(1, 0.15686275, 0, 1)
+position = Vector2(2982, -845)
+scale = Vector2(1.678, 0.139)
+
+[node name="Hazardous_area5" parent="trips" instance=ExtResource("4_6oft8")]
+modulate = Color(1, 0.15686275, 0, 1)
+position = Vector2(2369, -145.99994)
+rotation = -1.0663961
+scale = Vector2(3.243, 0.269)
 
 [node name="Hazardous_area3" parent="trips" instance=ExtResource("4_6oft8")]
 modulate = Color(0, 0.5512107, 0.9883382, 1)
-position = Vector2(-168, 168)
-scale = Vector2(0.345, 0.05)
+position = Vector2(564, 231.00002)
+scale = Vector2(0.92, 0.133)
 
 [node name="Hazardous_area2" parent="trips" instance=ExtResource("4_6oft8")]
 modulate = Color(0, 0.87609196, 0.21001908, 1)
-position = Vector2(-160.00012, 127.99991)
-rotation = 0.42816252
-scale = Vector2(0.358, 0.05)
+position = Vector2(3161.9998, 411.99994)
+rotation = 0.64751714
+scale = Vector2(0.733, 0.102)
 
 [node name="The_Better_Player" parent="." instance=ExtResource("5_6oft8")]
 position = Vector2(144, 136)
@@ -3723,5 +3681,20 @@ position = Vector2(1480, -888)
 rotation = 1.5707964
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD+/wgAAAAJAAcAAAD//wgAAAAJAAcAAAAAAAgAAAAJAAcAAAABAAgAAAAJAAcAAAACAAgAAAAJAAcAAAADAAgAAAAJAAcAAAAEAAgAAAAJAAcAAAAFAAgAAAAJAAcAAAAGAAgAAAAJAAcAAAAHAAgAAAAJAAcAAAAIAAgAAAAJAAcAAAAKAAgAAAAJAAcAAAAJAAgAAAAJAAcAAAD8/wgAAAAJAAcAAAD7/wgAAAAJAAcAAAD6/wgAAAAJAAcAAAD5/wgAAAAKAAkAAAAgAAgAAAAJAAcAAAAfAAgAAAAJAAcAAAAeAAgAAAAJAAcAAAAdAAgAAAAJAAcAAAAbAAgAAAAJAAcAAAAcAAgAAAAJAAcAAAAaAAgAAAAJAAcAAAAYAAgAAAAJAAcAAAAZAAgAAAAJAAcAAAAXAAgAAAAJAAcAAAAWAAgAAAAJAAcAAAAVAAgAAAAJAAcAAAAUAAgAAAAJAAcAAAATAAgAAAAJAAcAAAASAAgAAAAJAAcAAAARAAgAAAAJAAcAAAAQAAgAAAAJAAcAAAAPAAgAAAAJAAcAAAAOAAgAAAAJAAcAAAANAAgAAAAJAAcAAAAMAAgAAAAJAAcAAAALAAgAAAAJAAcAAAD9/wgAAAAJAAcAAAD5/wcAAAAKAAgAAAD5/wYAAAAKAAgAAAD5/wUAAAAKAAgAAAD5/wQAAAAKAAgAAAD5/wMAAAAKAAgAAAD5/wIAAAAKAAgAAAD5/wEAAAAKAAgAAAD5/wAAAAAKAAgAAAD5////AAAKAAgAAAD5//7/AAAKAAgAAAD5//3/AAAKAAgAAAD5//z/AAAKAAgAAAD5//v/AAAKAAgAAAD5//r/AAAKAAgAAAD5//n/AAAKAAgAAAD5//j/AAAKAAgAAAD5//f/AAAKAAgAAAD5//b/AAAKAAgAAAD5//X/AAAKAAgAAAD5//T/AAAKAAgAAAA=")
+tile_map_data = PackedByteArray("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AAAeAAUAAAAJAAcAAAAfAAUAAAAJAAcAAAAgAAUAAAAJAAcAAAAfAAIAAAAJAAcAAAAgAAIAAAAJAAcAAAAeAAIAAAAIAAcAAAD8/wMAAAAKAAcAAAD7/wMAAAAJAAcAAAD6/wMAAAAJAAcAAAD///f/AAAIAAcAAAAAAPf/AAAJAAcAAAABAPf/AAAJAAcAAAACAPf/AAAJAAcAAAADAPf/AAAJAAcAAAAEAPf/AAAJAAcAAAAFAPf/AAAJAAcAAAAGAPf/AAAJAAcAAAAHAPf/AAAJAAcAAAAIAPf/AAAJAAcAAAAJAPf/AAAJAAcAAAAKAPf/AAAJAAcAAAALAPf/AAAJAAcAAAAMAPf/AAAIAAkAAAANAPf/AAAKAAgAAAAQAPf/AAAJAAcAAAARAPf/AAAJAAcAAAASAPf/AAAJAAcAAAATAPf/AAAJAAcAAAAUAPf/AAAJAAcAAAAVAPf/AAAJAAcAAAAWAPf/AAAJAAcAAAAXAPf/AAAJAAcAAAAYAPf/AAAJAAcAAAAZAPf/AAAJAAcAAAAaAPf/AAAJAAcAAAAbAPf/AAAKAAcAAAAMAPb/AAAIAAgAAAAMAPX/AAAIAAgAAAAMAPT/AAAIAAgAAAANAPb/AAAKAAgAAAANAPX/AAAKAAgAAAANAPT/AAAKAAgAAAA=")
 tile_set = SubResource("TileSet_v68xs")
+
+[node name="3_way_lever" parent="." node_paths=PackedStringArray("master_portal") instance=ExtResource("8_v68xs")]
+position = Vector2(8, -940)
+master_portal = NodePath("../Master_Portal")
+
+[node name="rotor_lever" parent="." node_paths=PackedStringArray("object_to_rotate") instance=ExtResource("9_j2ari")]
+position = Vector2(-508, 258)
+object_to_rotate = NodePath("../Source")
+
+[node name="rotor_lever2" parent="." node_paths=PackedStringArray("object_to_rotate") instance=ExtResource("10_fbrg7")]
+position = Vector2(3019, 456)
+object_to_rotate = NodePath("../Master_Portal")
+
+[node name="Source" parent="." instance=ExtResource("10_g8fa4")]
+position = Vector2(1116, 566)

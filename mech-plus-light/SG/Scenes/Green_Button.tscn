@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfn5xoc1wfwya"]
+
+[ext_resource type="Script" uid="uid://c546xootd55ap" path="res://SG/Scripts/timed_button.gd" id="1_51qlq"]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_51qlq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4widr"]
+atlas = ExtResource("2_51qlq")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8bnf"]
+atlas = ExtResource("2_51qlq")
+region = Rect2(300, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmmes"]
+atlas = ExtResource("2_51qlq")
+region = Rect2(300, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta48q"]
+atlas = ExtResource("2_51qlq")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b7omo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4widr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8bnf")
+}],
+"loop": false,
+"name": &"Press Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmmes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta48q")
+}],
+"loop": false,
+"name": &"Press Up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_325b4"]
+size = Vector2(98, 96)
+
+[node name="Timed_Button" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_51qlq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b7omo")
+animation = &"Press Down"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_325b4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

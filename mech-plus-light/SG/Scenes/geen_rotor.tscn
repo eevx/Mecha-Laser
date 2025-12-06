@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://qo0rs772p5jg"]
+
+[ext_resource type="Script" uid="uid://dl1i1xxmtml2f" path="res://SG/Scripts/rotor_lever.gd" id="1_nxugi"]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_6f5t5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxugi"]
+atlas = ExtResource("2_6f5t5")
+region = Rect2(700, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f5t5"]
+atlas = ExtResource("2_6f5t5")
+region = Rect2(700, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0g4p"]
+atlas = ExtResource("2_6f5t5")
+region = Rect2(700, 400, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r8tmm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxugi")
+}],
+"loop": true,
+"name": &"Center",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f5t5")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0g4p")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0qqp"]
+size = Vector2(96, 98)
+
+[node name="rotor_lever" type="Area2D"]
+script = ExtResource("1_nxugi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r8tmm")
+animation = &"Right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p0qqp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
