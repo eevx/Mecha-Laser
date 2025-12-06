@@ -5,8 +5,8 @@ class_name Player
 @export var initial_state : Player_State
 @export var PlayerSprite : AnimatedSprite2D
 @export var PlayerCol : CollisionPolygon2D
+@export var thruster_ui : Line2D
 @export var data : PlayerData
-
 #running vars
 var jumpCount : int
 var dashCount : int
@@ -21,11 +21,13 @@ var wasMovingR := true
 var current_state : Player_State
 var states : Dictionary = {}
 var animScaleLock : Vector2
+var max_thruster_fuel : float
 var thruster_fuel: float 
 var thruster_using: bool = false
 var thruster_refill_timer: float = 0.0
 
 func _ready() -> void:
+	max_thruster_fuel = data.thruster_max_fuel
 	animScaleLock = abs(PlayerSprite.scale)
 	thruster_fuel = self.data.thruster_max_fuel
 	_calc_cached_val()
@@ -53,6 +55,8 @@ func _physics_process(delta: float) -> void:
 			thruster_refill_timer += delta
 			if thruster_refill_timer >= self.data.thruster_refill_delay:
 				thruster_fuel = min(thruster_fuel + self.data.thruster_refill_rate * delta, self.data.thruster_max_fuel)
+				thruster_ui.points[0] = Vector2(0, max_thruster_fuel * 40.)
+				thruster_ui.points[1] = Vector2(0,(max_thruster_fuel - thruster_fuel)*40.)
 	else:
 		thruster_refill_timer = 0.0
 	move_and_slide()

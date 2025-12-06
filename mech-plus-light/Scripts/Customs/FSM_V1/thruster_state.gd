@@ -12,7 +12,8 @@ func Physics_Update(delta: float) -> void:
 	if pressing and player.thruster_fuel > 0.0:
 		apply_thruster_force(delta)
 		player.thruster_fuel = max(player.thruster_fuel - player.data.thruster_drain_rate * delta, 0.0)
-		thruster_ui.points[1] = Vector2(0,player.thruster_fuel)
+		thruster_ui.points[1] = Vector2(0,(player.max_thruster_fuel - player.thruster_fuel)*40.)
+		#thruster_ui.points[0] = Vector2(0, player.max_thruster_fuel * 40.)
 		player.thruster_refill_timer = 0.0
 		if player.thruster_fuel <= 0.0:
 			stop_thruster_effects()

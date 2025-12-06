@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://db3e3pwvlnxjy"]
+[gd_scene load_steps=64 format=3 uid="uid://db3e3pwvlnxjy"]
 
 [ext_resource type="Script" uid="uid://j208mdnvgcx3" path="res://Scripts/Customs/FSM_V1/the_better_controller.gd" id="1_w1cpu"]
 [ext_resource type="Resource" uid="uid://btu3hcr6v8xfy" path="res://Scripts/Customs/FSM_V1/PlayerData.tres" id="2_xl5gx"]
@@ -420,12 +420,20 @@ animations = [{
 radius = 14.75
 height = 81.5
 
-[node name="The_Better_Player" type="CharacterBody2D" node_paths=PackedStringArray("initial_state", "PlayerSprite") groups=["object"]]
+[sub_resource type="Curve" id="Curve_0v1y0"]
+_data = [Vector2(0.015576325, 0.63528675), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_23gpp"]
+colors = PackedColorArray(0.9750208, 0.965537, 0.93767023, 1, 1, 1, 0.29803923, 1)
+
+[node name="The_Better_Player" type="CharacterBody2D" node_paths=PackedStringArray("initial_state", "PlayerSprite", "thruster_ui") groups=["object"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_w1cpu")
 initial_state = NodePath("IdleState")
 PlayerSprite = NodePath("Playerspr")
+thruster_ui = NodePath("Thruster_UI")
 data = ExtResource("2_xl5gx")
 
 [node name="Playerspr" type="AnimatedSprite2D" parent="."]
@@ -460,3 +468,11 @@ script = ExtResource("8_v4o2j")
 metadata/_custom_type_script = "uid://cbvva7m2akmwd"
 
 [node name="hurtbox" parent="." instance=ExtResource("8_rsjdp")]
+
+[node name="Thruster_UI" type="Line2D" parent="."]
+position = Vector2(-34, -85)
+points = PackedVector2Array(0, 40, 0, 0)
+width = 13.275
+width_curve = SubResource("Curve_0v1y0")
+gradient = SubResource("Gradient_23gpp")
+antialiased = true
