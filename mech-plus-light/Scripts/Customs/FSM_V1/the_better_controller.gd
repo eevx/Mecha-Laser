@@ -150,6 +150,7 @@ func toggle_view():
 func change_gravity(new_gravity: float):
 	data.gravityScale = new_gravity
 	up_direction = Vector2(0., -sign(new_gravity))
+	scale.y = sign(new_gravity)
 	
 func get_gravity_value() -> float:
 	return data.gravityScale
@@ -157,3 +158,5 @@ func get_gravity_value() -> float:
 func reset_gravity(_new_gravity: float):
 	data.gravityScale = _original_gravity
 	up_direction = Vector2(0., -1.)
+	scale.y = 1.
+	
