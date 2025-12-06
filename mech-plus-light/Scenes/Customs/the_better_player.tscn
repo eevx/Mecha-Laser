@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://db3e3pwvlnxjy"]
+[gd_scene load_steps=28 format=3 uid="uid://db3e3pwvlnxjy"]
 
 [ext_resource type="Script" uid="uid://j208mdnvgcx3" path="res://Scripts/Customs/FSM_V1/the_better_controller.gd" id="1_w1cpu"]
 [ext_resource type="Texture2D" uid="uid://clhtvqcyr0pgi" path="res://Assets/Defaults(guide)/sprites/knight.png" id="2_r8dks"]
@@ -139,8 +139,9 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4o2j"]
-size = Vector2(25.5, 82)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_itxrw"]
+radius = 11.0
+height = 82.0
 
 [node name="The_Better_Player" type="CharacterBody2D" node_paths=PackedStringArray("initial_state", "PlayerSprite") groups=["object"]]
 collision_layer = 3
@@ -159,7 +160,7 @@ frame_progress = 0.4528267
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -41)
-shape = SubResource("RectangleShape2D_v4o2j")
+shape = SubResource("CapsuleShape2D_itxrw")
 
 [node name="IdleState" type="Node" parent="."]
 script = ExtResource("3_hp6qx")
