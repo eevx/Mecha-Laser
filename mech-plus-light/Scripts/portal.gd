@@ -34,3 +34,12 @@ func get_matching_outputs() -> Array:
 	#print("I am returning from the function")
 	#print("The size of the out array is : ", out.size())
 	return out
+
+func change_color(new_color : Color) -> void:
+	print("I am here")
+	color = new_color
+	var mesh := $CollisionShape2D/MeshInstance2D
+	if mesh:
+		mesh.modulate = color
+	else :
+		print("Not Found")
