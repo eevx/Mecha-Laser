@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwo3g6sttlj3r"]
 
-[ext_resource type="Script" uid="uid://dl1j86c1lfjd1" path="res://Scenes/Customs/magnet_parent.gd" id="1_5xvfw"]
+[ext_resource type="Script" path="res://Scenes/Customs/magnet_parent.gd" id="1_5xvfw"]
 [ext_resource type="Script" uid="uid://cw366me6gjoq1" path="res://Scripts/Customs/new_magnet.gd" id="1_std2h"]
-[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_5xvfw"]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Tilemaps_00.png" id="2_5xvfw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeg1r"]
 size = Vector2(112, 1499)

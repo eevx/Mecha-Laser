@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://bn2fwsv4ft36b"]
 
-[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="1_decnf"]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Tilemaps_00.png" id="1_decnf"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="2_m1kcu"]
 [ext_resource type="PackedScene" uid="uid://hc3pjsbxw7eu" path="res://Scenes/hazardous_area.tscn" id="3_f2ags"]
 [ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="4_m1kcu"]

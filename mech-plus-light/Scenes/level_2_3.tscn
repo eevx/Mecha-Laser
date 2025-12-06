@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://hc3pjsbxw7eu" path="res://Scenes/hazardous_area.tscn" id="4_6oft8"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="5_6oft8"]
 [ext_resource type="PackedScene" uid="uid://bhf8kmv0a5ydq" path="res://Scenes/master_portal.tscn" id="5_kdq04"]
-[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="6_kdq04"]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Tilemaps_00.png" id="6_kdq04"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gramy"]
 texture = ExtResource("6_kdq04")
