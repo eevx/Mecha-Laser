@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://deq86blqun7sd"]
 
-[ext_resource type="Script" uid="uid://cqmua3antkncq" path="res://Scripts/light_node.gd" id="1_bke0b"]
+[ext_resource type="Script" uid="uid://1minlmb4csjf" path="res://Scripts/light_node.gd" id="1_bke0b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wc8x3"]
 
@@ -9,6 +9,8 @@ radius = 10.0
 height = 20.0
 
 [node name="light_node" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_bke0b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

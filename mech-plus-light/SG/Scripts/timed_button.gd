@@ -18,12 +18,15 @@ var mirror_parent: Node
 
 @export var moving_platform: AnimatableBody2D
 
+@export var magnet: Node2D
+
 # an optional object that appears/disappears
 @export var new_object: Node2D
 
 @export var disappear_on_active_1 := true     # platform disappears when ON
 @export var disappear_on_active_2 := true     # mirror disappears when ON
 @export var stop_on_active := true            # moving platform stops when ON
+
 
 
 # --------------------------------------------------
@@ -38,7 +41,8 @@ func _ready() -> void:
 		mirror_parent = mirror.get_parent()
 
 	# new_object starts hidden
-	_hide_new_object()
+	if magnet:
+		magnet.disable_magnet()
 
 
 # --------------------------------------------------
@@ -114,6 +118,9 @@ func _activate_behavior() -> void:
 
 	# extra object
 	_show_new_object()
+	
+	magnet.disable_magnet()
+	
 
 
 func _deactivate_behavior() -> void:
@@ -139,6 +146,7 @@ func _deactivate_behavior() -> void:
 
 	# extra object
 	_hide_new_object()
+	magnet.enable_magnet()
 
 
 # ==================================================

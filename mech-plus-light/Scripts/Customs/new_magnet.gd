@@ -90,3 +90,12 @@ func _on_body_exited(body):
 		player.reset_gravity(original_gravity)
  		#player.gravity = original_gravity
 		player = null
+
+
+func disable_magnet():
+	monitorable = false
+	monitoring = false
+
+func enable_magnet():
+	monitorable = true
+	monitoring = true
