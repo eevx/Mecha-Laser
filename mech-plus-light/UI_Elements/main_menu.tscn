@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://diux1ypcrw6em"]
+[gd_scene load_steps=18 format=3 uid="uid://diux1ypcrw6em"]
 
 [ext_resource type="Script" uid="uid://t82yk37vr7an" path="res://UI_Elements/main_menu.gd" id="1_hvkgu"]
 [ext_resource type="Texture2D" uid="uid://dse3thl5obq5n" path="res://UI_Elements/ui_assets/Deselected State_Start.png" id="1_tisvj"]
 [ext_resource type="Texture2D" uid="uid://b407p0roctb3" path="res://UI_Elements/ui_assets/Title Screen Background 100P.png" id="2_3acur"]
 [ext_resource type="PackedScene" uid="uid://cj6ffj6cddi57" path="res://UI_Elements/AudioSelector.tscn" id="2_72yfl"]
 [ext_resource type="Texture2D" uid="uid://djavceunwmiol" path="res://UI_Elements/ui_assets/Selected State_Start.png" id="2_wsxlh"]
-[ext_resource type="Shader" uid="uid://bbv0hyaf5jaec" path="res://UI_Elements/bloom_shader.gdshader" id="3_6dgwm"]
 [ext_resource type="Texture2D" uid="uid://bonakc28k7opk" path="res://UI_Elements/ui_assets/Hover State_Start.png" id="3_j2po5"]
 [ext_resource type="Theme" uid="uid://cal7iq2xw07up" path="res://UI_Elements/theme.tres" id="4_6dgwm"]
 [ext_resource type="Shader" uid="uid://d1yww53m5tb0" path="res://UI_Elements/text_shine.gdshader" id="4_djuen"]
@@ -18,21 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://dh87h61kqcomh" path="res://UI_Elements/ui_assets/Selected State_Quit Game.png" id="8_uvg1g"]
 [ext_resource type="Texture2D" uid="uid://bngpoa7aj68bo" path="res://UI_Elements/ui_assets/Hover State_Quit Game.png" id="9_0k3na"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6dgwm"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6dgwm"]
-shader = ExtResource("3_6dgwm")
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_6dgwm")
-shader_parameter/root_color = Color(1, 0.75, 0.3, 1)
-shader_parameter/tip_color = Color(1, 0.03, 0.001, 1)
-shader_parameter/poster_color = 6.0
-shader_parameter/fire_alpha = 1.0
-shader_parameter/fire_speed = Vector2(0.015, 0.5)
-shader_parameter/fire_aperture = 0.22
-shader_parameter/vignette_radius = 0.25
-shader_parameter/vignette_falloff = 0.2630000124925
-shader_parameter/noise_influence = 1.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t2x1d"]
 shader = ExtResource("4_djuen")
 shader_parameter/shine_color = Color(1, 1, 1, 1)
@@ -41,7 +25,7 @@ shader_parameter/shine_size = 0.1
 shader_parameter/shine_angle = 45.0
 shader_parameter/text_size = Vector2(100, 100)
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("main_menu", "level_selector", "options_screen", "title_screen_bg")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("main_menu", "level_selector", "options_screen", "title_screen_bg", "title")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_hvkgu")
@@ -49,6 +33,7 @@ main_menu = NodePath("Main_Menu")
 level_selector = NodePath("Level_Selector")
 options_screen = NodePath("Options Screen")
 title_screen_bg = NodePath("TitleScreenBackground100p")
+title = NodePath("Title")
 audio_scene = ExtResource("2_72yfl")
 bg = ExtResource("2_3acur")
 bg_blurred = ExtResource("4_rsdsy")
@@ -58,15 +43,7 @@ position = Vector2(582, 324)
 scale = Vector2(0.6101852, 0.6101852)
 texture = ExtResource("2_3acur")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_6dgwm")
-layout_mode = 0
-offset_left = 6.1035156e-05
-offset_right = 1166.0
-offset_bottom = 655.0
-
 [node name="Title" type="Label" parent="."]
-modulate = Color(0.9764706, 0.8156863, 0.29803923, 0.87058824)
 material = SubResource("ShaderMaterial_t2x1d")
 layout_mode = 0
 offset_left = 168.0
@@ -75,7 +52,11 @@ offset_right = 1008.0
 offset_bottom = 303.0
 theme = ExtResource("4_6dgwm")
 theme_type_variation = &"HeaderLarge"
-theme_override_constants/outline_size = 22
+theme_override_colors/font_color = Color(1, 1, 0.35686275, 1)
+theme_override_colors/font_shadow_color = Color(0.25882354, 0.25882354, 0.25882354, 1)
+theme_override_colors/font_outline_color = Color(0.5489626, 0.5489626, 0.54896253, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 160
 text = "DUEX EX MACHINA"
 script = ExtResource("5_t2x1d")
