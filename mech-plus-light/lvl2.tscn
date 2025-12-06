@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://7uxepahwdrra"]
+
+[ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="1_5fqbh"]
+[ext_resource type="PackedScene" uid="uid://cwo3g6sttlj3r" path="res://Scenes/Customs/New_Magnet.tscn" id="2_fqrjd"]
+[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="3_chaov"]
+[ext_resource type="PackedScene" uid="uid://7hq1ioohc2gc" path="res://kanishka_stuffs/scenes/button.tscn" id="4_o0rcv"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 324)
+
+[node name="The_Better_Player" parent="." instance=ExtResource("1_5fqbh")]
+position = Vector2(65, 639)
+scale = Vector2(3.5, 3.5)
+
+[node name="magnet" parent="." instance=ExtResource("2_fqrjd")]
+position = Vector2(575, -13)
+scale = Vector2(-9.271527, 0.53311014)
+
+[node name="Platform" parent="." instance=ExtResource("3_chaov")]
+position = Vector2(373, 644)
+scale = Vector2(60, 1)
+
+[node name="Platform2" parent="." instance=ExtResource("3_chaov")]
+position = Vector2(314, 437)
+scale = Vector2(20, 1)
+
+[node name="button" parent="." node_paths=PackedStringArray("new_object") instance=ExtResource("4_o0rcv")]
+position = Vector2(118, 629)
+new_object = NodePath("../magnet")

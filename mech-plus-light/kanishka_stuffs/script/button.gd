@@ -15,8 +15,11 @@ var mirror_parent: Node
 
 @export var moving_platform: AnimatableBody2D
 
-# NEW: something that “pops into existence”
+# NEW: optional "popped into existence" object
 @export var new_object: Node2D
+
+@export var newer_object: Node2D
+# NEW: optional light this button controls
 
 @export var disappear_on_active_1 := true
 @export var disappear_on_active_2 := true
@@ -27,21 +30,7 @@ func _ready() -> void:
 		platform_parent = platform.get_parent()
 	if mirror:
 		mirror_parent = mirror.get_parent()
-		
-	if !disappear_on_active_1: 
-		_remove_platform_from_scene()
-	else: 
-		_add_platform_to_scene()
-	if !disappear_on_active_2:
-		_remove_mirror_from_scene()
-	else: 
-		_add_mirror_to_scene()
-	if !stop_on_active: 
-		_stop_moving_platform()
-	else:
-		_move_moving_platform()
-
-	# NEW: start with the object hidden/disabled
+	# NEW: start with new_object hidden/disabled
 	_hide_new_object()
 
 func _on_body_entered(_body: Node2D) -> void:
@@ -73,8 +62,9 @@ func _input(event: InputEvent) -> void:
 				else:
 					_move_moving_platform()
 
-				# NEW: when ON, show the new object
+				# NEW: when ON → show object 
 				_show_new_object()
+
 			else:
 				print("off")
 				sprite_2d.texture = button_tex_2
@@ -94,13 +84,12 @@ func _input(event: InputEvent) -> void:
 				else:
 					_move_moving_platform()
 
-				# NEW: when OFF, hide the new object
+				# NEW: when OFF → hide object
 				_hide_new_object()
-
 func _on_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		player_is_in = false
-		print("area exited")
+		print("area entered")
 
 func _remove_platform_from_scene() -> void:
 	if platform and platform_parent and platform.get_parent():
@@ -117,17 +106,16 @@ func _remove_mirror_from_scene() -> void:
 func _add_mirror_to_scene() -> void:
 	if mirror and mirror_parent and not mirror.get_parent():
 		mirror_parent.add_child(mirror)
-
+		
 func _stop_moving_platform() -> void: 
 	if moving_platform:
-		moving_platform.change_speed(0.0)
+		moving_platform.change_speed(0)
 
 func _move_moving_platform() -> void:
 	if moving_platform:
-		moving_platform.change_speed(moving_platform.get_og_speed())
+		moving_platform.change_speed(moving_platform.get_og_speed()) 
 
-# NEW: hide/show instead of remove/add
-
+# NEW: show/hide object instead of removing from tree
 func _hide_new_object() -> void:
 	if new_object:
 		new_object.visible = false
@@ -139,3 +127,4 @@ func _show_new_object() -> void:
 		new_object.visible = true
 		if new_object.has_node("CollisionShape2D"):
 			new_object.get_node("CollisionShape2D").disabled = false
+			

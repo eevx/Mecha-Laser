@@ -44,11 +44,10 @@ disappear_on_active_1 = false
 disappear_on_active_2 = false
 stop_on_active = false
 
-[node name="button2" parent="." node_paths=PackedStringArray("platform", "mirror", "new_object") instance=ExtResource("5_22tls")]
+[node name="button2" parent="." node_paths=PackedStringArray("platform", "mirror") instance=ExtResource("5_22tls")]
 position = Vector2(553, 46)
 platform = NodePath("../Platform")
 mirror = NodePath("../Platform5")
-new_object = NodePath("")
 
 [node name="Platform2" parent="." instance=ExtResource("2_ptj2r")]
 position = Vector2(572, 657.00006)
@@ -68,5 +67,5 @@ rotation = 1.5707964
 scale = Vector2(100, 1)
 
 [node name="Spikes" parent="." instance=ExtResource("6_ptj2r")]
-position = Vector2(567, 651.00006)
+position = Vector2(559.00006, 645)
 scale = Vector2(-16.254494, 0.61999154)

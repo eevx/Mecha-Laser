@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpqm34k18fh1x"]
+
+[ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="1_p5mjf"]
+[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="2_r88h7"]
+[ext_resource type="PackedScene" uid="uid://deq86blqun7sd" path="res://Scenes/light_node.tscn" id="3_wov24"]
+[ext_resource type="PackedScene" uid="uid://ccl5r1h7gl0cp" path="res://Scenes/sourcelight.tscn" id="4_p3ffo"]
+[ext_resource type="PackedScene" uid="uid://7hq1ioohc2gc" path="res://kanishka_stuffs/scenes/button.tscn" id="5_6ou4b"]
+[ext_resource type="PackedScene" uid="uid://c3wofjirnbav1" path="res://SG/Scenes/timed_button.tscn" id="6_r88h7"]
+[ext_resource type="PackedScene" uid="uid://cqqm8fqs2beml" path="res://kanishka_stuffs/scenes/spikes.tscn" id="7_wov24"]
+
+[node name="lvl1transition" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 325)
+
+[node name="The_Better_Player" parent="." instance=ExtResource("1_p5mjf")]
+position = Vector2(21, 555)
+scale = Vector2(3.5, 3.5)
+
+[node name="Platform" parent="." instance=ExtResource("2_r88h7")]
+position = Vector2(18, 562)
+scale = Vector2(2, 1)
+
+[node name="Platform4" parent="." instance=ExtResource("2_r88h7")]
+position = Vector2(747, 645)
+scale = Vector2(63.800003, 1)
+
+[node name="Platform2" parent="." instance=ExtResource("2_r88h7")]
+position = Vector2(620, 562)
+scale = Vector2(2, 1)
+
+[node name="Platform3" parent="." instance=ExtResource("2_r88h7")]
+position = Vector2(215, 565)
+scale = Vector2(2, 1)
+
+[node name="light_node" parent="." instance=ExtResource("3_wov24")]
+position = Vector2(362, 0)
+
+[node name="Source" parent="." instance=ExtResource("4_p3ffo")]
+position = Vector2(363, 638)
+rotation = -1.5707964
+
+[node name="button" parent="." node_paths=PackedStringArray("new_object") instance=ExtResource("5_6ou4b")]
+position = Vector2(1007, 184)
+button_tex_1 = null
+button_tex_2 = null
+new_object = NodePath("../Source")
+disappear_on_active_1 = false
+
+[node name="Timed_Button" parent="." node_paths=PackedStringArray("platform", "new_object", "newer_object") instance=ExtResource("6_r88h7")]
+position = Vector2(219, 558)
+scale = Vector2(0.15, 0.15)
+platform = NodePath("")
+new_object = NodePath("../Source")
+newer_object = NodePath("../Spikes")
+
+[node name="Spikes" parent="." instance=ExtResource("7_wov24")]
+position = Vector2(652, 644.99994)
+scale = Vector2(23.077765, 0.6053357)
