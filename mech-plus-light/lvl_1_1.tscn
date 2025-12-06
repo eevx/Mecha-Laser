@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://tlqbp7nsbxm0"]
+
+[ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="1_cjol5"]
+[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="2_ptj2r"]
+[ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/movingplatform.tscn" id="3_k264y"]
+[ext_resource type="PackedScene" uid="uid://ccl5r1h7gl0cp" path="res://Scenes/sourcelight.tscn" id="4_e54vo"]
+[ext_resource type="PackedScene" uid="uid://7hq1ioohc2gc" path="res://kanishka_stuffs/scenes/button.tscn" id="5_22tls"]
+[ext_resource type="PackedScene" uid="uid://cqqm8fqs2beml" path="res://kanishka_stuffs/scenes/spikes.tscn" id="6_ptj2r"]
+
+[node name="Lvl1-1" type="Node2D"]
+position = Vector2(-6, -14)
+
+[node name="The_Better_Player" parent="." instance=ExtResource("1_cjol5")]
+position = Vector2(38, 647)
+scale = Vector2(3.5, 3.5)
+
+[node name="Platform" parent="." instance=ExtResource("2_ptj2r")]
+position = Vector2(469, 403)
+
+[node name="moving_platform" parent="." instance=ExtResource("3_k264y")]
+position = Vector2(120, 475)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+collision_layer = 3
+collision_mask = 3
+point_a = Vector2(120, 100)
+point_b = Vector2(120, 475)
+
+[node name="Source" parent="." instance=ExtResource("4_e54vo")]
+position = Vector2(10, 528)
+rotation = 0.0
+
+[node name="Source2" parent="." instance=ExtResource("4_e54vo")]
+position = Vector2(7, 80)
+rotation = 0.0
+
+[node name="button" parent="." node_paths=PackedStringArray("mirror", "moving_platform", "new_object") instance=ExtResource("5_22tls")]
+position = Vector2(465, 377)
+mirror = NodePath("../Platform3")
+moving_platform = NodePath("../moving_platform")
+new_object = NodePath("../Spikes")
+disappear_on_active_1 = false
+disappear_on_active_2 = false
+stop_on_active = false
+
+[node name="button2" parent="." node_paths=PackedStringArray("platform", "mirror") instance=ExtResource("5_22tls")]
+position = Vector2(553, 46)
+platform = NodePath("../Platform")
+mirror = NodePath("../Platform5")
+
+[node name="Platform2" parent="." instance=ExtResource("2_ptj2r")]
+position = Vector2(572, 657.00006)
+
+[node name="Platform3" parent="." instance=ExtResource("2_ptj2r")]
+position = Vector2(336, 528)
+rotation = -0.32366103
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(586, 337)
+
+[node name="Platform5" parent="." instance=ExtResource("2_ptj2r")]
+position = Vector2(2983, 8866)
+rotation = 1.5707964
+
+[node name="Spikes" parent="." instance=ExtResource("6_ptj2r")]
+position = Vector2(559.00006, 645)
+scale = Vector2(-16.254494, 0.61999154)
