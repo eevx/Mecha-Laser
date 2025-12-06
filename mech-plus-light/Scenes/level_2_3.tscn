@@ -2,80 +2,130 @@
 
 [ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="1_6eygh"]
 [ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/movingplatform.tscn" id="2_y5cx8"]
-[ext_resource type="PackedScene" uid="uid://db2sg5dk7xs1j" path="res://SG/Scenes/rotor_lever.tscn" id="3_rujyb"]
 [ext_resource type="PackedScene" uid="uid://hc3pjsbxw7eu" path="res://Scenes/hazardous_area.tscn" id="4_6oft8"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="5_6oft8"]
+[ext_resource type="PackedScene" uid="uid://bhf8kmv0a5ydq" path="res://Scenes/master_portal.tscn" id="5_kdq04"]
 
 [node name="level_2_3" type="Node2D"]
 
-[node name="platforms" type="Node2D" parent="."]
+[node name="Platforms" type="Node2D" parent="."]
 
-[node name="AnimatableBody2D" parent="platforms" instance=ExtResource("2_y5cx8")]
-position = Vector2(299, 391)
-scale = Vector2(2.5, 2)
-point_a = Vector2(299, 410)
-point_b = Vector2(299, 280)
+[node name="AnimatableBody2D" parent="Platforms" instance=ExtResource("2_y5cx8")]
+position = Vector2(552, -96)
+horizontal = false
 
-[node name="Platform" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(129, 673)
+[node name="Platform" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(-96, 232)
 
-[node name="Platform8" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(572, 10)
-rotation = 3.1415927
+[node name="Platform12" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(-472, 368)
 
-[node name="Platform9" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(572, 83)
+[node name="Platform18" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(-472, 560)
 
-[node name="Platform2" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(428, 304)
+[node name="Platform19" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(-184, 560)
 
-[node name="Platform4" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(220, 553)
+[node name="Platform20" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(104, 560)
 
-[node name="Platform5" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(172.00002, 463)
+[node name="Platform21" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(392, 560)
 
-[node name="Platform12" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(429.00003, 212)
+[node name="Platform22" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(680, 560)
 
-[node name="Platform11" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(1076, 463)
+[node name="Platform23" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(968, 560)
 
-[node name="Platform7" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(31.000015, 506)
+[node name="Platform24" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(1998, 552)
 
-[node name="Platform6" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(460, 462)
+[node name="Platform25" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(2288, 552)
 
-[node name="Platform10" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(491, 47)
-rotation = 1.5707964
+[node name="Platform26" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(2574, 552)
 
-[node name="Platform3" parent="platforms" instance=ExtResource("1_6eygh")]
-position = Vector2(929, 553)
+[node name="Platform27" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(2862, 552)
 
-[node name="rotor_lever" parent="." instance=ExtResource("3_rujyb")]
-position = Vector2(31.000004, 482)
-scale = Vector2(0.33, 0.33)
+[node name="Platform6" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(192, 232)
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(936, 232)
+
+[node name="Platform17" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(3152, 232)
+
+[node name="Platform28" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(3152, 552)
+
+[node name="Platform3" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(1016, -192)
+
+[node name="Platform4" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(936, -464)
+
+[node name="Platform7" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(936, -888)
+
+[node name="Platform11" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(1224, -888)
+
+[node name="Platform13" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(1728, -880)
+
+[node name="Platform14" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(2016, -880)
+
+[node name="Platform15" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(2304, -880)
+
+[node name="Platform16" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(2592, -880)
+
+[node name="Platform8" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(648, -888)
+
+[node name="Platform9" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(360, -888)
+
+[node name="Platform10" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(72, -888)
+
+[node name="Platform5" parent="Platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(1224, -464)
 
 [node name="trips" type="Node2D" parent="."]
 
 [node name="Hazardous_area" parent="trips" instance=ExtResource("4_6oft8")]
 modulate = Color(1, 0.15686275, 0, 1)
-position = Vector2(651, 154.00002)
+position = Vector2(-103.99994, 95.000015)
 rotation = -0.4184065
 scale = Vector2(0.603, 0.05)
 
 [node name="Hazardous_area3" parent="trips" instance=ExtResource("4_6oft8")]
 modulate = Color(0, 0.5512107, 0.9883382, 1)
-position = Vector2(342, 462)
+position = Vector2(-168, 168)
 scale = Vector2(0.345, 0.05)
 
 [node name="Hazardous_area2" parent="trips" instance=ExtResource("4_6oft8")]
 modulate = Color(0, 0.87609196, 0.21001908, 1)
-position = Vector2(1073, 508)
+position = Vector2(-160.00012, 127.99991)
 rotation = 0.42816252
 scale = Vector2(0.358, 0.05)
 
 [node name="The_Better_Player" parent="." instance=ExtResource("5_6oft8")]
-position = Vector2(61, 613)
+position = Vector2(144, 136)
+
+[node name="Camera2D" type="Camera2D" parent="The_Better_Player"]
+
+[node name="Master_Portal" parent="." instance=ExtResource("5_kdq04")]
+position = Vector2(-472.00003, -616)
+rotation = 0.6981317
+
+[node name="Master_Portal2" parent="." instance=ExtResource("5_kdq04")]
+position = Vector2(1480, -888)
+rotation = 1.5707964
