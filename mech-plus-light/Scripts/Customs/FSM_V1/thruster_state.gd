@@ -51,7 +51,7 @@ func can_use_thruster() -> bool:
 	return player.thruster_fuel > 0.0
 
 func apply_thruster_force(delta: float) -> void:
-	player.velocity.y += player.data.thruster_force * delta
+	player.velocity.y += player.data.thruster_force * sign(player.data.gravityScale) * delta
 
 func start_thruster_effects() -> void:
 	player.thruster_using = true

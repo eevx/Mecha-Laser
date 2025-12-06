@@ -63,11 +63,11 @@ extends Area2D
 @export var increased_gravity : float = 2000.0    # when magnet is below player (on ground)
 @export var decreased_gravity : float = 300.0     # when magnet is above player (on ceiling)
 
-var player : CharacterBody2D = null
+var player : Player = null
 var original_gravity := 0.0
 
 func _on_body_entered(body):
-	if body is CharacterBody2D:
+	if body is Player:
 		print("I am here")
 		player = body
 		# store original gravity
