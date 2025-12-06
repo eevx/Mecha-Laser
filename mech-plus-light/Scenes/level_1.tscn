@@ -21,7 +21,7 @@ rotation = 0.3157788
 
 [node name="Sprite2D" parent="Source" index="0"]
 position = Vector2(-7.9910607, -1.0690932)
-rotation = -0.069264114
+rotation = 1.7075617
 
 [node name="Laser" parent="Source" index="1"]
 color = Color(1, 0.77843577, 0.74179983, 1)

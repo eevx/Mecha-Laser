@@ -1,7 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://br248huea2eo2"]
+[gd_scene load_steps=21 format=3 uid="uid://br248huea2eo2"]
 
 [ext_resource type="Script" uid="uid://dn8yiimgnu2v1" path="res://Scripts/light.gd" id="1_mou6w"]
+[ext_resource type="Shader" uid="uid://dt56rqk6jtxhf" path="res://fx_scripts/simple_scroll.gdshader" id="2_a6465"]
 [ext_resource type="Texture2D" uid="uid://b3c7crawnb23u" path="res://Placeholder Assets/glowing_circle.png" id="2_jsuue"]
+[ext_resource type="Texture2D" uid="uid://cyqbqam1t1msq" path="res://Assets/fx_assets/seamless_line2.png" id="3_tklua"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xlako"]
+shader = ExtResource("2_a6465")
+shader_parameter/line_texture = ExtResource("3_tklua")
+shader_parameter/time_scale = 3.67
+shader_parameter/texture_scale = 0.38
 
 [sub_resource type="Gradient" id="Gradient_3pc01"]
 offsets = PackedFloat32Array(0.583, 1)
@@ -89,10 +97,11 @@ collision_mask = 256
 script = ExtResource("1_mou6w")
 
 [node name="Line2D" type="Line2D" parent="."]
-visible = false
+modulate = Color(0, 1.7112036, 3.232042, 1)
+material = SubResource("ShaderMaterial_xlako")
 points = PackedVector2Array(40, 0, 1440, 0)
-begin_cap_mode = 2
-end_cap_mode = 2
+width = 50.0
+texture_mode = 1
 
 [node name="CastingParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(40, 0)

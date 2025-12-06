@@ -2,17 +2,20 @@
 extends Node2D
 
 @export_enum("RED", "BLUE", "GREEN") var color_of_the_portal : String = "RED"
+@onready var sprite: Sprite2D = $Sprite2D
+
 var color := Color.RED
+
 #@export var outputs_parent_name: String = "OutputsParent"  # Node containing outputs (optional)
 # optional: if you want explicit outputs, export NodePath array; for now we auto-collect children under outputs_parent
 func _ready() -> void:
 	match color_of_the_portal:
 		"RED":
-			color = Color.RED
+			sprite.frame = 2
 		"BLUE":
-			color = Color.BLUE
+			sprite.frame = 0
 		"GREEN":
-			color = Color.GREEN
+			sprite.frame = 1
 func is_master_portal() -> bool:
 	return true
 
