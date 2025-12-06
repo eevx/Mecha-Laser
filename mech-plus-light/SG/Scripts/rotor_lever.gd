@@ -1,7 +1,7 @@
 extends Area2D
 
 
-# 1. The object to control
+# 1. The object to control	
 @export var object_to_rotate: Node2D 
 
 # 2. Angle Limits and Speed

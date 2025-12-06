@@ -7,18 +7,27 @@ var player_is_in = false
 @export var button_tex_2 : Texture
 @export var sprite_2d : Sprite2D
 
-@export var platform: AnimatableBody2D
+@export var platform: Node2D
 var platform_parent: Node
 
-@export var mirror: AnimatableBody2D
+@export var mirror: Node2D
 var mirror_parent: Node
 
-@export var moving_platform: AnimatableBody2D
+@export var moving_platform: Node2D
 
 # NEW: optional "popped into existence" object
 @export var new_object: Node2D
 
-#@export var newer_object: AnimatableBody2D
+@export var newer_object: Node2D
+
+@export var magnet: Node2D
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 # NEW: optional light this button controls
 
 @export var disappear_on_active_1 := true
@@ -31,6 +40,8 @@ func _ready() -> void:
 	if mirror:
 		mirror_parent = mirror.get_parent()
 	# NEW: start with new_object hidden/disabled
+	if magnet: 
+		magnet.disable_magnet()
 	_hide_new_object()
 	#_hide_newer_object()
 
@@ -62,11 +73,23 @@ func _input(event: InputEvent) -> void:
 					_stop_moving_platform()
 				else:
 					_move_moving_platform()
-
-				# NEW: when ON → show object 
+				if magnet:
+					magnet.enable_magnet()# NEW: when ON → show object 
 				_show_new_object()
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				#_show_newer_object()
 
+=======
+				
+>>>>>>> Stashed changes
+=======
+				
+>>>>>>> Stashed changes
+=======
+				
+>>>>>>> Stashed changes
 			else:
 				print("off")
 				sprite_2d.texture = button_tex_2
@@ -85,8 +108,8 @@ func _input(event: InputEvent) -> void:
 					_stop_moving_platform()
 				else:
 					_move_moving_platform()
-
-				# NEW: when OFF → hide object
+				if magnet: 
+					magnet.disable_magnet()# NEW: when OFF → hide object
 				_hide_new_object()
 				#_hide_newer_object()
 func _on_body_exited(body: Node2D) -> void:
