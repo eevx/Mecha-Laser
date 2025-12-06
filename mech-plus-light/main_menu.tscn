@@ -1,5 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://h4xnddouiq5a"]
+[gd_scene load_steps=6 format=3 uid="uid://h4xnddouiq5a"]
 
 [ext_resource type="PackedScene" uid="uid://diux1ypcrw6em" path="res://UI_Elements/main_menu.tscn" id="1_06t4h"]
+[ext_resource type="PackedScene" uid="uid://csk6sp4x1yk0j" path="res://lvl1-1.tscn" id="2_glbon"]
+[ext_resource type="PackedScene" uid="uid://7uxepahwdrra" path="res://lvl2.tscn" id="3_nlkkf"]
+[ext_resource type="PackedScene" uid="uid://bn2fwsv4ft36b" path="res://level_3-1.tscn" id="4_qe12f"]
+[ext_resource type="Texture2D" uid="uid://5q1pppx0wkrp" path="res://Assets/char_sprites/file_2025-12-06_07.18.19[1] 1.png" id="5_8qtwp"]
 
 [node name="MainMenu" instance=ExtResource("1_06t4h")]
+level_1 = ExtResource("2_glbon")
+level_2 = ExtResource("3_nlkkf")
+level_3 = ExtResource("4_qe12f")
+bg = ExtResource("5_8qtwp")
+bg_blurred = ExtResource("5_8qtwp")

@@ -10,13 +10,13 @@ var is_on = false
 # Objects this timer button can control
 # --------------------------------------------------
 
-@export var platform: AnimatableBody2D
+@export var platform: Node2D
 var platform_parent: Node
 
-@export var mirror: AnimatableBody2D
+@export var mirror: Node2D
 var mirror_parent: Node
 
-@export var moving_platform: AnimatableBody2D
+@export var moving_platform: Node2D
 
 @export var magnet: Node2D
 

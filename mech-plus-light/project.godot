@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 MusicManager="*res://Autoload/MusicManager.tscn"
 SfxManager="*res://Autoload/SfxManager.tscn"
+GlobalActions="*res://global_actions.tscn"
+GlobalActionsScript="*res://Scenes/Defaults(guide)/global_actions.gd"
 
 [editor]
 

@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdivclpsnl0xk"]
+
+[ext_resource type="Script" uid="uid://t82yk37vr7an" path="res://UI_Elements/main_menu.gd" id="1_8wdlf"]
+[ext_resource type="Texture2D" uid="uid://b407p0roctb3" path="res://UI_Elements/ui_assets/Title Screen Background 100P.png" id="2_tfety"]
+[ext_resource type="Texture2D" uid="uid://bl0jl1tkmnbm2" path="res://Title - DEUS EX MACHINA.png" id="3_wnv8k"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_8wdlf")
+
+[node name="TitleScreenBackground100p" type="Sprite2D" parent="."]
+position = Vector2(575, 318)
+scale = Vector2(0.60740745, 0.60740745)
+texture = ExtResource("2_tfety")
+
+[node name="main_menu" type="VBoxContainer" parent="."]
+offset_left = 399.0
+offset_top = 360.0
+offset_right = 593.0
+offset_bottom = 537.0
+scale = Vector2(2, 2)
+theme_override_constants/separation = 4
+
+[node name="Button" type="Button" parent="main_menu"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="TitleDeusExMachina" type="Sprite2D" parent="."]
+position = Vector2(598.00006, 265)
+scale = Vector2(0.8000001, 0.8000001)
+texture = ExtResource("3_wnv8k")
+
+[node name="level_selector" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Level 1" type="TextureButton" parent="level_selector"]
+layout_mode = 2
+
+[node name="Level 2" type="TextureButton" parent="level_selector"]
+layout_mode = 2
+
+[node name="Level 3" type="TextureButton" parent="level_selector"]
+layout_mode = 2
+
+[node name="Main Menu" type="TextureButton" parent="level_selector"]
+layout_mode = 2
+
+[node name="options_screen" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="main_menu/Button" to="." method="_on_button_pressed"]

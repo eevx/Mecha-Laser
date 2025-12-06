@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bn2fwsv4ft36b"]
+[gd_scene load_steps=12 format=4 uid="uid://bn2fwsv4ft36b"]
 
 [ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="1_decnf"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="2_m1kcu"]
@@ -6,11 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="4_m1kcu"]
 [ext_resource type="PackedScene" uid="uid://7hq1ioohc2gc" path="res://kanishka_stuffs/scenes/button.tscn" id="5_u0g4a"]
 [ext_resource type="PackedScene" uid="uid://c3wofjirnbav1" path="res://SG/Scenes/timed_button.tscn" id="6_gyquc"]
-[ext_resource type="PackedScene" uid="uid://db2sg5dk7xs1j" path="res://SG/Scenes/rotor_lever.tscn" id="7_yrq23"]
 [ext_resource type="PackedScene" uid="uid://ccl5r1h7gl0cp" path="res://Scenes/sourcelight.tscn" id="8_oht82"]
-[ext_resource type="PackedScene" uid="uid://deq86blqun7sd" path="res://Scenes/light_node.tscn" id="9_sokri"]
 [ext_resource type="PackedScene" uid="uid://cwo3g6sttlj3r" path="res://Scenes/Customs/New_Magnet.tscn" id="10_m65wr"]
-[ext_resource type="PackedScene" uid="uid://cehc71vdi51dk" path="res://Scenes/hazardous_light.tscn" id="11_gw5c3"]
+[ext_resource type="PackedScene" uid="uid://71ednibt2mf8" path="res://Scenes/mirror_animated.tscn" id="10_u0sxi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u0g4a"]
 texture = ExtResource("1_decnf")
@@ -3663,16 +3661,21 @@ position = Vector2(1292, -1128.0001)
 rotation = 1.5707964
 scale = Vector2(1.6, 1)
 
-[node name="Hazardous_area4" parent="." instance=ExtResource("3_f2ags")]
-position = Vector2(-139, -1275)
-rotation = 1.5707964
+[node name="Hazardous_area5" parent="." instance=ExtResource("3_f2ags")]
+position = Vector2(1572, -1264)
+rotation = 3.1415927
+
+[node name="Hazardous_area6" parent="." instance=ExtResource("3_f2ags")]
+position = Vector2(1053, -238)
+rotation = 3.1415927
+scale = Vector2(6, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1057, -717)
 zoom = Vector2(0.4, 0.4)
 
 [node name="Platform" parent="." instance=ExtResource("4_m1kcu")]
-position = Vector2(1627, -514)
+position = Vector2(1568, -495)
 
 [node name="Platform2" parent="." instance=ExtResource("4_m1kcu")]
 position = Vector2(1158, -713)
@@ -3683,39 +3686,42 @@ position = Vector2(2103, -934)
 [node name="Platform5" parent="." instance=ExtResource("4_m1kcu")]
 position = Vector2(337, -1065)
 
+[node name="Platform7" parent="." instance=ExtResource("4_m1kcu")]
+position = Vector2(744, -364)
+
 [node name="Platform6" parent="." instance=ExtResource("4_m1kcu")]
 position = Vector2(-239, -1070)
 
-[node name="button" parent="." instance=ExtResource("5_u0g4a")]
-position = Vector2(1748, -534)
-scale = Vector2(1.568736, 5.8333087)
+[node name="Platform8" parent="." instance=ExtResource("4_m1kcu")]
+position = Vector2(-446, -1299)
+rotation = 1.5707964
+scale = Vector2(0.7, 0.8)
 
-[node name="Timed_Button" parent="." instance=ExtResource("6_gyquc")]
-position = Vector2(2201, -990)
+[node name="button" parent="." node_paths=PackedStringArray("magnet") instance=ExtResource("5_u0g4a")]
+position = Vector2(1800, -542)
+rotation = 1.5707964
+scale = Vector2(8, 6)
+magnet = NodePath("../Magnet")
+
+[node name="Timed_Button" parent="." node_paths=PackedStringArray("platform", "new_object") instance=ExtResource("6_gyquc")]
+position = Vector2(2113, -969)
 scale = Vector2(0.3, 0.3)
-
-[node name="rotor_lever" parent="." instance=ExtResource("7_yrq23")]
-position = Vector2(2031, -1027)
+platform = NodePath("../Platform8")
+new_object = NodePath("../Mirror_animated")
 
 [node name="Source" parent="." instance=ExtResource("8_oht82")]
 position = Vector2(1265, -1522)
 rotation = 1.8308504
 
-[node name="light_node" parent="." instance=ExtResource("9_sokri")]
-position = Vector2(1062, -757)
-
-[node name="light_node2" parent="." instance=ExtResource("9_sokri")]
-position = Vector2(1250, -757)
-
-[node name="Parent" parent="." instance=ExtResource("10_m65wr")]
-position = Vector2(1629, -1562.0001)
+[node name="Magnet" parent="." instance=ExtResource("10_m65wr")]
+position = Vector2(1568, -1589)
 scale = Vector2(3, 3)
-
-[node name="Hazardous_Light" parent="." instance=ExtResource("11_gw5c3")]
-position = Vector2(1053, -258)
-scale = Vector2(5.6, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(1.5258789e-05, 0)
-tile_map_data = PackedByteArray("AAD9/wAAAAAJAAcAAAD+/wAAAAAJAAcAAAD//wAAAAAJAAcAAAAAAAAAAAAJAAcAAAABAAAAAAAJAAcAAAACAAAAAAAJAAcAAAADAAAAAAAJAAcAAAAEAAAAAAAJAAcAAAAFAAAAAAAJAAcAAAAYAAAAAAAJAAcAAAAXAAAAAAAJAAcAAAAWAAAAAAAJAAcAAAAVAAAAAAAJAAcAAAAUAAAAAAAJAAcAAAATAAAAAAAJAAcAAAASAAAAAAAJAAcAAAARAAAAAAAJAAcAAAAQAAAAAAAJAAcAAAAPAAAAAAAJAAcAAAAOAAAAAAAJAAcAAAANAAAAAAAJAAcAAAAMAAAAAAAJAAcAAAALAAAAAAAJAAcAAAAKAAAAAAAJAAcAAAAJAAAAAAAJAAcAAAAIAAAAAAAJAAcAAAAHAAAAAAAJAAcAAAAGAAAAAAAJAAcAAAD7//D/AAAKAAgAAAD7//H/AAAKAAgAAAD7//L/AAAKAAgAAAD7//P/AAAKAAgAAAD7//T/AAAKAAgAAAD7//X/AAAKAAgAAAD7//b/AAAKAAgAAAD7//f/AAAKAAgAAAD7//j/AAAKAAgAAAD7//7/AAAKAAgAAAD7//3/AAAKAAgAAAD7//z/AAAKAAgAAAD7//v/AAAKAAgAAAD7//r/AAAKAAgAAAD7//n/AAAKAAgAAAD7/wAAAAAKAAkAAAD7/+//AAAKAAgAAAD8/wAAAAAJAAcAAAD7////AAAKAAgAAAD7/+7/AAAKAAgAAAD7/+3/AAAKAAkAAQD8/+3/AAAJAAcAAgD9/+3/AAAJAAcAAgD+/+3/AAAJAAcAAgD//+3/AAAJAAcAAgAAAO3/AAAJAAcAAgABAO3/AAAJAAcAAgACAO3/AAAJAAcAAgADAO3/AAAJAAcAAgAEAO3/AAAJAAcAAgAFAO3/AAAJAAcAAgAGAO3/AAAJAAcAAgAHAO3/AAAJAAcAAgAIAO3/AAAJAAcAAgAJAO3/AAAJAAcAAgAKAO3/AAAJAAcAAgALAO3/AAAJAAcAAgAMAO3/AAAJAAcAAgANAO3/AAAJAAcAAgAOAO3/AAAJAAcAAgAPAO3/AAAJAAcAAgAQAO3/AAAJAAcAAgARAO3/AAAJAAcAAgASAO3/AAAJAAcAAgATAO3/AAAJAAcAAgAUAO3/AAAJAAcAAgAVAO3/AAAJAAcAAgAWAO3/AAAJAAcAAgAXAO3/AAAJAAcAAgAYAO3/AAAJAAcAAgAZAAAAAAAIAAkAAAAZAP7/AAAIAAgAAAAZAP3/AAAIAAgAAAAZAPz/AAAIAAgAAAAZAPr/AAAIAAgAAAAZAPn/AAAIAAgAAAAZAPj/AAAIAAgAAAAZAPf/AAAIAAgAAAAZAPb/AAAIAAgAAAAZAPX/AAAIAAgAAAAZAPT/AAAIAAgAAAAZAPP/AAAIAAgAAAAZAPL/AAAIAAgAAAAZAPH/AAAIAAgAAAAZAPD/AAAIAAgAAAAZAO//AAAIAAgAAAAZAO7/AAAIAAgAAAAZAP//AAAIAAgAAAAZAO3/AAAIAAkAAQAZAPv/AAAIAAgAAAA=")
+tile_map_data = PackedByteArray("AAD9/wAAAAAJAAcAAAD+/wAAAAAJAAcAAAD//wAAAAAJAAcAAAAAAAAAAAAJAAcAAAABAAAAAAAJAAcAAAACAAAAAAAJAAcAAAADAAAAAAAJAAcAAAAEAAAAAAAJAAcAAAAFAAAAAAAJAAcAAAAYAAAAAAAJAAcAAAAXAAAAAAAJAAcAAAAWAAAAAAAJAAcAAAAVAAAAAAAJAAcAAAAUAAAAAAAJAAcAAAATAAAAAAAJAAcAAAASAAAAAAAJAAcAAAARAAAAAAAJAAcAAAAQAAAAAAAJAAcAAAAPAAAAAAAJAAcAAAAOAAAAAAAJAAcAAAANAAAAAAAJAAcAAAAMAAAAAAAJAAcAAAALAAAAAAAJAAcAAAAKAAAAAAAJAAcAAAAJAAAAAAAJAAcAAAAIAAAAAAAJAAcAAAAHAAAAAAAJAAcAAAAGAAAAAAAJAAcAAAD7//D/AAAKAAgAAAD7//H/AAAKAAcAAQD7//T/AAAKAAcAAAD7//X/AAAKAAgAAAD7//b/AAAKAAgAAAD7//f/AAAKAAgAAAD7//j/AAAKAAgAAAD7//7/AAAKAAgAAAD7//3/AAAKAAgAAAD7//z/AAAKAAgAAAD7//v/AAAKAAgAAAD7//r/AAAKAAgAAAD7//n/AAAKAAgAAAD7/wAAAAAKAAkAAAD7/+//AAAKAAgAAAD8/wAAAAAJAAcAAAD7////AAAKAAgAAAD7/+7/AAAKAAgAAAD7/+3/AAAKAAkAAQD8/+3/AAAJAAcAAgD9/+3/AAAJAAcAAgD+/+3/AAAJAAcAAgD//+3/AAAJAAcAAgAAAO3/AAAJAAcAAgABAO3/AAAJAAcAAgACAO3/AAAJAAcAAgADAO3/AAAJAAcAAgAEAO3/AAAJAAcAAgAFAO3/AAAJAAcAAgAGAO3/AAAJAAcAAgAHAO3/AAAJAAcAAgAIAO3/AAAJAAcAAgAJAO3/AAAJAAcAAgAKAO3/AAAJAAcAAgALAO3/AAAJAAcAAgAMAO3/AAAJAAcAAgANAO3/AAAJAAcAAgAOAO3/AAAJAAcAAgAPAO3/AAAJAAcAAgAQAO3/AAAJAAcAAgARAO3/AAAJAAcAAgASAO3/AAAJAAcAAgATAO3/AAAJAAcAAgAUAO3/AAAJAAcAAgAVAO3/AAAJAAcAAgAWAO3/AAAJAAcAAgAXAO3/AAAJAAcAAgAYAO3/AAAJAAcAAgAZAAAAAAAIAAkAAAAZAP7/AAAIAAgAAAAZAP3/AAAIAAgAAAAZAPz/AAAIAAgAAAAZAPr/AAAIAAgAAAAZAPn/AAAIAAgAAAAZAPj/AAAIAAgAAAAZAPf/AAAIAAgAAAAZAPb/AAAIAAgAAAAZAPX/AAAIAAgAAAAZAPT/AAAIAAgAAAAZAPP/AAAIAAgAAAAZAPL/AAAIAAgAAAAZAPH/AAAIAAgAAAAZAPD/AAAIAAgAAAAZAO//AAAIAAgAAAAZAO7/AAAIAAgAAAAZAP//AAAIAAgAAAAZAO3/AAAIAAkAAQAZAPv/AAAIAAgAAAA=")
 tile_set = SubResource("TileSet_gyquc")
+
+[node name="Mirror_animated" parent="." instance=ExtResource("10_u0sxi")]
+position = Vector2(1064, -770)
+rotation = 1.5480397

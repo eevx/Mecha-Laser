@@ -1,25 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://diux1ypcrw6em"]
+[gd_scene load_steps=4 format=3 uid="uid://diux1ypcrw6em"]
 
 [ext_resource type="Script" uid="uid://t82yk37vr7an" path="res://UI_Elements/main_menu.gd" id="1_hvkgu"]
 [ext_resource type="Texture2D" uid="uid://b407p0roctb3" path="res://UI_Elements/ui_assets/Title Screen Background 100P.png" id="2_3acur"]
+[ext_resource type="Texture2D" uid="uid://bl0jl1tkmnbm2" path="res://Title - DEUS EX MACHINA.png" id="3_25r1h"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_hvkgu")
 
+[node name="TitleScreenBackground100p" type="Sprite2D" parent="."]
+position = Vector2(575, 318)
+scale = Vector2(0.60740745, 0.60740745)
+texture = ExtResource("2_3acur")
+
 [node name="main_menu" type="VBoxContainer" parent="."]
-offset_left = 469.0
-offset_top = 282.0
-offset_right = 663.0
-offset_bottom = 459.0
+offset_left = 399.0
+offset_top = 360.0
+offset_right = 593.0
+offset_bottom = 537.0
+scale = Vector2(2, 2)
+theme_override_constants/separation = 4
 
-[node name="Start" type="TextureButton" parent="main_menu"]
+[node name="Button" type="Button" parent="main_menu"]
 layout_mode = 2
+text = "Start Game"
 
-[node name="Options" type="TextureButton" parent="main_menu"]
-layout_mode = 2
-
-[node name="Quit Game" type="TextureButton" parent="main_menu"]
-layout_mode = 2
+[node name="TitleDeusExMachina" type="Sprite2D" parent="."]
+position = Vector2(598.00006, 265)
+scale = Vector2(0.8000001, 0.8000001)
+texture = ExtResource("3_25r1h")
 
 [node name="level_selector" type="VBoxContainer" parent="."]
 offset_right = 40.0
@@ -41,7 +49,4 @@ layout_mode = 2
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TitleScreenBackground100p" type="Sprite2D" parent="."]
-position = Vector2(575, 318)
-scale = Vector2(0.60740745, 0.60740745)
-texture = ExtResource("2_3acur")
+[connection signal="pressed" from="main_menu/Button" to="." method="_on_button_pressed"]
