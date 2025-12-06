@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://rn22do725vh4"]
+
+[ext_resource type="PackedScene" uid="uid://bhf8kmv0a5ydq" path="res://Scenes/master_portal.tscn" id="1_ebmjs"]
+
+[node name="level1room2" type="Node2D"]
+
+[node name="Master_Portal" parent="." instance=ExtResource("1_ebmjs")]
+position = Vector2(695, 332)

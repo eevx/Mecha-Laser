@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bhf8kmv0a5ydq" path="res://Scenes/master_portal.tscn" id="5_kdq04"]
 [ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="6_kdq04"]
 [ext_resource type="PackedScene" uid="uid://cm4a1ilc5hk1h" path="res://SG/Scenes/3_way_lever.tscn" id="8_v68xs"]
-[ext_resource type="PackedScene" uid="uid://cy6kwm3dpgvks" path="res://SG/Scenes/yellow_rotor.tscn" id="9_j2ari"]
-[ext_resource type="PackedScene" uid="uid://qo0rs772p5jg" path="res://SG/Scenes/geen_rotor.tscn" id="10_fbrg7"]
+[ext_resource type="PackedScene" path="res://SG/Scenes/yellow_rotor.tscn" id="9_j2ari"]
+[ext_resource type="PackedScene" path="res://SG/Scenes/geen_rotor.tscn" id="10_fbrg7"]
 [ext_resource type="PackedScene" uid="uid://ccl5r1h7gl0cp" path="res://Scenes/sourcelight.tscn" id="10_g8fa4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gramy"]
