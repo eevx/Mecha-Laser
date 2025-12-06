@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://7vn1r66bvhfp"]
+
+[ext_resource type="PackedScene" uid="uid://7hq1ioohc2gc" path="res://kanishka_stuffs/scenes/button.tscn" id="1_r04n3"]
+
+[node name="button" instance=ExtResource("1_r04n3")]
