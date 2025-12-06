@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_5xvfw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeg1r"]
-size = Vector2(96, 1478.5)
+size = Vector2(96, 2143)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yb38g"]
 shader = ExtResource("2_0egwf")
@@ -20,7 +20,7 @@ increased_gravity = 10.0
 decreased_gravity = 10.0
 
 [node name="Magnet_Field" type="CollisionShape2D" parent="."]
-position = Vector2(0, 772.25)
+position = Vector2(0, 1104.5)
 shape = SubResource("RectangleShape2D_eeg1r")
 
 [node name="MagnetCollider" type="StaticBody2D" parent="."]

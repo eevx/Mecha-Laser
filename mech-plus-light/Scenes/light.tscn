@@ -95,6 +95,18 @@ color_ramp = SubResource("GradientTexture1D_c6hsp")
 target_position = Vector2(1400, 0)
 collision_mask = 256
 script = ExtResource("1_mou6w")
+cast_speed = null
+max_length = null
+start_distance = null
+growth_time = null
+color = null
+beam_width = null
+is_casting = null
+max_reflections = null
+max_segment_colliders = null
+ray_cast_collision_layer = null
+walkable_layer = null
+canWalkable = null
 
 [node name="Line2D" type="Line2D" parent="."]
 modulate = Color(0, 1.7112036, 3.232042, 1)

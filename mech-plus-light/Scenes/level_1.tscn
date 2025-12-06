@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dj8scj85tj2j2"]
+[gd_scene load_steps=11 format=3 uid="uid://dj8scj85tj2j2"]
 
 [ext_resource type="PackedScene" uid="uid://ccl5r1h7gl0cp" path="res://Scenes/sourcelight.tscn" id="2_xrdnt"]
 [ext_resource type="Environment" uid="uid://c8ol6uwdees61" path="res://Placeholder Assets/2d_environment.tres" id="4_7p6j4"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://dh78khmu25g7i" path="res://Scenes/slave_portal.tscn" id="6_xrdnt"]
 [ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="10_af3po"]
 [ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="11_uy8f0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6444e"]
+radius = 46.21
+height = 92.42
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6444e"]
 
@@ -24,19 +28,71 @@ position = Vector2(-7.9910607, -1.0690932)
 rotation = 1.7075617
 
 [node name="Laser" parent="Source" index="1"]
+<<<<<<< Updated upstream
 color = Color(1, 0.77843577, 0.74179983, 1)
+=======
+cast_speed = 7000.0
+max_length = 20000.0
+start_distance = 0.0
+growth_time = 0.1
+color = Color(1, 0, 0, 1)
+beam_width = 8.0
+is_casting = false
+max_reflections = 3
+max_segment_colliders = 12
+ray_cast_collision_layer = 3
+walkable_layer = 1
+>>>>>>> Stashed changes
 canWalkable = true
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Source"]
+position = Vector2(-6, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_6444e")
+
 [node name="Source2" parent="." instance=ExtResource("2_xrdnt")]
-visible = false
 position = Vector2(216, 402)
 rotation = 2.796696
 
+<<<<<<< Updated upstream
+=======
+[node name="Laser" parent="Source2" index="1"]
+cast_speed = 7000.0
+max_length = 20000.0
+start_distance = 0.0
+growth_time = 0.1
+color = Color(1, 0, 1, 1)
+beam_width = 8.0
+is_casting = false
+max_reflections = 3
+max_segment_colliders = 12
+ray_cast_collision_layer = 3
+walkable_layer = 1
+canWalkable = true
+
+[node name="Source3" parent="." instance=ExtResource("2_xrdnt")]
+position = Vector2(216, 402)
+rotation = 2.796696
+
+[node name="Laser" parent="Source3" index="1"]
+cast_speed = 7000.0
+max_length = 20000.0
+start_distance = 0.0
+growth_time = 0.1
+color = Color(1, 0, 1, 1)
+beam_width = 8.0
+is_casting = false
+max_reflections = 3
+max_segment_colliders = 12
+ray_cast_collision_layer = 3
+walkable_layer = 1
+canWalkable = true
+
+>>>>>>> Stashed changes
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("4_7p6j4")
 
 [node name="Asteroid" type="StaticBody2D" parent="."]
-visible = false
 position = Vector2(538, 347)
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_6444e")
@@ -83,3 +139,4 @@ scale = Vector2(0.99999994, 0.99999994)
 
 [editable path="Source"]
 [editable path="Source2"]
+[editable path="Source3"]

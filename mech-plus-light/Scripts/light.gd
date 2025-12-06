@@ -24,6 +24,7 @@ var slave_portals_in_scene : Array = []
 
 var can_walk_on_light: bool = false
 @onready var slaves : Array = []
+var previous_master: Node2D
 var tween: Tween = null
 var line_2d : Line2D
 var line_width : float = 8.0
@@ -114,6 +115,8 @@ func _physics_process(delta: float) -> void:
 				var maybe_master: Node = collider_node
 				while maybe_master != null:
 					if maybe_master.has_method("get_matching_outputs") and maybe_master.has_method("is_master_portal"):
+						maybe_master.light_falling = true
+						previous_master = maybe_master
 						master_hit_this_frame = true
 						if _current_master != maybe_master:
 							despawn_new_beam()
@@ -124,8 +127,14 @@ func _physics_process(delta: float) -> void:
 								slaves = handle_master_hit(maybe_master)
 						points.append(collision_point_local)
 						break
+					else:
+						if previous_master:
+							previous_master.light_falling = false
 					maybe_master = maybe_master.get_parent()
 				if master_hit_this_frame:
+					break
+				if collider_node.is_in_group("tilemap"):
+					points.append(collision_point_local)
 					break
 			points.append(collision_point_local)
 			world_start = collision_point_world
@@ -311,6 +320,8 @@ func handle_master_hit(sure_master: Node) -> Array:
 				spawned.append({"node": candidate})
 	return spawned
 
+
+
 func isWalkable(value : bool) -> void:
 	if value:
 		_enable_walkable_layer_on_static_body()
@@ -338,6 +349,7 @@ func transformCollider(fromTargetPos: Vector2, toTargetPos: Vector2, walkableCol
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("walk_on_light") and event.is_action_pressed("walk_on_light"):
+		print("c pressed")
 		can_walk_on_light = !can_walk_on_light
 		isWalkable(can_walk_on_light)
 		

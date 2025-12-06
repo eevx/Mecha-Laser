@@ -1,13 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cm4a1ilc5hk1h"]
+[gd_scene load_steps=8 format=3 uid="uid://cm4a1ilc5hk1h"]
 
 [ext_resource type="Script" uid="uid://c3ldv1k6q4vlm" path="res://SG/Scripts/3_way_lever.gd" id="2_h3u21"]
 [ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_x7yqk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00ixo"]
-atlas = ExtResource("2_x7yqk")
-region = Rect2(500, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mcvsj"]
 atlas = ExtResource("2_x7yqk")
 region = Rect2(500, 200, 100, 100)
 
@@ -30,9 +26,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mcvsj")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iol63")
 }],
@@ -57,7 +50,7 @@ script = ExtResource("2_h3u21")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sayjx")
-animation = &"Right"
+animation = &"Center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 1)

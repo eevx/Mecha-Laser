@@ -7,6 +7,10 @@ class_name Player
 @export var PlayerCol : CollisionPolygon2D
 @export var thruster_ui : Line2D
 @export var data : PlayerData
+@export var is_level_1 := true
+@export var is_level_2 := false
+@export var is_level_3 := false
+
 #running vars
 var jumpCount : int
 var dashCount : int

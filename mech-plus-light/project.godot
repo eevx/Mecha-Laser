@@ -24,6 +24,10 @@ SfxManager="*res://Autoload/SfxManager.tscn"
 
 movie_writer/movie_file="S:/Game Creations/Content/mechlight.avi"
 
+[global_group]
+
+tilemap=""
+
 [input]
 
 left={

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://71ednibt2mf8"]
+
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="1_b00jf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tdis"]
+size = Vector2(18, 80)
+
+[node name="Mirror_animated" type="AnimatableBody2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_b00jf")
+region_enabled = true
+region_rect = Rect2(500, 300, 100, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_1tdis")
