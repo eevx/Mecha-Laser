@@ -1,14 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://bhf8kmv0a5ydq"]
 
 [ext_resource type="Script" uid="uid://u2nlkf4liq70" path="res://Scripts/portal.gd" id="1_j7glw"]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_ebpqh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evi0p"]
-radius = 14.0
-height = 156.0
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_lsmp6"]
-radius = 10.0
-height = 30.0
+radius = 17.399012
+height = 215.12852
 
 [node name="Master_Portal" type="StaticBody2D"]
 rotation = -2.443461
@@ -21,4 +18,10 @@ shape = SubResource("CapsuleShape2D_evi0p")
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D"]
 position = Vector2(0, 2.2015596e-05)
 scale = Vector2(1.4548461, 7.0850263)
-mesh = SubResource("CapsuleMesh_lsmp6")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D/MeshInstance2D"]
+position = Vector2(66.18817, 0.38759345)
+scale = Vector2(1.5067137, 0.34618944)
+texture = ExtResource("2_ebpqh")
+region_enabled = true
+region_rect = Rect2(400, 1000, 100, 100)
