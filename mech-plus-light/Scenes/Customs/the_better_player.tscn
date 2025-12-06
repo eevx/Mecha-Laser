@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://db3e3pwvlnxjy"]
+[gd_scene load_steps=30 format=3 uid="uid://db3e3pwvlnxjy"]
 
 [ext_resource type="Script" uid="uid://j208mdnvgcx3" path="res://Scripts/Customs/FSM_V1/the_better_controller.gd" id="1_w1cpu"]
 [ext_resource type="Texture2D" uid="uid://clhtvqcyr0pgi" path="res://Assets/Defaults(guide)/sprites/knight.png" id="2_r8dks"]
@@ -143,6 +143,13 @@ animations = [{
 radius = 14.75
 height = 81.5
 
+[sub_resource type="Curve" id="Curve_itxrw"]
+_data = [Vector2(0.010830328, 0.99029857), 0.0, 0.0, 0, 0, Vector2(1, 0.5149254), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_0v1y0"]
+colors = PackedColorArray(0, 0.89411765, 0, 1, 1, 1, 1, 1)
+
 [node name="The_Better_Player" type="CharacterBody2D" node_paths=PackedStringArray("initial_state", "PlayerSprite") groups=["object"]]
 collision_layer = 3
 collision_mask = 3
@@ -183,3 +190,10 @@ script = ExtResource("8_v4o2j")
 metadata/_custom_type_script = "uid://cbvva7m2akmwd"
 
 [node name="hurtbox" parent="." instance=ExtResource("8_rsjdp")]
+
+[node name="Thruster_UI" type="Line2D" parent="."]
+position = Vector2(-43, -83)
+points = PackedVector2Array(0, 0, 0, 40)
+closed = true
+width_curve = SubResource("Curve_itxrw")
+gradient = SubResource("Gradient_0v1y0")
