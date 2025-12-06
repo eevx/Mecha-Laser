@@ -127,6 +127,9 @@ func _physics_process(delta: float) -> void:
 					maybe_master = maybe_master.get_parent()
 				if master_hit_this_frame:
 					break
+				if collider_node.is_in_group("tilemap"):
+					points.append(collision_point_local)
+					break
 			points.append(collision_point_local)
 			world_start = collision_point_world
 			if normal_world != Vector2.ZERO:
@@ -338,6 +341,7 @@ func transformCollider(fromTargetPos: Vector2, toTargetPos: Vector2, walkableCol
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("walk_on_light") and event.is_action_pressed("walk_on_light"):
+		print("c pressed")
 		can_walk_on_light = !can_walk_on_light
 		isWalkable(can_walk_on_light)
 		

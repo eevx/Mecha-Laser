@@ -71,12 +71,13 @@ var _target: Vector2
 var _waiting_time_remaining := 0.0
 var _previous_position: Vector2
 var _bodies := []
+var og_speed := speed
 
 
 func _ready():
 	# Start point is where you placed the platform
 	start_point = global_position
-
+	og_speed = speed
 	# Calculate end point based on the user choice (horizontal/vertical)
 	if horizontal:
 		end_point = start_point + Vector2(distance, 0)
@@ -122,3 +123,9 @@ func _on_body_entered(body: Node):
 
 func _on_body_exited(body: Node):
 	_bodies.erase(body)
+
+func get_og_speed() -> float:
+	return og_speed
+
+func change_speed(new_speed : float) -> void:
+	speed = new_speed

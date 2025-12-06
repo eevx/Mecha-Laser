@@ -18,7 +18,7 @@ var mirror_parent: Node
 # NEW: optional "popped into existence" object
 @export var new_object: Node2D
 
-@export var newer_object: Node2D
+#@export var newer_object: AnimatableBody2D
 # NEW: optional light this button controls
 
 @export var disappear_on_active_1 := true
@@ -32,6 +32,7 @@ func _ready() -> void:
 		mirror_parent = mirror.get_parent()
 	# NEW: start with new_object hidden/disabled
 	_hide_new_object()
+	#_hide_newer_object()
 
 func _on_body_entered(_body: Node2D) -> void:
 	if _body is CharacterBody2D:
@@ -64,6 +65,7 @@ func _input(event: InputEvent) -> void:
 
 				# NEW: when ON → show object 
 				_show_new_object()
+				#_show_newer_object()
 
 			else:
 				print("off")
@@ -86,6 +88,7 @@ func _input(event: InputEvent) -> void:
 
 				# NEW: when OFF → hide object
 				_hide_new_object()
+				#_hide_newer_object()
 func _on_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		player_is_in = false
@@ -128,3 +131,14 @@ func _show_new_object() -> void:
 		if new_object.has_node("CollisionShape2D"):
 			new_object.get_node("CollisionShape2D").disabled = false
 			
+#func _hide_newer_object() -> void:
+	#if newer_object:
+		#newer_object.visible = false
+		#if newer_object.has_node("CollisionShape2D"):
+			#newer_object.get_node("CollisionShape2D").disabled = true
+#
+#func _show_newer_object() -> void:
+	#if newer_object:
+		#newer_object.visible = true
+		#if newer_object.has_node("CollisionShape2D"):
+			#newer_object.get_node("CollisionShape2D").disabled = false
