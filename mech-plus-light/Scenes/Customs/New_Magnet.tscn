@@ -5,7 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_5xvfw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeg1r"]
+<<<<<<< Updated upstream
 size = Vector2(96, 1478.5)
+=======
+size = Vector2(112, 2168)
+>>>>>>> Stashed changes
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yb38g"]
 shader = ExtResource("2_0egwf")
@@ -41,5 +45,28 @@ texture = ExtResource("2_5xvfw")
 region_enabled = true
 region_rect = Rect2(0, 1100, 100, 100)
 
+<<<<<<< Updated upstream
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+=======
+[node name="Magnet" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_std2h")
+increased_gravity = 20.0
+decreased_gravity = 20.0
+
+[node name="Magnet_Field" type="CollisionShape2D" parent="Magnet"]
+position = Vector2(0, 1020)
+shape = SubResource("RectangleShape2D_eeg1r")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Magnet"]
+modulate = Color(1, 1, 1, 0.15294118)
+z_index = -1
+position = Vector2(-2.2737368e-13, 1023.99994)
+scale = Vector2(112, 2176)
+mesh = SubResource("BoxMesh_std2h")
+
+[connection signal="body_entered" from="Magnet" to="Magnet" method="_on_body_entered"]
+[connection signal="body_exited" from="Magnet" to="Magnet" method="_on_body_exited"]
+>>>>>>> Stashed changes
