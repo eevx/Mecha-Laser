@@ -18,12 +18,12 @@ var mirror_parent: Node
 # NEW: optional "popped into existence" object
 @export var new_object: Node2D
 
-<<<<<<< Updated upstream
-#@export var newer_object: AnimatableBody2D
-=======
 @export var newer_object: Node2D
 
 @export var magnet: Node2D
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 # NEW: optional light this button controls
 
@@ -74,8 +74,12 @@ func _input(event: InputEvent) -> void:
 					magnet.enable_magnet()# NEW: when ON → show object 
 				_show_new_object()
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				#_show_newer_object()
 
+=======
+				
+>>>>>>> Stashed changes
 =======
 				
 >>>>>>> Stashed changes
