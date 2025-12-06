@@ -26,11 +26,7 @@ texture = SubResource("AtlasTexture_vxhja")
 
 [node name="Laser" parent="." instance=ExtResource("3_cc6hi")]
 target_position = Vector2(2000, 0)
-<<<<<<< Updated upstream
 max_length = 10000.0
-=======
-max_length = 3000.0
->>>>>>> Stashed changes
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, -1)

@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 [gd_scene load_steps=9 format=3 uid="uid://cm4a1ilc5hk1h"]
-=======
-[gd_scene load_steps=8 format=3 uid="uid://cm4a1ilc5hk1h"]
->>>>>>> Stashed changes
 
 [ext_resource type="Script" uid="uid://c3ldv1k6q4vlm" path="res://SG/Scripts/3_way_lever.gd" id="2_h3u21"]
 [ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_x7yqk"]
@@ -13,7 +9,6 @@ region = Rect2(500, 200, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mcvsj"]
 atlas = ExtResource("2_x7yqk")
-<<<<<<< Updated upstream
 region = Rect2(500, 200, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iol63"]
@@ -22,12 +17,6 @@ region = Rect2(700, 200, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_83uj2"]
 atlas = ExtResource("2_x7yqk")
-=======
-region = Rect2(700, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iol63"]
-atlas = ExtResource("2_x7yqk")
->>>>>>> Stashed changes
 region = Rect2(600, 200, 100, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sayjx"]
@@ -43,12 +32,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mcvsj")
-<<<<<<< Updated upstream
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iol63")
-=======
->>>>>>> Stashed changes
 }],
 "loop": false,
 "name": &"Left",
@@ -56,11 +42,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-<<<<<<< Updated upstream
 "texture": SubResource("AtlasTexture_83uj2")
-=======
-"texture": SubResource("AtlasTexture_iol63")
->>>>>>> Stashed changes
 }],
 "loop": false,
 "name": &"Right",
@@ -68,11 +50,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swivs"]
-<<<<<<< Updated upstream
 size = Vector2(90, 94)
-=======
-size = Vector2(128, 96)
->>>>>>> Stashed changes
 
 [node name="3_way_lever" type="Area2D"]
 script = ExtResource("2_h3u21")
@@ -82,10 +60,7 @@ sprite_frames = SubResource("SpriteFrames_sayjx")
 animation = &"Right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-<<<<<<< Updated upstream
 position = Vector2(-2, 1)
-=======
->>>>>>> Stashed changes
 shape = SubResource("RectangleShape2D_swivs")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
