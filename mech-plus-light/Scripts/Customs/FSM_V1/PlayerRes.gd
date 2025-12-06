@@ -28,3 +28,9 @@ class_name PlayerData
 @export var dashCoolTime: float = 1.0
 ##velocity of player during the dash(needs to be quite high)
 @export var dashMagnitude: float = 2000
+@export_category("Thruster Params")
+@export var thruster_force: float = -900.0
+@export var thruster_max_fuel: float = 1.8
+@export var thruster_drain_rate: float = 1.0
+@export var thruster_refill_rate: float = 0.6
+@export var thruster_refill_delay: float = 0.4

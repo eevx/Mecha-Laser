@@ -1,0 +1,127 @@
+[gd_scene load_steps=16 format=3 uid="uid://dj8scj85tj2j2"]
+
+[ext_resource type="PackedScene" uid="uid://br248huea2eo2" path="res://Scenes/laser.tscn" id="1_8ffim"]
+[ext_resource type="Script" uid="uid://cxm8wul6p3d40" path="res://Scripts/source.gd" id="1_xfk5q"]
+[ext_resource type="Texture2D" uid="uid://bwyimiilb11g4" path="res://Placeholder Assets/topdown-player.svg" id="2_evi0p"]
+[ext_resource type="Environment" uid="uid://c8ol6uwdees61" path="res://Placeholder Assets/2d_environment.tres" id="4_7p6j4"]
+[ext_resource type="Texture2D" uid="uid://c3wvqm5a4npxv" path="res://Placeholder Assets/asteroid.svg" id="5_lsmp6"]
+[ext_resource type="Script" uid="uid://u2nlkf4liq70" path="res://Scripts/portal.gd" id="6_evi0p"]
+[ext_resource type="Script" uid="uid://cme38r8hglvro" path="res://Scripts/output_red.gd" id="7_lsmp6"]
+[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/platform.tscn" id="10_af3po"]
+[ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="11_uy8f0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6444e"]
+radius = 46.21
+height = 92.42
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6444e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_evi0p"]
+radius = 105.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evi0p"]
+radius = 14.0
+height = 156.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrdnt"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lsmp6"]
+material = SubResource("StandardMaterial3D_xrdnt")
+radius = 10.0
+height = 30.0
+
+[node name="Level" type="Node2D"]
+
+[node name="Source" type="RigidBody2D" parent="." node_paths=PackedStringArray("player_ref", "lasers")]
+position = Vector2(-286, 300)
+rotation = 0.53596437
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_xfk5q")
+player_ref = NodePath("../The_Better_Player")
+lasers = [NodePath("Laser")]
+
+[node name="Sprite2D" type="Sprite2D" parent="Source"]
+z_index = 1
+texture = ExtResource("2_evi0p")
+
+[node name="Laser" parent="Source" instance=ExtResource("1_8ffim")]
+target_position = Vector2(2000, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Source"]
+position = Vector2(-6, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_6444e")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("4_7p6j4")
+
+[node name="Asteroid" type="StaticBody2D" parent="."]
+position = Vector2(538, 347)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_6444e")
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid"]
+texture = ExtResource("5_lsmp6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid"]
+shape = SubResource("CircleShape2D_evi0p")
+
+[node name="Portals" type="Node2D" parent="."]
+position = Vector2(485, -89)
+
+[node name="Master_Red" type="StaticBody2D" parent="Portals"]
+position = Vector2(119, 796)
+rotation = -2.443461
+collision_layer = 2
+script = ExtResource("6_evi0p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portals/Master_Red"]
+shape = SubResource("CapsuleShape2D_evi0p")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Portals/Master_Red/CollisionShape2D"]
+position = Vector2(0, 2.2015596e-05)
+scale = Vector2(1.4548461, 7.0850263)
+mesh = SubResource("CapsuleMesh_lsmp6")
+
+[node name="Slave_Red" type="Node2D" parent="Portals"]
+position = Vector2(-162.00006, 87.99994)
+script = ExtResource("7_lsmp6")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Portals/Slave_Red"]
+position = Vector2(-0.99993896, 6.1035156e-05)
+rotation = 1.5707964
+scale = Vector2(1.4548461, 7.0850263)
+mesh = SubResource("CapsuleMesh_lsmp6")
+
+[node name="ExitFace" type="Marker2D" parent="Portals/Slave_Red"]
+rotation = 1.5707964
+
+[node name="Slave_Red2" type="Node2D" parent="Portals"]
+position = Vector2(-488, 91)
+script = ExtResource("7_lsmp6")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Portals/Slave_Red2"]
+position = Vector2(0, -6.000001)
+rotation = 1.5707964
+scale = Vector2(1.4548461, 7.0850263)
+mesh = SubResource("CapsuleMesh_lsmp6")
+
+[node name="ExitFace" type="Marker2D" parent="Portals/Slave_Red2"]
+rotation = 1.5707964
+
+[node name="Platform" parent="." instance=ExtResource("10_af3po")]
+position = Vector2(-302, 748)
+scale = Vector2(57.73, 1)
+collision_layer = 1
+collision_mask = 1
+
+[node name="The_Better_Player" parent="." instance=ExtResource("11_uy8f0")]
+position = Vector2(81, 297)
+collision_layer = 1
+collision_mask = 1
+
+[node name="Camera2D" type="Camera2D" parent="The_Better_Player"]
+position = Vector2(83.99999, 121.99999)
+scale = Vector2(0.99999994, 0.99999994)
+zoom = Vector2(1.41, 1.41)

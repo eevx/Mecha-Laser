@@ -21,11 +21,13 @@ var wasMovingR := true
 var current_state : Player_State
 var states : Dictionary = {}
 var animScaleLock : Vector2
-
+var thruster_fuel: float 
+var thruster_using: bool = false
+var thruster_refill_timer: float = 0.0
 
 func _ready() -> void:
 	animScaleLock = abs(PlayerSprite.scale)
-	
+	thruster_fuel = self.data.thruster_max_fuel
 	_calc_cached_val()
 	
 	for child in get_children():
@@ -42,15 +44,22 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	current_state.Update(delta)
-	_handle_facing()
-	#print(self.velocity.x)
 	if Input.is_action_just_pressed("toggle_view"):
 		toggle_view()
 
 func _physics_process(delta: float) -> void:
+	if not thruster_using:
+		if thruster_fuel < self.data.thruster_max_fuel:
+			thruster_refill_timer += delta
+			if thruster_refill_timer >= self.data.thruster_refill_delay:
+				thruster_fuel = min(thruster_fuel + self.data.thruster_refill_rate * delta, self.data.thruster_max_fuel)
+	else:
+		thruster_refill_timer = 0.0
 	move_and_slide()
+	
+	_handle_facing()
+	
 	current_state.Physics_Update(delta)
-
 
 func _calc_cached_val():
 	acceleration = data.maxSpeed / data.timeToReachMaxSpeed
@@ -66,6 +75,7 @@ func _calc_cached_val():
 func _handle_facing():
 	if dashing:
 		return
+	
 	if Input.is_action_pressed("right"):
 		PlayerSprite.scale.x = animScaleLock.x
 		wasMovingR = true 
@@ -74,9 +84,18 @@ func _handle_facing():
 		wasMovingR = false
 
 func _apply_gravity():
+	if self.is_on_floor():
+		
+		#print("doing the snap")
+		var dot := self.velocity.dot(self.get_floor_normal())
+		if dot > 0:
+			self.velocity -= self.get_floor_normal()*dot*5
+
 	if not gravityActive: 
 		return
+
 	var g = data.gravityScale
+
 	if velocity.y > 0:
 		g *= data.descendingGravityFactor
 	
@@ -84,7 +103,7 @@ func _apply_gravity():
 	
 	if velocity.y > data.terminalVelocity:
 		velocity.y = data.terminalVelocity
-
+	
 func _pause_gravity(t):
 	gravityActive = false
 	
@@ -120,3 +139,12 @@ func toggle_view():
 	
 	var tween := create_tween()
 	tween.tween_property(cam, "zoom", target_zoom, 0.3)
+
+func change_gravity(new_gravity: float):
+	data.gravityScale += new_gravity
+	
+func get_gravity_value() -> float:
+	return data.gravityScale
+
+func reset_gravity(new_gravity: float):
+	data.gravityScale = new_gravity

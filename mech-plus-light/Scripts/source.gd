@@ -3,14 +3,13 @@ extends RigidBody2D
 @export_group('Settings')
 @export var move_speed := 600.0
 @export var drag_factor := 10.0
-@export var player_ref : Player
 @export var lasers : Array[Light]
 var current_velocity := Vector2.ZERO
 
 func _process(_delta: float) -> void:
+	#look_at(get_global_mouse_position())
 	#laser.is_casting = Input.is_action_pressed("fire_weapon")
 	for laser in lasers:
-		laser.player_ref = player_ref
 		laser.is_casting = true #Input.is_action_pressed("fire_weapon")
 	#
 	#var input_velocity := Input.get_vector("move_left", "move_right", "move_up", "move_down")
