@@ -16,7 +16,7 @@ func Enter():
 	
 	if Input.is_action_just_pressed("jump") and player.jumpCount > 0:
 		print("jump")
-		player.velocity.y = -player.jumpMagnitude
+		player.velocity.y = -player.jumpMagnitude * sign(player.data.gravityScale)
 		player.jumpCount -= 1
 		# Ensure jump animation plays on double jump
 		player.PlayerSprite.play("light_jump" if was_on_light else "jump")

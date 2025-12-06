@@ -18,7 +18,7 @@ func Physics_Update(delta):
 		was_on_light = light_active
 		player.PlayerSprite.play("light_run" if light_active else "run")
 	
-	var floor_dir = player.get_floor_normal().rotated(PI/2.)
+	var floor_dir = player.get_floor_normal().rotated(sign(player.data.gravityScale) * PI/2.)
 	
 	if dir != 0:
 		if abs(player.velocity.x) < player.data.maxSpeed:
