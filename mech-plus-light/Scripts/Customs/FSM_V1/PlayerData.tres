@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_cbohy")
 maxSpeed = 200.0
-jumpHeight = 30.0
+jumpHeight = 40.0
 gravityScale = 10.0
 terminalVelocity = 200.0
 thruster_force = -400.0

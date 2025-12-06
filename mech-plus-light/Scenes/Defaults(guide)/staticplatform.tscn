@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="1_7v08p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptocs"]
-size = Vector2(32, 8)
+size = Vector2(288, 80)
 
 [node name="Platform" type="AnimatableBody2D"]
 collision_layer = 3
