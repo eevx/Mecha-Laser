@@ -19,10 +19,13 @@ shape = SubResource("RectangleShape2D_08i8a")
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 mesh = SubResource("BoxMesh_spxbl")
 
+<<<<<<< Updated upstream
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(5.1378207, 1.8952079)
 texture = ExtResource("2_5t3o0")
 region_enabled = true
 region_rect = Rect2(600, 900, 100, 100)
 
+=======
+>>>>>>> Stashed changes
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
