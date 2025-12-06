@@ -7,6 +7,7 @@ var color: Color
 @export var exit_face_name: String = "ExitFace"  # Marker2D child name
 @export var is_casting: bool = false : set = set_is_casting
 @export var beam_width : float = 80.
+@export var is_walkable := false
 @onready var laser: Light = null
 
 func _ready() -> void:
@@ -34,6 +35,7 @@ func set_is_casting(new_value: bool) -> void:
 		return
 	is_casting = new_value
 	laser.beam_width = beam_width
+	laser.canWalkable = is_walkable
 	# propagate to the Laser child if present
 	if laser:
 		laser.is_casting = is_casting

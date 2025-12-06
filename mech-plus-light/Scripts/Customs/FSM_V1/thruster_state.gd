@@ -1,5 +1,4 @@
 extends Player_State
-class_name ThrusterState
 
 func Enter() -> void:
 	if not player.thruster_fuel > 0.0:

@@ -48,9 +48,21 @@ position = Vector2(485, -89)
 [node name="Master_Portal" parent="Portals" instance=ExtResource("5_xrdnt")]
 position = Vector2(119, 796)
 
+[node name="Master_Portal2" parent="Portals" instance=ExtResource("5_xrdnt")]
+position = Vector2(-822.00006, 749.0001)
+rotation = -0.7607752
+color_of_the_portal = "BLUE"
+
 [node name="Slave_Portal" parent="Portals" instance=ExtResource("6_xrdnt")]
-position = Vector2(-162.00006, 87.99994)
+position = Vector2(-86, 273)
 beam_width = 130.0
+is_walkable = true
+
+[node name="Slave_Portal2" parent="Portals" instance=ExtResource("6_xrdnt")]
+position = Vector2(-689, 261)
+color_of_the_portal = "BLUE"
+beam_width = 130.0
+is_walkable = true
 
 [node name="Platform" parent="." instance=ExtResource("10_af3po")]
 position = Vector2(-302, 748)
