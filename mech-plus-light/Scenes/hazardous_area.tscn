@@ -15,5 +15,4 @@ script = ExtResource("1_spxbl")
 shape = SubResource("RectangleShape2D_08i8a")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-modulate = Color(1, 0.1254902, 0, 1)
 mesh = SubResource("BoxMesh_spxbl")
