@@ -21,11 +21,13 @@ var wasMovingR := true
 var current_state : Player_State
 var states : Dictionary = {}
 var animScaleLock : Vector2
-var in_field := false
-var was_on_floor := false
+var thruster_fuel: float 
+var thruster_using: bool = false
+var thruster_refill_timer: float = 0.0
+
 func _ready() -> void:
 	animScaleLock = abs(PlayerSprite.scale)
-	
+	thruster_fuel = self.data.thruster_max_fuel
 	_calc_cached_val()
 	
 	for child in get_children():
@@ -46,6 +48,13 @@ func _process(delta: float) -> void:
 		toggle_view()
 
 func _physics_process(delta: float) -> void:
+	if not thruster_using:
+		if thruster_fuel < self.data.thruster_max_fuel:
+			thruster_refill_timer += delta
+			if thruster_refill_timer >= self.data.thruster_refill_delay:
+				thruster_fuel = min(thruster_fuel + self.data.thruster_refill_rate * delta, self.data.thruster_max_fuel)
+	else:
+		thruster_refill_timer = 0.0
 	move_and_slide()
 	
 	_handle_facing()
@@ -66,8 +75,7 @@ func _calc_cached_val():
 func _handle_facing():
 	if dashing:
 		return
-	if in_field:
-		PlayerSprite.scale.y = -animScaleLock.y
+	
 	if Input.is_action_pressed("right"):
 		PlayerSprite.scale.x = animScaleLock.x
 		wasMovingR = true 

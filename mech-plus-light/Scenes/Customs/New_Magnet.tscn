@@ -1,22 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwo3g6sttlj3r"]
+[gd_scene load_steps=6 format=3 uid="uid://cwo3g6sttlj3r"]
 
-[ext_resource type="Texture2D" uid="uid://g308ihvgskvc" path="res://icon.svg" id="1_eeg1r"]
+[ext_resource type="Script" uid="uid://dl1j86c1lfjd1" path="res://Scenes/Customs/magnet_parent.gd" id="1_5xvfw"]
 [ext_resource type="Script" uid="uid://cw366me6gjoq1" path="res://Scripts/Customs/new_magnet.gd" id="1_std2h"]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_5xvfw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeg1r"]
-size = Vector2(124, 1433)
+size = Vector2(64, 1435)
 
 [sub_resource type="BoxMesh" id="BoxMesh_std2h"]
 
-[node name="Parent" type="StaticBody2D"]
+[node name="Parent" type="StaticBody2D" node_paths=PackedStringArray("magnet")]
 collision_layer = 3
 collision_mask = 3
+script = ExtResource("1_5xvfw")
+magnet = NodePath("Magnet")
 
 [node name="Magnet_Collider" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-55, 60, -54, -60, 55, -59, 55, 60)
+position = Vector2(0.4999991, -21)
+scale = Vector2(0.6534091, 0.78125)
+polygon = PackedVector2Array(-49.73913, 57.600002, -49.73913, -34.56, 48.208694, -34.56, 48.208694, 57.600002, -0.765216, 57.600002)
 
 [node name="Magnet_sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_eeg1r")
+position = Vector2(0.5266645, 0.6780831)
+rotation = 3.1415927
+scale = Vector2(0.89115655, 0.9759052)
+texture = ExtResource("2_5xvfw")
+region_enabled = true
+region_rect = Rect2(400, 500, 100, 100)
 
 [node name="Magnet" type="Area2D" parent="."]
 collision_layer = 3
@@ -26,13 +36,13 @@ increased_gravity = 20.0
 decreased_gravity = 20.0
 
 [node name="Magnet_Field" type="CollisionShape2D" parent="Magnet"]
-position = Vector2(0, 718.5)
+position = Vector2(0, 717.5)
 shape = SubResource("RectangleShape2D_eeg1r")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Magnet"]
 modulate = Color(1, 1, 1, 0.15294118)
-position = Vector2(0, 717.49994)
-scale = Vector2(126, 1435)
+position = Vector2(-2.026558e-06, 717.49994)
+scale = Vector2(63.999996, 1434.9999)
 mesh = SubResource("BoxMesh_std2h")
 
 [connection signal="body_entered" from="Magnet" to="Magnet" method="_on_body_entered"]

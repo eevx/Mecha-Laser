@@ -6,7 +6,6 @@ extends RayCast2D
 @export var start_distance := 0.0
 @export var growth_time := 0.1
 @export var color : Color = Color.RED
-@export var player_ref : Player
 
 @export var beam_width : float = 8.0 : set = set_beam_width
 
@@ -36,6 +35,7 @@ var _active_colliders: int = 0
 
 var target_pos : Vector2 = Vector2.ZERO
 var _current_master: Node = null
+var player_ref : Player
 
 func _ready() -> void:
 	add_to_group("Light")
@@ -55,6 +55,7 @@ func _ready() -> void:
 	isWalkable(canWalkable)
 	if not is_casting:
 		_disable_all_colliders()
+	player_ref = auto_collect_player_ref()
 
 func _physics_process(delta: float) -> void:
 	target_pos = target_pos.move_toward(Vector2.RIGHT * max_length, cast_speed * delta)
@@ -350,3 +351,12 @@ func collect_top_ancestor(node: Node) -> Node:
 	if parent == null:
 		return node
 	return collect_top_ancestor(parent)
+
+func auto_collect_player_ref(start_node : Node = collect_top_ancestor(self)) -> Player:
+	if start_node is Player:
+		return start_node
+	for child in start_node.get_children():
+		var res := auto_collect_player_ref(child)
+		if res:
+			return res
+	return

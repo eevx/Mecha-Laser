@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfw218pm3xcsc"]
+
+[ext_resource type="PackedScene" uid="uid://c0vmw71ijtw01" path="res://Scenes/Defaults(guide)/staticplatform.tscn" id="1_6eygh"]
+[ext_resource type="PackedScene" uid="uid://ejcgdvsyoqjg" path="res://kanishka_stuffs/scenes/movingplatform.tscn" id="2_y5cx8"]
+[ext_resource type="PackedScene" uid="uid://db2sg5dk7xs1j" path="res://SG/Scenes/rotor_lever.tscn" id="3_rujyb"]
+[ext_resource type="PackedScene" uid="uid://hc3pjsbxw7eu" path="res://Scenes/hazardous_area.tscn" id="4_6oft8"]
+[ext_resource type="PackedScene" uid="uid://db3e3pwvlnxjy" path="res://Scenes/Customs/the_better_player.tscn" id="5_6oft8"]
+
+[node name="level_2_3" type="Node2D"]
+
+[node name="platforms" type="Node2D" parent="."]
+
+[node name="AnimatableBody2D" parent="platforms" instance=ExtResource("2_y5cx8")]
+position = Vector2(299, 391)
+scale = Vector2(2.5, 2)
+point_a = Vector2(299, 410)
+point_b = Vector2(299, 280)
+
+[node name="Platform" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(129, 673)
+
+[node name="Platform8" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(572, 10)
+rotation = 3.1415927
+
+[node name="Platform9" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(572, 83)
+
+[node name="Platform2" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(428, 304)
+
+[node name="Platform4" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(220, 553)
+
+[node name="Platform5" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(172.00002, 463)
+
+[node name="Platform12" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(429.00003, 212)
+
+[node name="Platform11" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(1076, 463)
+
+[node name="Platform7" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(31.000015, 506)
+
+[node name="Platform6" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(460, 462)
+
+[node name="Platform10" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(491, 47)
+rotation = 1.5707964
+
+[node name="Platform3" parent="platforms" instance=ExtResource("1_6eygh")]
+position = Vector2(929, 553)
+
+[node name="rotor_lever" parent="." instance=ExtResource("3_rujyb")]
+position = Vector2(31.000004, 482)
+scale = Vector2(0.33, 0.33)
+
+[node name="trips" type="Node2D" parent="."]
+
+[node name="Hazardous_area" parent="trips" instance=ExtResource("4_6oft8")]
+modulate = Color(1, 0.15686275, 0, 1)
+position = Vector2(651, 154.00002)
+rotation = -0.4184065
+scale = Vector2(0.603, 0.05)
+
+[node name="Hazardous_area3" parent="trips" instance=ExtResource("4_6oft8")]
+modulate = Color(0, 0.5512107, 0.9883382, 1)
+position = Vector2(342, 462)
+scale = Vector2(0.345, 0.05)
+
+[node name="Hazardous_area2" parent="trips" instance=ExtResource("4_6oft8")]
+modulate = Color(0, 0.87609196, 0.21001908, 1)
+position = Vector2(1073, 508)
+rotation = 0.42816252
+scale = Vector2(0.358, 0.05)
+
+[node name="The_Better_Player" parent="." instance=ExtResource("5_6oft8")]
+position = Vector2(61, 613)

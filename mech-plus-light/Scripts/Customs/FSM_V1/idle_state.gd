@@ -22,7 +22,7 @@ func Physics_Update(_delta:float):
 	if Input.is_action_pressed("dash") and player.dashCount > 0:
 		Transition("DashState")
 	
-	if player.in_field:
-		Transition("MagState")
+	if Input.is_action_just_pressed("thruster") and player.thruster_fuel > 0.0:
+		Transition("ThrusterState")
 func Exit():
 	pass

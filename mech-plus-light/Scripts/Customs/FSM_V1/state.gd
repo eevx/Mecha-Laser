@@ -17,5 +17,5 @@ func Physics_Update(_delta:float):
 	pass
 
 func Transition(new_state:String):
-	#print("[STATE] ", self.name, " -> transition requested: '", new_state, "'")
+	print("[STATE] ", self.name, " -> transition requested: '", new_state, "'")
 	State_Transition.emit(self,new_state)

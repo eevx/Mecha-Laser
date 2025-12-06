@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0vmw71ijtw01"]
 
-[ext_resource type="Texture2D" uid="uid://ba7tk10qsto6f" path="res://Assets/Defaults(guide)/sprites/platforms.png" id="1_aj1mh"]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="1_7v08p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptocs"]
-size = Vector2(32, 8)
+size = Vector2(288, 80)
 
 [node name="Platform" type="AnimatableBody2D"]
 collision_layer = 3
@@ -13,6 +13,6 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_ptocs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_aj1mh")
+texture = ExtResource("1_7v08p")
 region_enabled = true
-region_rect = Rect2(16, 0, 32, 9)
+region_rect = Rect2(800, 0, 300, 100)
