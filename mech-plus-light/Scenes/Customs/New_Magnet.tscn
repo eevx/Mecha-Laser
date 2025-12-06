@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwo3g6sttlj3r"]
+[gd_scene load_steps=6 format=3 uid="uid://cwo3g6sttlj3r"]
 
 [ext_resource type="Script" uid="uid://cw366me6gjoq1" path="res://Scripts/Customs/new_magnet.gd" id="1_std2h"]
+[ext_resource type="Shader" uid="uid://doudubia2heoo" path="res://fx_scripts/mirror.gdshader" id="2_0egwf"]
 [ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_5xvfw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeg1r"]
 size = Vector2(96, 1478.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yb38g"]
+shader = ExtResource("2_0egwf")
+shader_parameter/mirror_screen_y = 0.5
+shader_parameter/mirror_strength = 0.15
 
 [node name="Magnet" type="Area2D"]
 collision_layer = 3
@@ -27,6 +33,7 @@ scale = Vector2(1.0337136, 1.030816)
 polygon = PackedVector2Array(-64.22574, -0.121255875, -64.22574, -38.92547, 44.121487, -38.92547, 44.121487, -0.121255875, -10.052127, -0.121255875)
 
 [node name="Magnet_sprite" type="Sprite2D" parent="MagnetCollider"]
+material = SubResource("ShaderMaterial_yb38g")
 position = Vector2(0.32973936, 69.00001)
 rotation = -3.1415925
 scale = Vector2(1.1057194, 1.3769426)
