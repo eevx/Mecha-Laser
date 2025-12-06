@@ -389,7 +389,7 @@ shape = SubResource("WorldBoundaryShape2D_yxca5")
 disabled = true
 
 [node name="button" parent="." node_paths=PackedStringArray("mirror", "moving_platform", "new_object") instance=ExtResource("1_f5f4d")]
-position = Vector2(778, 248)
+position = Vector2(952, 107.00001)
 scale = Vector2(3, 3)
 mirror = NodePath("../Platforms/Mirror_animated")
 moving_platform = NodePath("../Platforms/AnimatableBody2D")
@@ -407,14 +407,15 @@ position = Vector2(1824, 551)
 rotation = -1.5707964
 scale = Vector2(0.41, 0.41)
 
-[node name="AnimatableBody2D" parent="Platforms" instance=ExtResource("2_6va3c")]
+[node name="AnimatableBody2D" parent="Platforms" groups=["tilemap"] instance=ExtResource("2_6va3c")]
 position = Vector2(136, -184)
 collision_layer = 3
 collision_mask = 3
+horizontal = false
 distance = 600.0
 
 [node name="Platform" parent="Platforms" instance=ExtResource("3_46t1k")]
-position = Vector2(752, 338)
+position = Vector2(966, 196)
 
 [node name="Hazardous_area" parent="Platforms" instance=ExtResource("5_a2yat")]
 position = Vector2(648, 646)
