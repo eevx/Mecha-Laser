@@ -24,3 +24,5 @@ scale = Vector2(5.1378207, 1.8952079)
 texture = ExtResource("2_5t3o0")
 region_enabled = true
 region_rect = Rect2(600, 900, 100, 100)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

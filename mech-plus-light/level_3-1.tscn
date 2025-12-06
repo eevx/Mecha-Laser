@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cwo3g6sttlj3r" path="res://Scenes/Customs/New_Magnet.tscn" id="10_m65wr"]
 [ext_resource type="PackedScene" uid="uid://cehc71vdi51dk" path="res://Scenes/hazardous_light.tscn" id="11_gw5c3"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kgip6"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u0g4a"]
 texture = ExtResource("1_decnf")
 texture_region_size = Vector2i(100, 100)
 50:0/0 = 0
@@ -3455,6 +3455,7 @@ texture_region_size = Vector2i(100, 100)
 6:4/0 = 0
 6:5/0 = 0
 6:6/0 = 0
+8:7/next_alternative_id = 2
 8:7/0 = 0
 8:7/0/terrain_set = 0
 8:7/0/terrain = 0
@@ -3462,6 +3463,13 @@ texture_region_size = Vector2i(100, 100)
 8:7/0/terrains_peering_bit/right_side = 0
 8:7/0/terrains_peering_bit/bottom_right_corner = 0
 8:7/0/terrains_peering_bit/bottom_side = 0
+8:7/1 = 1
+8:7/1/flip_v = true
+8:7/1/terrain_set = 0
+8:7/1/terrain = 0
+8:7/1/terrains_peering_bit/right_side = 0
+8:7/1/terrains_peering_bit/top_side = 0
+8:7/1/terrains_peering_bit/top_right_corner = 0
 8:8/0 = 0
 8:8/0/terrain_set = 0
 8:8/0/terrain = 0
@@ -3471,6 +3479,7 @@ texture_region_size = Vector2i(100, 100)
 8:8/0/terrains_peering_bit/bottom_side = 0
 8:8/0/terrains_peering_bit/top_side = 0
 8:8/0/terrains_peering_bit/top_right_corner = 0
+8:9/next_alternative_id = 2
 8:9/0 = 0
 8:9/0/terrain_set = 0
 8:9/0/terrain = 0
@@ -3482,6 +3491,17 @@ texture_region_size = Vector2i(100, 100)
 8:9/0/terrains_peering_bit/left_side = 0
 8:9/0/terrains_peering_bit/top_side = 0
 8:9/0/terrains_peering_bit/top_right_corner = 0
+8:9/1 = 1
+8:9/1/flip_v = true
+8:9/1/terrain_set = 0
+8:9/1/terrain = 0
+8:9/1/terrains_peering_bit/right_side = 0
+8:9/1/terrains_peering_bit/bottom_right_corner = 0
+8:9/1/terrains_peering_bit/bottom_side = 0
+8:9/1/terrains_peering_bit/left_side = 0
+8:9/1/terrains_peering_bit/top_left_corner = 0
+8:9/1/terrains_peering_bit/top_side = 0
+8:9/1/terrains_peering_bit/top_right_corner = 0
 9:9/0 = 0
 9:9/0/terrain_set = 0
 9:9/0/terrain = 0
@@ -3503,6 +3523,7 @@ texture_region_size = Vector2i(100, 100)
 10:8/0/terrains_peering_bit/left_side = 0
 10:8/0/terrains_peering_bit/top_left_corner = 0
 10:8/0/terrains_peering_bit/top_side = 0
+10:7/next_alternative_id = 2
 10:7/0 = 0
 10:7/0/terrain_set = 0
 10:7/0/terrain = 0
@@ -3510,6 +3531,14 @@ texture_region_size = Vector2i(100, 100)
 10:7/0/terrains_peering_bit/bottom_side = 0
 10:7/0/terrains_peering_bit/bottom_left_corner = 0
 10:7/0/terrains_peering_bit/left_side = 0
+10:7/1 = 1
+10:7/1/flip_v = true
+10:7/1/terrain_set = 0
+10:7/1/terrain = 0
+10:7/1/terrains_peering_bit/left_side = 0
+10:7/1/terrains_peering_bit/top_left_corner = 0
+10:7/1/terrains_peering_bit/top_side = 0
+10:9/next_alternative_id = 2
 10:9/0 = 0
 10:9/0/terrain_set = 0
 10:9/0/terrain = 0
@@ -3521,6 +3550,17 @@ texture_region_size = Vector2i(100, 100)
 10:9/0/terrains_peering_bit/left_side = 0
 10:9/0/terrains_peering_bit/top_left_corner = 0
 10:9/0/terrains_peering_bit/top_side = 0
+10:9/1 = 1
+10:9/1/flip_v = true
+10:9/1/terrain_set = 0
+10:9/1/terrain = 0
+10:9/1/terrains_peering_bit/right_side = 0
+10:9/1/terrains_peering_bit/bottom_side = 0
+10:9/1/terrains_peering_bit/bottom_left_corner = 0
+10:9/1/terrains_peering_bit/left_side = 0
+10:9/1/terrains_peering_bit/top_left_corner = 0
+10:9/1/terrains_peering_bit/top_side = 0
+10:9/1/terrains_peering_bit/top_right_corner = 0
 9:8/0 = 0
 9:8/0/terrain_set = 0
 9:8/0/terrain = 0
@@ -3533,6 +3573,7 @@ texture_region_size = Vector2i(100, 100)
 9:8/0/terrains_peering_bit/top_left_corner = 0
 9:8/0/terrains_peering_bit/top_side = 0
 9:8/0/terrains_peering_bit/top_right_corner = 0
+9:7/next_alternative_id = 4
 9:7/0 = 0
 9:7/0/terrain_set = 0
 9:7/0/terrain = 0
@@ -3542,6 +3583,15 @@ texture_region_size = Vector2i(100, 100)
 9:7/0/terrains_peering_bit/bottom_side = 0
 9:7/0/terrains_peering_bit/bottom_left_corner = 0
 9:7/0/terrains_peering_bit/left_side = 0
+9:7/2 = 2
+9:7/2/flip_v = true
+9:7/2/terrain_set = 0
+9:7/2/terrain = 0
+9:7/2/terrains_peering_bit/right_side = 0
+9:7/2/terrains_peering_bit/left_side = 0
+9:7/2/terrains_peering_bit/top_left_corner = 0
+9:7/2/terrains_peering_bit/top_side = 0
+9:7/2/terrains_peering_bit/top_right_corner = 0
 11:7/0 = 0
 12:7/0 = 0
 11:8/0 = 0
@@ -3589,7 +3639,7 @@ texture_region_size = Vector2i(100, 100)
 13:0/0 = 0
 12:8/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_n0sjc"]
+[sub_resource type="TileSet" id="TileSet_gyquc"]
 tile_size = Vector2i(100, 100)
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
@@ -3597,13 +3647,9 @@ terrain_set_0/terrain_0/name = "Static_Platform"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_0/terrain_1/name = "Floating"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_kgip6")
+sources/0 = SubResource("TileSetAtlasSource_u0g4a")
 
 [node name="Node2D" type="Node2D"]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAAAAAAJAAcAAAD//wAAAAAJAAcAAAABAAAAAAAJAAcAAAAAAAEAAAAJAAgAAAD//wEAAAAJAAkAAAD//wIAAAAJAAkAAAAAAAIAAAAJAAgAAAABAAIAAAAJAAgAAAACAAEAAAAJAAkAAAACAAIAAAAJAAgAAAADAAIAAAAJAAgAAAADAAEAAAAJAAkAAAABAAEAAAAJAAkAAAAEAAEAAAAJAAkAAAAEAAIAAAAJAAkAAAAFAAIAAAAJAAgAAAAEAAAAAAAJAAcAAAD8/wIAAAAJAAgAAAD7/wIAAAAJAAkAAAD7/wEAAAAJAAgAAAD7/wAAAAAJAAcAAAD6/wIAAAAJAAkAAAD6/wEAAAAJAAkAAAD6/wAAAAAJAAcAAAAFAAAAAAAJAAcAAAAGAAAAAAAJAAcAAAAFAAEAAAAJAAkAAAAGAAIAAAAJAAgAAAAGAAEAAAAJAAgAAAAHAAEAAAAJAAgAAAAIAAEAAAAJAAgAAAAIAAIAAAAJAAkAAAAHAAIAAAAJAAkAAAAJAAEAAAAJAAgAAAAJAAIAAAAJAAkAAAAJAAAAAAAJAAcAAAAFAAMAAAAJAAgAAAAEAAMAAAAJAAkAAAADAAMAAAAJAAgAAAACAAMAAAAJAAgAAAABAAMAAAAJAAgAAAAAAAMAAAAJAAgAAAD//wMAAAAJAAkAAAD+/wMAAAAJAAgAAAD9/wMAAAAJAAkAAAD8/wMAAAAJAAgAAAD7/wMAAAAJAAkAAAD6/wMAAAAJAAkAAAAJAAMAAAAJAAgAAAAIAAMAAAAJAAgAAAAHAAMAAAAJAAkAAAAGAAMAAAAJAAkAAAACAAAAAAAJAAcAAAADAAAAAAAJAAcAAAAHAAAAAAAJAAcAAAAIAAAAAAAJAAcAAAD8/wAAAAAJAAcAAAD9/wAAAAAJAAcAAAD+/wAAAAAJAAcAAAD+/wEAAAAJAAgAAAD+/wIAAAAJAAkAAAD9/wIAAAAJAAkAAAD9/wEAAAAJAAgAAAD8/wEAAAAJAAgAAAAKAAAAAAAJAAcAAAALAAAAAAAJAAcAAAAMAAAAAAAJAAcAAAANAAAAAAAJAAcAAAAOAAAAAAAJAAcAAAAPAAAAAAAJAAcAAAAQAAAAAAAJAAcAAAARAAAAAAAJAAcAAAASAAAAAAAJAAcAAAATAAAAAAAJAAcAAAAUAAAAAAAJAAcAAAAVAAAAAAAJAAcAAAAWAAAAAAAJAAcAAAAXAAAAAAAJAAcAAAAYAAAAAAAKAAcAAAAKAAEAAAAJAAgAAAALAAEAAAAJAAgAAAAMAAEAAAAJAAgAAAANAAEAAAAJAAgAAAAOAAEAAAAJAAkAAAAPAAEAAAAJAAkAAAAQAAEAAAAJAAkAAAARAAEAAAAJAAgAAAASAAEAAAAJAAgAAAATAAEAAAAJAAgAAAAUAAEAAAAJAAkAAAAVAAEAAAAJAAkAAAAWAAEAAAAJAAkAAAAXAAEAAAAJAAgAAAAYAAEAAAAKAAgAAAAYAAIAAAAKAAgAAAAYAAMAAAAKAAkAAAAXAAMAAAAJAAkAAAAWAAMAAAAJAAkAAAAVAAMAAAAJAAgAAAAUAAMAAAAJAAkAAAATAAMAAAAJAAkAAAASAAMAAAAJAAgAAAARAAMAAAAJAAkAAAAQAAMAAAAJAAkAAAAPAAMAAAAJAAkAAAAOAAMAAAAJAAgAAAANAAMAAAAJAAgAAAAMAAMAAAAJAAgAAAALAAMAAAAJAAgAAAAKAAMAAAAJAAgAAAAKAAIAAAAJAAgAAAALAAIAAAAJAAkAAAAMAAIAAAAJAAkAAAANAAIAAAAJAAgAAAAOAAIAAAAJAAkAAAAPAAIAAAAJAAgAAAAQAAIAAAAJAAgAAAARAAIAAAAJAAkAAAASAAIAAAAJAAkAAAATAAIAAAAJAAkAAAAUAAIAAAAJAAkAAAAVAAIAAAAJAAkAAAAWAAIAAAAJAAkAAAAXAAIAAAAJAAkAAAA=")
-tile_set = SubResource("TileSet_n0sjc")
 
 [node name="The_Better_Player" parent="." instance=ExtResource("2_m1kcu")]
 position = Vector2(-328, -13)
@@ -3665,9 +3711,14 @@ position = Vector2(1062, -757)
 position = Vector2(1250, -757)
 
 [node name="Parent" parent="." instance=ExtResource("10_m65wr")]
-position = Vector2(1630.0001, -1563)
+position = Vector2(1635, -1618)
 scale = Vector2(3, 3)
 
 [node name="Hazardous_Light" parent="." instance=ExtResource("11_gw5c3")]
 position = Vector2(1053, -258)
 scale = Vector2(5.6, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(1.5258789e-05, 0)
+tile_map_data = PackedByteArray("AAD9/wAAAAAJAAcAAAD+/wAAAAAJAAcAAAD//wAAAAAJAAcAAAAAAAAAAAAJAAcAAAABAAAAAAAJAAcAAAACAAAAAAAJAAcAAAADAAAAAAAJAAcAAAAEAAAAAAAJAAcAAAAFAAAAAAAJAAcAAAAYAAAAAAAJAAcAAAAXAAAAAAAJAAcAAAAWAAAAAAAJAAcAAAAVAAAAAAAJAAcAAAAUAAAAAAAJAAcAAAATAAAAAAAJAAcAAAASAAAAAAAJAAcAAAARAAAAAAAJAAcAAAAQAAAAAAAJAAcAAAAPAAAAAAAJAAcAAAAOAAAAAAAJAAcAAAANAAAAAAAJAAcAAAAMAAAAAAAJAAcAAAALAAAAAAAJAAcAAAAKAAAAAAAJAAcAAAAJAAAAAAAJAAcAAAAIAAAAAAAJAAcAAAAHAAAAAAAJAAcAAAAGAAAAAAAJAAcAAAD7//D/AAAKAAgAAAD7//H/AAAKAAgAAAD7//L/AAAKAAgAAAD7//P/AAAKAAgAAAD7//T/AAAKAAgAAAD7//X/AAAKAAgAAAD7//b/AAAKAAgAAAD7//f/AAAKAAgAAAD7//j/AAAKAAgAAAD7//7/AAAKAAgAAAD7//3/AAAKAAgAAAD7//z/AAAKAAgAAAD7//v/AAAKAAgAAAD7//r/AAAKAAgAAAD7//n/AAAKAAgAAAD7/wAAAAAKAAkAAAD7/+//AAAKAAgAAAD8/wAAAAAJAAcAAAD7////AAAKAAgAAAD7/+7/AAAKAAgAAAD7/+3/AAAKAAkAAQD8/+3/AAAJAAcAAgD9/+3/AAAJAAcAAgD+/+3/AAAJAAcAAgD//+3/AAAJAAcAAgAAAO3/AAAJAAcAAgABAO3/AAAJAAcAAgACAO3/AAAJAAcAAgADAO3/AAAJAAcAAgAEAO3/AAAJAAcAAgAFAO3/AAAJAAcAAgAGAO3/AAAJAAcAAgAHAO3/AAAJAAcAAgAIAO3/AAAJAAcAAgAJAO3/AAAJAAcAAgAKAO3/AAAJAAcAAgALAO3/AAAJAAcAAgAMAO3/AAAJAAcAAgANAO3/AAAJAAcAAgAOAO3/AAAJAAcAAgAPAO3/AAAJAAcAAgAQAO3/AAAJAAcAAgARAO3/AAAJAAcAAgASAO3/AAAJAAcAAgATAO3/AAAJAAcAAgAUAO3/AAAJAAcAAgAVAO3/AAAJAAcAAgAWAO3/AAAJAAcAAgAXAO3/AAAJAAcAAgAYAO3/AAAJAAcAAgAZAAAAAAAIAAkAAAAZAP7/AAAIAAgAAAAZAP3/AAAIAAgAAAAZAPz/AAAIAAgAAAAZAPr/AAAIAAgAAAAZAPn/AAAIAAgAAAAZAPj/AAAIAAgAAAAZAPf/AAAIAAgAAAAZAPb/AAAIAAgAAAAZAPX/AAAIAAgAAAAZAPT/AAAIAAgAAAAZAPP/AAAIAAgAAAAZAPL/AAAIAAgAAAAZAPH/AAAIAAgAAAAZAPD/AAAIAAgAAAAZAO//AAAIAAgAAAAZAO7/AAAIAAgAAAAZAP//AAAIAAgAAAAZAO3/AAAIAAkAAQAZAPv/AAAIAAgAAAA=")
+tile_set = SubResource("TileSet_gyquc")
