@@ -16,7 +16,6 @@ scale = Vector2(3.5, 3.5)
 
 [node name="Platform" parent="." instance=ExtResource("2_ptj2r")]
 position = Vector2(469, 403)
-scale = Vector2(4, 4)
 
 [node name="moving_platform" parent="." instance=ExtResource("3_k264y")]
 position = Vector2(120, 475)
@@ -51,20 +50,17 @@ mirror = NodePath("../Platform5")
 
 [node name="Platform2" parent="." instance=ExtResource("2_ptj2r")]
 position = Vector2(572, 657.00006)
-scale = Vector2(36.743904, 3.1957777)
 
 [node name="Platform3" parent="." instance=ExtResource("2_ptj2r")]
 position = Vector2(336, 528)
 rotation = -0.32366103
-scale = Vector2(3, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(586, 337)
 
 [node name="Platform5" parent="." instance=ExtResource("2_ptj2r")]
-position = Vector2(1159, 622)
+position = Vector2(2983, 8866)
 rotation = 1.5707964
-scale = Vector2(100, 1)
 
 [node name="Spikes" parent="." instance=ExtResource("6_ptj2r")]
 position = Vector2(559.00006, 645)
