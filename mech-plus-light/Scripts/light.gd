@@ -115,7 +115,7 @@ func _physics_process(delta: float) -> void:
 				var maybe_master: Node = collider_node
 				while maybe_master != null:
 					if maybe_master.has_method("get_matching_outputs") and maybe_master.has_method("is_master_portal"):
-						maybe_master.light_falling = true
+						#maybe_master.light_falling = true
 						previous_master = maybe_master
 						master_hit_this_frame = true
 						if _current_master != maybe_master:
@@ -127,9 +127,9 @@ func _physics_process(delta: float) -> void:
 								slaves = handle_master_hit(maybe_master)
 						points.append(collision_point_local)
 						break
-					else:
-						if previous_master:
-							previous_master.light_falling = false
+					#else:
+						#if previous_master:
+							#previous_master.light_falling = false
 					maybe_master = maybe_master.get_parent()
 				if master_hit_this_frame:
 					break

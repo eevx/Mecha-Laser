@@ -21,13 +21,6 @@ var mirror_parent: Node
 @export var newer_object: Node2D
 
 @export var magnet: Node2D
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 # NEW: optional light this button controls
 
 @export var disappear_on_active_1 := true
@@ -76,20 +69,6 @@ func _input(event: InputEvent) -> void:
 				if magnet:
 					magnet.enable_magnet()# NEW: when ON → show object 
 				_show_new_object()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-				#_show_newer_object()
-
-=======
-				
->>>>>>> Stashed changes
-=======
-				
->>>>>>> Stashed changes
-=======
-				
->>>>>>> Stashed changes
 			else:
 				print("off")
 				sprite_2d.texture = button_tex_2
