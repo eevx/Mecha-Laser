@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_5xvfw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeg1r"]
-size = Vector2(96, 1435)
+size = Vector2(112, 1499)
 
 [sub_resource type="BoxMesh" id="BoxMesh_std2h"]
 
@@ -16,17 +16,17 @@ script = ExtResource("1_5xvfw")
 magnet = NodePath("Magnet")
 
 [node name="Magnet_Collider" type="CollisionPolygon2D" parent="."]
-position = Vector2(0.7031301, -23.875008)
-scale = Vector2(0.91885656, 1.030816)
-polygon = PackedVector2Array(-53.004063, 61.965485, -53.004063, -38.92547, 51.473614, -38.92547, 51.473614, 61.965485, -0.76522297, 61.965485)
+position = Vector2(10.39102, -23.875008)
+scale = Vector2(1.0337136, 1.030816)
+polygon = PackedVector2Array(-64.22574, -0.121255875, -64.22574, -38.92547, 44.121487, -38.92547, 44.121487, -0.121255875, -10.052127, -0.121255875)
 
 [node name="Magnet_sprite" type="Sprite2D" parent="."]
 position = Vector2(0.32973936, 5.061325)
 rotation = 3.1415927
-scale = Vector2(1.3089299, 1.3769426)
+scale = Vector2(1.1057194, 1.3769426)
 texture = ExtResource("2_5xvfw")
 region_enabled = true
-region_rect = Rect2(400, 500, 100, 100)
+region_rect = Rect2(0, 1100, 100, 100)
 
 [node name="Magnet" type="Area2D" parent="."]
 collision_layer = 3
@@ -36,13 +36,14 @@ increased_gravity = 20.0
 decreased_gravity = 20.0
 
 [node name="Magnet_Field" type="CollisionShape2D" parent="Magnet"]
-position = Vector2(0, 717.5)
+position = Vector2(0, 685.5)
 shape = SubResource("RectangleShape2D_eeg1r")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Magnet"]
 modulate = Color(1, 1, 1, 0.15294118)
-position = Vector2(-2.2737368e-13, 720)
-scale = Vector2(112, 1440)
+z_index = -1
+position = Vector2(-2.2737368e-13, 688)
+scale = Vector2(112, 1504)
 mesh = SubResource("BoxMesh_std2h")
 
 [connection signal="body_entered" from="Magnet" to="Magnet" method="_on_body_entered"]
