@@ -2,10 +2,14 @@
 extends Node2D
 
 @export_enum("RED", "BLUE", "GREEN") var color_of_the_portal : String = "RED"
-var color := Color.RED
+var color := Color.BLUE
+@export var laser: Node2D
+
+@export var light_falling: bool
 #@export var outputs_parent_name: String = "OutputsParent"  # Node containing outputs (optional)
 # optional: if you want explicit outputs, export NodePath array; for now we auto-collect children under outputs_parent
 func _ready() -> void:
+	update_lights()
 	match color_of_the_portal:
 		"RED":
 			color = Color.RED
@@ -35,11 +39,36 @@ func get_matching_outputs() -> Array:
 	#print("The size of the out array is : ", out.size())
 	return out
 
+
+func update_lights():
+	var portals = self.get_parent() as Node
+	for child in portals.get_children():
+		#print("I got some child which can be output")
+		if child == null: continue
+			# child may be OutputPortal or a node with OutputPortal.gd
+		#print("Child is non empty")
+		if child.has_method("get_exit_info") and child.has_method("is_output_portal"):
+			var info : Dictionary = child.get_exit_info()
+				# color match: exact match (you can add tolerance)
+			#print("Child is having the functions")
+			if child.color == color:
+				child.set_is_casting(true)
+				laser.handle_master_hit(self)
+			else:
+				child.set_is_casting(false)
+
+
 func change_color(new_color : Color) -> void:
+	print("color changed")
+	if !light_falling:
+		return
+		
 	print("I am here")
 	color = new_color
 	var mesh := $CollisionShape2D/MeshInstance2D
+	
 	if mesh:
 		mesh.modulate = color
+		update_lights()
 	else :
 		print("Not Found")

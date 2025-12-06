@@ -24,4 +24,4 @@ position = Vector2(66.18817, 0.38759345)
 scale = Vector2(1.5067137, 0.34618944)
 texture = ExtResource("2_ebpqh")
 region_enabled = true
-region_rect = Rect2(400, 1000, 100, 100)
+region_rect = Rect2(700, 1000, 100, 100)

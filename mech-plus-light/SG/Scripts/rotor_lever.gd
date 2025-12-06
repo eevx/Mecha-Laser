@@ -1,6 +1,5 @@
 extends Area2D
 
-@onready var animated_sprite = $AnimatedSprite2D
 
 # 1. The object to control
 @export var object_to_rotate: Node2D 
@@ -19,7 +18,6 @@ var is_active: bool = false
 func _ready() -> void:
 	if object_to_rotate:
 		current_angle = object_to_rotate.rotation_degrees
-		update_visuals()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D: 
@@ -30,7 +28,6 @@ func _on_body_exited(body: Node2D) -> void:
 		is_player_near = false
 		is_active = false 
 	direction = 0
-	update_visuals()
 
 func _input(event: InputEvent) -> void:
 	if not is_player_near:
@@ -58,13 +55,3 @@ func handle_rotation_input(delta: float) -> void:
 		
 		object_to_rotate.rotation_degrees = current_angle
 		
-		update_visuals()
-
-func update_visuals() -> void:
-	
-	if direction > 0:
-		animated_sprite.play("Right")
-	elif direction < 0:
-		animated_sprite.play("Left")
-	else:
-		animated_sprite.play("Center")

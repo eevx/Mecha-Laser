@@ -1,60 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://db2sg5dk7xs1j"]
+[gd_scene load_steps=4 format=3 uid="uid://db2sg5dk7xs1j"]
 
-[ext_resource type="Texture2D" uid="uid://de3uyboh467jt" path="res://SG/Assets/Sprites/Rotor Switch.png" id="1_c4e2i"]
 [ext_resource type="Script" uid="uid://dl1i1xxmtml2f" path="res://SG/Scripts/rotor_lever.gd" id="1_luh1u"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_luh1u"]
-atlas = ExtResource("1_c4e2i")
-region = Rect2(149, 0, 118, 172)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p0qqp"]
-atlas = ExtResource("1_c4e2i")
-region = Rect2(31, 0, 118, 172)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pd3r4"]
-atlas = ExtResource("1_c4e2i")
-region = Rect2(267, 0, 118, 172)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_r8tmm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_luh1u")
-}],
-"loop": true,
-"name": &"Center",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p0qqp")
-}],
-"loop": true,
-"name": &"Left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pd3r4")
-}],
-"loop": true,
-"name": &"Right",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://2luk5mmlr511" path="res://Assets/Pawan/Tilemaps_00.png" id="2_luh1u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0qqp"]
-size = Vector2(166, 166)
+size = Vector2(96, 96)
 
 [node name="rotor_lever" type="Area2D"]
 script = ExtResource("1_luh1u")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_r8tmm")
-animation = &"Right"
-offset = Vector2(20, 0)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p0qqp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_luh1u")
+region_enabled = true
+region_rect = Rect2(400, 400, 100, 100)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
