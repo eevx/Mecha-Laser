@@ -427,17 +427,17 @@ scale_max = 4.0
 color_ramp = SubResource("GradientTexture1D_vh7je")
 anim_offset_max = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ccau8"]
+shader = ExtResource("18_r6fwu")
+shader_parameter/grain_amount = 0.05
+shader_parameter/grain_size = 1.0
+
 [sub_resource type="Gradient" id="Gradient_r6fwu"]
 offsets = PackedFloat32Array(0.24299066, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ccau8"]
 gradient = SubResource("Gradient_r6fwu")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ccau8"]
-shader = ExtResource("18_r6fwu")
-shader_parameter/grain_amount = 0.05
-shader_parameter/grain_size = 1.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -588,223 +588,6 @@ texture = ExtResource("14_3b4w1")
 position = Vector2(107, -168)
 texture = ExtResource("14_3b4w1")
 
-[node name="Gear1" type="Sprite2D" parent="environment"]
-modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
-z_index = -1
-position = Vector2(-363, -286)
-texture = ExtResource("15_r6fwu")
-
-[node name="Plx" type="Node" parent="environment/Gear1"]
-script = ExtResource("11_08x0n")
-depth = -7
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="RotateConstant" type="Node" parent="environment/Gear1"]
-script = ExtResource("16_ccau8")
-metadata/_custom_type_script = "uid://bydpx66y1hyil"
-
-[node name="Gear2" type="Sprite2D" parent="environment"]
-modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
-z_index = -1
-position = Vector2(283, -285.00003)
-rotation = 0.2600777
-scale = Vector2(0.63602656, 0.63602656)
-texture = ExtResource("15_r6fwu")
-
-[node name="Plx" type="Node" parent="environment/Gear2"]
-script = ExtResource("11_08x0n")
-depth = -7
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="RotateConstant" type="Node" parent="environment/Gear2"]
-script = ExtResource("16_ccau8")
-dir = 1
-metadata/_custom_type_script = "uid://bydpx66y1hyil"
-
-[node name="Gear3" type="Sprite2D" parent="environment"]
-modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
-z_index = -1
-position = Vector2(-275, 737)
-rotation = 0.2600777
-scale = Vector2(0.63602656, 0.63602656)
-texture = ExtResource("15_r6fwu")
-
-[node name="Plx" type="Node" parent="environment/Gear3"]
-script = ExtResource("11_08x0n")
-depth = -7
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="RotateConstant" type="Node" parent="environment/Gear3"]
-script = ExtResource("16_ccau8")
-rotation_speed = 0.2
-metadata/_custom_type_script = "uid://bydpx66y1hyil"
-
-[node name="Gear7" type="Sprite2D" parent="environment"]
-modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
-z_index = -1
-position = Vector2(-440.00003, 340.00003)
-rotation = 0.26007766
-scale = Vector2(0.4299718, 0.4299718)
-texture = ExtResource("15_r6fwu")
-
-[node name="Plx" type="Node" parent="environment/Gear7"]
-script = ExtResource("11_08x0n")
-depth = -7
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="RotateConstant" type="Node" parent="environment/Gear7"]
-script = ExtResource("16_ccau8")
-rotation_speed = 0.2
-dir = 1
-metadata/_custom_type_script = "uid://bydpx66y1hyil"
-
-[node name="Gear4" type="Sprite2D" parent="environment"]
-modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
-z_index = -1
-position = Vector2(1167, 558)
-rotation = 0.2600777
-scale = Vector2(0.63602656, 0.63602656)
-texture = ExtResource("15_r6fwu")
-
-[node name="Plx" type="Node" parent="environment/Gear4"]
-script = ExtResource("11_08x0n")
-depth = -7
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="RotateConstant" type="Node" parent="environment/Gear4"]
-script = ExtResource("16_ccau8")
-rotation_speed = 0.5
-metadata/_custom_type_script = "uid://bydpx66y1hyil"
-
-[node name="Gear5" type="Sprite2D" parent="environment"]
-modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
-z_index = -1
-position = Vector2(770, 718.99994)
-rotation = 0.26007766
-scale = Vector2(0.42133883, 0.42133883)
-texture = ExtResource("15_r6fwu")
-
-[node name="Plx" type="Node" parent="environment/Gear5"]
-script = ExtResource("11_08x0n")
-depth = -7
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="RotateConstant" type="Node" parent="environment/Gear5"]
-script = ExtResource("16_ccau8")
-rotation_speed = 0.5
-dir = 1
-metadata/_custom_type_script = "uid://bydpx66y1hyil"
-
-[node name="Gear6" type="Sprite2D" parent="environment"]
-modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
-z_index = -1
-position = Vector2(1553, 700.99994)
-rotation = 0.26007766
-scale = Vector2(0.42133883, 0.42133883)
-texture = ExtResource("15_r6fwu")
-
-[node name="Plx" type="Node" parent="environment/Gear6"]
-script = ExtResource("11_08x0n")
-depth = -7
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="RotateConstant" type="Node" parent="environment/Gear6"]
-script = ExtResource("16_ccau8")
-rotation_speed = 0.5
-dir = 1
-metadata/_custom_type_script = "uid://bydpx66y1hyil"
-
-[node name="Gear8" type="Sprite2D" parent="environment"]
-modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
-z_index = -1
-position = Vector2(1172, 739)
-rotation = 0.26007766
-scale = Vector2(0.41971844, 0.41971844)
-texture = ExtResource("15_r6fwu")
-
-[node name="Plx" type="Node" parent="environment/Gear8"]
-script = ExtResource("11_08x0n")
-depth = -9
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="RotateConstant" type="Node" parent="environment/Gear8"]
-script = ExtResource("16_ccau8")
-rotation_speed = 0.5
-dir = 1
-metadata/_custom_type_script = "uid://bydpx66y1hyil"
-
-[node name="Pillar1" type="Sprite2D" parent="environment"]
-modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
-z_index = -1
-position = Vector2(-84, 168)
-scale = Vector2(0.728, 2.032)
-texture = ExtResource("17_3b4w1")
-
-[node name="Plx" type="Node" parent="environment/Pillar1"]
-script = ExtResource("11_08x0n")
-depth = -5
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="Pillar2" type="Sprite2D" parent="environment"]
-modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
-z_index = -1
-position = Vector2(925, 150.00002)
-scale = Vector2(0.728, 2.032)
-texture = ExtResource("17_3b4w1")
-
-[node name="Plx" type="Node" parent="environment/Pillar2"]
-script = ExtResource("11_08x0n")
-depth = -3
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="Pillar3" type="Sprite2D" parent="environment"]
-modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
-z_index = -1
-position = Vector2(1529, 121.000015)
-scale = Vector2(0.728, 2.032)
-texture = ExtResource("17_3b4w1")
-
-[node name="Plx" type="Node" parent="environment/Pillar3"]
-script = ExtResource("11_08x0n")
-depth = -5
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="Pillar4" type="Sprite2D" parent="environment"]
-modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
-z_index = -1
-position = Vector2(614, 121.000015)
-scale = Vector2(0.448, 2.032)
-texture = ExtResource("17_3b4w1")
-
-[node name="Plx" type="Node" parent="environment/Pillar4"]
-script = ExtResource("11_08x0n")
-depth = -9
-metadata/_custom_type_script = "uid://cbian77aymv82"
-
-[node name="Sprite2D" type="Sprite2D" parent="environment"]
-position = Vector2(724.4514, 955)
-rotation = -1.5707964
-scale = Vector2(2.8447354, 2763.294)
-texture = SubResource("GradientTexture1D_ccau8")
-
-[node name="Sprite2D2" type="Sprite2D" parent="environment"]
-position = Vector2(724.4514, -467)
-rotation = -4.712389
-scale = Vector2(2.6252904, 2763.294)
-texture = SubResource("GradientTexture1D_ccau8")
-
-[node name="Sprite2D3" type="Sprite2D" parent="environment"]
-position = Vector2(-560.00006, 166.00002)
-rotation = -6.2831855
-scale = Vector2(3.0335312, 2763.294)
-texture = SubResource("GradientTexture1D_ccau8")
-
-[node name="Sprite2D4" type="Sprite2D" parent="environment"]
-position = Vector2(1901, 166.00002)
-rotation = -9.424778
-scale = Vector2(4.7839413, 2763.294)
-texture = SubResource("GradientTexture1D_ccau8")
-
 [node name="postprocessing" type="CanvasLayer" parent="environment"]
 
 [node name="film_grain_overlay" type="ColorRect" parent="environment/postprocessing"]
@@ -815,3 +598,225 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="gears" type="Node2D" parent="environment"]
+
+[node name="Gear1" type="Sprite2D" parent="environment/gears"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(-363, -286)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/gears/Gear1"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/gears/Gear1"]
+script = ExtResource("16_ccau8")
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear2" type="Sprite2D" parent="environment/gears"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(283, -285.00003)
+rotation = 0.26007771
+scale = Vector2(0.63602656, 0.63602656)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/gears/Gear2"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/gears/Gear2"]
+script = ExtResource("16_ccau8")
+dir = 1
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear3" type="Sprite2D" parent="environment/gears"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(-275, 737)
+rotation = 0.26007771
+scale = Vector2(0.63602656, 0.63602656)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/gears/Gear3"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/gears/Gear3"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.2
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear7" type="Sprite2D" parent="environment/gears"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(-440.00003, 340.00003)
+rotation = 0.26007766
+scale = Vector2(0.42997178, 0.42997178)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/gears/Gear7"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/gears/Gear7"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.2
+dir = 1
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear4" type="Sprite2D" parent="environment/gears"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(1167, 558)
+rotation = 0.26007771
+scale = Vector2(0.63602656, 0.63602656)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/gears/Gear4"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/gears/Gear4"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.5
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear5" type="Sprite2D" parent="environment/gears"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(770, 718.99994)
+rotation = 0.26007766
+scale = Vector2(0.42133883, 0.42133883)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/gears/Gear5"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/gears/Gear5"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.5
+dir = 1
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear6" type="Sprite2D" parent="environment/gears"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(1553, 700.99994)
+rotation = 0.26007766
+scale = Vector2(0.42133883, 0.42133883)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/gears/Gear6"]
+script = ExtResource("11_08x0n")
+depth = -7
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/gears/Gear6"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.5
+dir = 1
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="Gear8" type="Sprite2D" parent="environment/gears"]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
+z_index = -1
+position = Vector2(1172, 739)
+rotation = 0.26007766
+scale = Vector2(0.41971844, 0.41971844)
+texture = ExtResource("15_r6fwu")
+
+[node name="Plx" type="Node" parent="environment/gears/Gear8"]
+script = ExtResource("11_08x0n")
+depth = -9
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="RotateConstant" type="Node" parent="environment/gears/Gear8"]
+script = ExtResource("16_ccau8")
+rotation_speed = 0.5
+dir = 1
+metadata/_custom_type_script = "uid://bydpx66y1hyil"
+
+[node name="pillar" type="Node2D" parent="environment"]
+
+[node name="Pillar1" type="Sprite2D" parent="environment/pillar"]
+modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
+z_index = -1
+position = Vector2(-84, 168)
+scale = Vector2(0.728, 2.032)
+texture = ExtResource("17_3b4w1")
+
+[node name="Plx" type="Node" parent="environment/pillar/Pillar1"]
+script = ExtResource("11_08x0n")
+depth = -5
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="Pillar2" type="Sprite2D" parent="environment/pillar"]
+modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
+z_index = -1
+position = Vector2(925, 150.00002)
+scale = Vector2(0.728, 2.032)
+texture = ExtResource("17_3b4w1")
+
+[node name="Plx" type="Node" parent="environment/pillar/Pillar2"]
+script = ExtResource("11_08x0n")
+depth = -3
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="Pillar3" type="Sprite2D" parent="environment/pillar"]
+modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
+z_index = -1
+position = Vector2(1529, 121.000015)
+scale = Vector2(0.728, 2.032)
+texture = ExtResource("17_3b4w1")
+
+[node name="Plx" type="Node" parent="environment/pillar/Pillar3"]
+script = ExtResource("11_08x0n")
+depth = -5
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="Pillar4" type="Sprite2D" parent="environment/pillar"]
+modulate = Color(0.4390491, 0.43904912, 0.43904912, 1)
+z_index = -1
+position = Vector2(614, 121.000015)
+scale = Vector2(0.448, 2.032)
+texture = ExtResource("17_3b4w1")
+
+[node name="Plx" type="Node" parent="environment/pillar/Pillar4"]
+script = ExtResource("11_08x0n")
+depth = -9
+metadata/_custom_type_script = "uid://cbian77aymv82"
+
+[node name="gradients" type="Node2D" parent="environment"]
+
+[node name="gradient" type="Sprite2D" parent="environment/gradients"]
+position = Vector2(724.4514, 955)
+rotation = -1.5707964
+scale = Vector2(2.8447354, 2763.294)
+texture = SubResource("GradientTexture1D_ccau8")
+
+[node name="gradient2" type="Sprite2D" parent="environment/gradients"]
+position = Vector2(724.4514, -467)
+rotation = 1.5707964
+scale = Vector2(2.6252904, 2763.294)
+texture = SubResource("GradientTexture1D_ccau8")
+
+[node name="gradient3" type="Sprite2D" parent="environment/gradients"]
+position = Vector2(-560.00006, 166.00002)
+scale = Vector2(3.0335312, 2763.294)
+texture = SubResource("GradientTexture1D_ccau8")
+
+[node name="gradient4" type="Sprite2D" parent="environment/gradients"]
+position = Vector2(1901, 166.00002)
+rotation = 3.1415927
+scale = Vector2(4.7839413, 2763.294)
+texture = SubResource("GradientTexture1D_ccau8")
