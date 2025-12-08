@@ -394,7 +394,7 @@ glow_blend_mode = 1
 offsets = PackedFloat32Array(0, 0.28481013, 0.6962025, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.6106195, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vh7je"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r6fwu"]
 gradient = SubResource("Gradient_pfrjk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wup4i"]
@@ -406,7 +406,7 @@ initial_velocity_max = 50.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.0
 scale_max = 0.099999994
-color_ramp = SubResource("GradientTexture1D_vh7je")
+color_ramp = SubResource("GradientTexture1D_r6fwu")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5dkvm"]
 blend_mode = 1
@@ -424,7 +424,7 @@ initial_velocity_max = 50.0
 gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 4.0
-color_ramp = SubResource("GradientTexture1D_vh7je")
+color_ramp = SubResource("GradientTexture1D_r6fwu")
 anim_offset_max = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ccau8"]
@@ -432,12 +432,12 @@ shader = ExtResource("18_r6fwu")
 shader_parameter/grain_amount = 0.05
 shader_parameter/grain_size = 1.0
 
-[sub_resource type="Gradient" id="Gradient_r6fwu"]
+[sub_resource type="Gradient" id="Gradient_ccau8"]
 offsets = PackedFloat32Array(0.24299066, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ccau8"]
-gradient = SubResource("Gradient_r6fwu")
+gradient = SubResource("Gradient_ccau8")
 
 [node name="Node2D" type="Node2D"]
 
@@ -491,6 +491,7 @@ rotation = 1.2810717
 scale = Vector2(3, 3)
 
 [node name="The_Better_Player" parent="." instance=ExtResource("4_a2yat")]
+modulate = Color(0.7595335, 0.6084648, 0.33709016, 1)
 position = Vector2(125, 649)
 
 [node name="Camera2D" type="Camera2D" parent="The_Better_Player"]
@@ -564,6 +565,7 @@ process_material = SubResource("ParticleProcessMaterial_wup4i")
 
 [node name="Plx" type="Node" parent="environment/GPUParticles2D2"]
 script = ExtResource("11_08x0n")
+depth = 10
 metadata/_custom_type_script = "uid://cbian77aymv82"
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="environment"]
